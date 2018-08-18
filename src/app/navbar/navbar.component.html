@@ -3,8 +3,10 @@
         <a class="navbar-brand" routerLink="/home">
           <i class="fa fa-cubes" aria-hidden="true">X-market</i>  
         </a>
-        <button class="navbar-toggler" (click)="isCollapsed = !isCollapsed">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="navbarMenu"
+        >
+            <span class="navbar-toggler-icon"></span> 
         </button>
         <div class="collapse navbar-collapse" [collapse]="isCollapsed" id="navbarMenu">
             <ul class="navbar-nav">
@@ -29,3 +31,12 @@
         </div>
     </div>
 </nav>
+
+<!-- 
+<button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Toggle collapse
+</button>
+<hr>
+<div id="collapseBasic" [collapse]="isCollapsed" class="card card-block card-header">
+  <div class="well well-lg">Some content</div>
+</div>   -->

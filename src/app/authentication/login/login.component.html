@@ -1,3 +1,45 @@
-<p>
- LOGIN PAGE
-</p>
+<section class="login-form">
+    <div class="container">
+        <h3 class="text-center text-uppercase my-5">Log in</h3>
+         <!-- FORM -->
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="row justify-content-center">
+                <div class="form-group col-10 col-md-4">
+                  <input class="form-control" type="text" id="username" placeholder="Username"  name="userName">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="form-group col-10 col-md-4">
+                    <input class="form-control" type="password" id="password" placeholder="Password"  name="user.password">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button class="btn btn-outline-success btn-lg mt-5" (click)="createUser()" type="button">
+                        <i class="fa fa-sign-in mr-2"></i>Log in 
+                </button>
+            </div>
+        </form>  
+      <!-- // FORM -->
+    </div>
+  </section>
+
+   <!-- OLD VERSION  -->
+        <!-- FORM -->
+        <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="row justify-content-center">
+                <div class="form-group col-10 col-md-4">
+                    <input class="form-control" type="text" id="username" placeholder="Username" [(ngModel)]="user.userName" name="userName">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="form-group col-10 col-md-4">
+                    <input class="form-control" type="password" id="password" placeholder="Password" [(ngModel)]="user.password" name="user.password">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button class="btn btn-outline-success btn-lg mt-5" (click)="createUser()" type="button">
+                        <i class="fa fa-user-plus mr-2"></i>Register
+                </button>
+            </div>
+        </form> -->
+         <!-- // FORM -->
