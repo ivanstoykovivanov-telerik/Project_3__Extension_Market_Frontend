@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from "../models/product.model";
+import { User } from '../models/user.model';
+import { Tag } from '../models/tag.model';
 
 
 @Component({
@@ -9,20 +11,16 @@ import { Product } from "../models/product.model";
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  private productsURL = "/api/product";
 
-  constructor(private http: HttpClient) { }
+  constructor(private productService : ProductComponent) { }
 
   ngOnInit() { }
 
   public getAllproducts(){
-    return this.http.get<Product[]>(this.productsURL);
+
   }
 
   public save(product: Product){
-    // console.log("From save task input");
-    // console.log(product);
-    return this.http.post<Product>(`${this.productsURL}/save`, product);
   }
 
 }

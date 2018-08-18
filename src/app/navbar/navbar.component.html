@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-md navbar-light bg-success">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/home">
+          <i class="fa fa-cubes" aria-hidden="true">X-market</i>  
+        </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" [collapse]="isCollapsed" id="navbarMenu">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/home">
+                      <i class="fa fa-home"></i>
+                      Home</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown bg-success text-white">  
+                    <a  class="nav-link"  routerLink="/profile" >
+                        <i class="fa fa-user"></i> Profile {{username}}
+                    </a>
+                </li>
+                <li class="nav-item ml-3">
+                    <a routerLink="/logout" class="nav-link">
+                        <i class="fa fa-sign-out"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

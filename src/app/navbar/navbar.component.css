@@ -1,0 +1,17 @@
+ nav{
+    padding: 0 ; 
+    padding-bottom: 0.2rem; 
+} 
+
+/* .navbar,
+.navbar a, 
+.dropdown-item,
+dropdown-menu a:hover {
+    color : white; 
+   
+} */
+
+.navbar a:hover{
+    color : white; 
+    cursor: pointer; 
+}
