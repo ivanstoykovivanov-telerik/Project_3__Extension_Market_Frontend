@@ -5,16 +5,36 @@
         <form (ngSubmit)="onSubmit(f)" #f="ngForm">
             <div class="row justify-content-center">
                 <div class="form-group col-10 col-md-4">
-                  <input class="form-control" type="text" id="username" placeholder="Username"  name="userName">
+                  <label for="username">username</label>
+                  <input 
+                    class="form-control" 
+                    type="text" 
+                    id="username" 
+                    placeholder="Username"  
+                    name="username" 
+                    required
+                    ngModel >
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="form-group col-10 col-md-4">
-                    <input class="form-control" type="password" id="password" placeholder="Password"  name="user.password">
+                    <label for="password">password</label>  
+                    <input 
+                      class="form-control" 
+                      type="password" 
+                      id="password" 
+                      placeholder="Password"  
+                      name="password" 
+                      required
+                      ngModel>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <button class="btn btn-outline-success btn-lg mt-5" (click)="createUser()" type="button">
+                <button 
+                  class="btn btn-outline-success btn-lg mt-5" 
+                  type="submit"
+                  [disabled]="!f.valid"
+                  >
                         <i class="fa fa-sign-in mr-2"></i>Log in 
                 </button>
             </div>
@@ -22,24 +42,3 @@
       <!-- // FORM -->
     </div>
   </section>
-
-   <!-- OLD VERSION  -->
-        <!-- FORM -->
-        <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-            <div class="row justify-content-center">
-                <div class="form-group col-10 col-md-4">
-                    <input class="form-control" type="text" id="username" placeholder="Username" [(ngModel)]="user.userName" name="userName">
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="form-group col-10 col-md-4">
-                    <input class="form-control" type="password" id="password" placeholder="Password" [(ngModel)]="user.password" name="user.password">
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <button class="btn btn-outline-success btn-lg mt-5" (click)="createUser()" type="button">
-                        <i class="fa fa-user-plus mr-2"></i>Register
-                </button>
-            </div>
-        </form> -->
-         <!-- // FORM -->
