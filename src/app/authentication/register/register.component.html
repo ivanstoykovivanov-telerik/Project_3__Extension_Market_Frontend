@@ -1,42 +1,157 @@
 <div class="container">
     <h3 class="text-center text-uppercase my-5">Create your account</h3>
-    <!-- FORM -->
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-        <div class="row justify-content-center">
-            <div class="form-group col-10 col-md-4">
-                <input class="form-control" type="text" id="firstName" placeholder="First Name"  name="firstName">
-            </div>
+    
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+      
+      <div class="row justify-content-center">
+        <div class="form-group offset-1 col-10 col-md-4">
+          <input 
+            class="form-control" 
+            type="text" 
+            placeholder="First mame"  
+            formControlName="firstName"
+            required 
+            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+            <!-- error message -->
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+              <div *ngIf="f.firstName.errors.required">First name is required</div>
+              <div *ngIf="f.firstName.errors.minlength">First name must be at least 6 characters long</div>
+            </div>  
+            <!-- // error message -->
         </div>
-        <div class="row justify-content-center">
-            <div class="form-group col-10 col-md-4">
-                <input class="form-control" type="text" id="lastName" placeholder="Last Name"  name="lastName" >
-            </div>
+        <!-- validation icon -->
+        <span class="col-1">
+          <i *ngIf="f.firstName.valid" style="color: green" class="fa fa-check"></i>
+          <i *ngIf="submitted && f.firstName.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+        </span>
+        <!-- //  validation icon -->
+      </div>
+          
+      <div class="row justify-content-center">
+        <div class="form-group offset-1 col-10 col-md-4">
+          <input 
+            class="form-control" 
+            type="text" 
+            placeholder="Last name"  
+            formControlName="lastName"
+            required 
+            [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+            <!-- error message -->
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+              <div *ngIf="f.lastName.errors.required">Last name is required</div>
+              <div *ngIf="f.lastName.errors.minlength">Last name must be at least 6 characters long</div>
+            </div>  
+            <!-- // error message -->
         </div>
-        <div class="row justify-content-center">
-            <div class="form-group col-10 col-md-4">
-                <input class="form-control" type="text" id="username" placeholder="Username" name="userName">
-            </div>
+        <!-- validation icon -->
+        <span class="col-1">
+          <i *ngIf="f.lastName.valid" style="color: green" class="fa fa-check"></i>
+          <i *ngIf="submitted && f.lastName.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+        </span>
+        <!-- //  validation icon -->
+      </div>
+          
+      <div class="row justify-content-center">
+        <div class="form-group offset-1 col-10 col-md-4">
+          <input 
+            class="form-control" 
+            type="text" 
+            placeholder="Username"  
+            formControlName="username"
+            required 
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+            <!-- error message -->
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+              <div *ngIf="f.username.errors.required">Username is required</div>
+              <div *ngIf="f.username.errors.minlength">Username must be at least 6 characters long</div>
+            </div>  
+            <!-- // error message -->
         </div>
-        <div class="row justify-content-center">
-            <div class="form-group col-10 col-md-4">
-                <input class="form-control" type="email" id="email" placeholder="Email"   name="email" >
-                <small class="form-text text-muted">Your private data will never be shared to third parties</small>
-            </div>
+        <!-- validation icon -->
+        <span class="col-1">
+          <i *ngIf="f.username.valid" style="color: green" class="fa fa-check"></i>
+          <i *ngIf="submitted && f.username.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+        </span>
+        <!-- //  validation icon -->
+      </div>
+
+      <div class="row justify-content-center">
+          <div class="form-group offset-1 col-10 col-md-4">
+            <input 
+              class="form-control" 
+              type="text" 
+              placeholder="Email"  
+              formControlName="email"
+              required 
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+              <!-- error message -->
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Valid email is required</div>
+              </div>      
+              <!-- // error message -->
+          </div>
+          <!-- validation icon -->
+          <span class="col-1">
+            <i *ngIf="f.email.valid" style="color: green" class="fa fa-check"></i>
+            <i *ngIf="submitted && f.email.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+          </span>
+          <!-- //  validation icon -->
         </div>
 
         <div class="row justify-content-center">
-            <div class="form-group col-10 col-md-4">
-                <input class="form-control" type="password" id="password" placeholder="Password" name="user.password">
+            <div class="form-group offset-1 col-10 col-md-4">
+              <input 
+                class="form-control" 
+                type="text" 
+                placeholder="Password"  
+                formControlName="password"
+                required 
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                <!-- error message -->
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters long</div>
+                </div>      
+                <!-- // error message -->
             </div>
-        </div>
+            <!-- validation icon -->
+            <span class="col-1">
+              <i *ngIf="f.password.valid" style="color: green" class="fa fa-check"></i>
+              <i *ngIf="submitted && f.password.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+            </span>
+            <!-- //  validation icon -->
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="form-group offset-1 col-10 col-md-4">
+              <input 
+                class="form-control" 
+                type="text" 
+                placeholder="Confirm password"  
+                formControlName="confirm_password"
+                required 
+                [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }">
+                <!-- error message -->
+                <div *ngIf="submitted && f.confirm_password.errors" class="invalid-feedback">
+                    <div *ngIf="f.confirm_password.errors.required">Password is required</div>
+                    <div *ngIf="f.confirm_password.errors.minlength">Password must be at least 6 characters long</div>
+                </div>      
+                  <!-- // error message -->
+            </div>
+              <!-- validation icon -->
+              <span class="col-1">
+                <i *ngIf="f.confirm_password.valid" style="color: green" class="fa fa-check"></i>
+                <i *ngIf="submitted && f.confirm_password.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+              </span>
+              <!-- //  validation icon -->
+          </div>
 
         <div class="row justify-content-center">
-            <div class="form-group col-10 col-md-4">
-                <input class="form-control" type="password" id="rep_password" placeholder="Repeat Password"  name="user.repPassword">
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <button class="btn btn-outline-success btn-lg mt-5" (click)="createUser()" type="button">
+            <button 
+              class="btn btn-outline-success btn-lg mt-5"  
+              [disabled]="loading"
+              type="submit">
                     <i class="fa fa-user-plus mr-2"></i>Register
             </button>
         </div>

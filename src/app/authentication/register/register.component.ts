@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-register',
@@ -8,16 +9,43 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  user: User ; 
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  onSubmit(form: NgForm){
-    console.log("Register form submitted");
-    console.log(form.value);
+    registerForm: FormGroup;
+    submitted = false;
+    user: User ; 
+ 
+    constructor(private formBuilder: FormBuilder) { }
+ 
+    ngOnInit() {
+        this.registerForm = this.formBuilder.group({
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
+            username: ['', Validators.minLength(6)],
+            email: ['', [ Validators.email] ],
+            password: ['', [ Validators.minLength(6)]],
+            confirm_password: ['', [ Validators.minLength(6)]]
+        });
+    }
+ 
+    // convenience getter for easy access to form fields
+    get f() { return this.registerForm.controls; }
     
-  }
+
+    // TODO  ADD
+    // passwordMatchValidator(g: FormGroup){
+    //   return g.get('password').value === g.get('rep_password').value
+    //   ? null : {'mismatch': true};
+    // }
+
+
+    onSubmit() {
+      this.submitted = true;
+      console.log('SUCCESSFULLY REGISTERED ');
+       
+        // stop here if form is invalid
+        if (this.registerForm.invalid) {
+          console.log("Invalid registration form");
+          return;
+        }
+ 
+    }
 }

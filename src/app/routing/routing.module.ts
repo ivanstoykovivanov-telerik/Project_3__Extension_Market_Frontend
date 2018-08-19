@@ -13,7 +13,7 @@ const routes: Routes = [
   {path  : "home" , component : HomeComponent}, 
   {path  : "profile" , component : ProfileComponent}, 
   // otherwise redirect to home
-  // { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' }
 ]
 
 @NgModule({
