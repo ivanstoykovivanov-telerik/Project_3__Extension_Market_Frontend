@@ -103,7 +103,7 @@
             <div class="form-group offset-1 col-10 col-md-4">
               <input 
                 class="form-control" 
-                type="text" 
+                type="password" 
                 placeholder="Password"  
                 formControlName="password"
                 required 
@@ -127,15 +127,16 @@
             <div class="form-group offset-1 col-10 col-md-4">
               <input 
                 class="form-control" 
-                type="text" 
+                type="password" 
                 placeholder="Confirm password"  
                 formControlName="confirm_password"
                 required 
                 [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }">
                 <!-- error message -->
                 <div *ngIf="submitted && f.confirm_password.errors" class="invalid-feedback">
-                    <div *ngIf="f.confirm_password.errors.required">Password is required</div>
+                    <div *ngIf="f.confirm_password.errors.required">Confirming the password is required</div>
                     <div *ngIf="f.confirm_password.errors.minlength">Password must be at least 6 characters long</div>
+                    <div *ngIf="f.confirm_password.invalid">Passwords must match</div>
                 </div>      
                   <!-- // error message -->
             </div>
