@@ -39,7 +39,7 @@
             <!-- error message -->
             <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
               <div *ngIf="f.lastName.errors.required">Last name is required</div>
-              <div *ngIf="f.lastName.errors.minlength">Last name must be at least 6 characters long</div>
+              <div *ngIf="f.lastName.errors.minlength">Last name must be at least 3 characters long</div>
             </div>  
             <!-- // error message -->
         </div>
@@ -63,7 +63,7 @@
             <!-- error message -->
             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
               <div *ngIf="f.username.errors.required">Username is required</div>
-              <div *ngIf="f.username.errors.minlength">Username must be at least 6 characters long</div>
+              <div *ngIf="f.username.errors.minlength">Username must be at least 3 characters long</div>
             </div>  
             <!-- // error message -->
         </div>
@@ -111,7 +111,7 @@
                 <!-- error message -->
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password is required</div>
-                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters long</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 3 characters long</div>
                 </div>      
                 <!-- // error message -->
             </div>
@@ -135,7 +135,7 @@
                 <!-- error message -->
                 <div *ngIf="submitted && f.confirm_password.errors" class="invalid-feedback">
                     <div *ngIf="f.confirm_password.errors.required">Confirming the password is required</div>
-                    <div *ngIf="f.confirm_password.errors.minlength">Password must be at least 6 characters long</div>
+                    <div *ngIf="f.confirm_password.errors.minlength">Password must be at least 3 characters long</div>
                     <div *ngIf="f.confirm_password.invalid">Passwords must match</div>
                 </div>      
                   <!-- // error message -->
