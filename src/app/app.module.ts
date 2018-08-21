@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoutingModule } from './routing/routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 //Components:
 import { AppComponent } from './app.component';
@@ -19,6 +20,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthService } from './services/auth.service';
+import { AccountService } from './services/account.service';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -37,13 +41,18 @@ import { ProfileComponent } from './profile/profile.component';
   imports: [
     BrowserModule, 
     FormsModule, 
+    HttpClientModule,
     ReactiveFormsModule, 
     RoutingModule, 
     BsDropdownModule.forRoot(),
     AngularFontAwesomeModule, 
     CollapseModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AccountService, 
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
