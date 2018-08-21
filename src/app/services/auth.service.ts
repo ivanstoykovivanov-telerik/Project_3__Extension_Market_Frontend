@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions,Response} from '@angular/http';
-import {User} from "../model/model.user";
 import 'rxjs/add/operator/map';
 import {AppComponent} from "../app.component";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -28,7 +28,7 @@ export class AuthService {
 
     //return this.http.get(AppComponent.API_URL+"/account/login" ,  options)    // -> old version
     return this.http.get(AppComponent.API_URL+"/account/login" ,  {headers} )
-      .map((response: Response) => {
+      .subscribe((response: Response) => {
       // login successful if there's a jwt token in the response
       let user = response.json().principal;// the returned user object is a principal object
       if (user) {
@@ -41,7 +41,7 @@ export class AuthService {
   logOut() {
     // remove user from local storage to log user out
     return this.http.post(AppComponent.API_URL+"logout",{})
-      .map((response: Response) => {
+      .subscribe((response: Response) => {
         localStorage.removeItem('currentUser');
       });
   }
