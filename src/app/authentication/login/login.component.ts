@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   submitted = false; 
   errorMesssage : string;  
 
-
   constructor( 
     private formBuilder: FormBuilder, 
     private authService : AuthService, 
@@ -32,42 +31,35 @@ export class LoginComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 
-
   onSubmit(){
     this.submitted = true; 
-    const user =  new User(this.f.username.value, this.f.password.value); 
-    console.log("Logged User: ");
-    console.log(user);
-    // LOGIN
-    this.login(user); 
-
+    
     //stop if form is invalid
     if (this.loginForm.invalid) {
-      console.log("Invalid");
+      console.log("INVALID LOGIN FORM");
       return;
-   }
-
+    }
+    
+    let username: string = this.f.username.value; 
+    let password: string = this.f.password.value; 
+    
+    // LOGIN TO BACKEND
+    const user =  new User(username, password); 
+    this.login(user); 
   }
 
   login(user: User){
     this.authService.logIn(user)
-    .subscribe(
-      data => {
-        // login successful if there's a jwt token in the response
-        console.log("Successfully LOGGED IN ");
-        //localStorage.setItem('currentUser', JSON.stringify(data.principal)); 
-        console.log(data);
-        // let user = data /// json().principal;// the returned user object is a principal object
-        if (data) {
-          // store user details  in local storage to keep user logged in between pages 
-          // localStorage.setItem('currentUser', JSON.stringify(data));
-          // localStorage.setItem('user', JSON.stringify(user));
-          this.router.navigate(['/home']);
-        }
-    }, 
-      err => {
-        this.errorMesssage = "Incorrect username or password";
-      });
+      .subscribe(
+        data => {
+          if (data) {
+            console.log("Successfully LOGGED IN ");
+            this.router.navigate(['/home']);
+          }
+      }, 
+        err => {
+          this.errorMesssage = "Incorrect username or password";
+        });
   }
 
 }
