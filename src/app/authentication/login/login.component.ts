@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
       data => {
         // login successful if there's a jwt token in the response
         console.log("Successfully LOGGED IN ");
-        localStorage.setItem('currentUser', JSON.stringify(data.principal)); 
+        //localStorage.setItem('currentUser', JSON.stringify(data.principal)); 
         console.log(data);
         // let user = data /// json().principal;// the returned user object is a principal object
         if (data) {

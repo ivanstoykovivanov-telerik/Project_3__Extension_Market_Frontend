@@ -3,7 +3,6 @@ import { User } from '../../models/user.model';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from '../../services/account.service';
-import { Z_FULL_FLUSH } from 'zlib';
 
 
 @Component({
@@ -32,7 +31,7 @@ export class RegisterComponent implements OnInit {
             username: ['', Validators.minLength(3)],
             email: ['', [ Validators.email] ],
             password: ['', [ Validators.minLength(3)]],
-            confirm_password: ['', [ Validators.minLength(3), this.passValidator]]
+            confirm_password: ['', [ Validators.minLength(3), this.passwordValidator]]
         });
     }
  
@@ -40,8 +39,8 @@ export class RegisterComponent implements OnInit {
     get f() { return this.registerForm.controls; }
     
 
-    //confirm if passwords match 
-    passValidator(control: AbstractControl) {
+    //confirm if password and repeated password match 
+    passwordValidator(control: AbstractControl) {
         if (control && (control.value !== null || control.value !== undefined)) {
             const cnfpassValue = control.value;
     
@@ -72,14 +71,15 @@ export class RegisterComponent implements OnInit {
       console.log(this.f.email.value);
 
       let firstName = this.f.firstName.value;  
-      let username = this.f.username.value; 
       let lastName = this.f.lastName.value;  
+      let username = this.f.username.value; 
       let email = this.f.email.value; 
       let password = this.f.password.value;
 
       //For test purposes the email is the username right now
-      let user: User = new User(email, password);  
+      let user: User = new User(username, password, firstName, lastName, email);  
       console.log(user);
+      
       this.register(user);   
     }
 

@@ -26,6 +26,7 @@
     "font-awesome": "^4.7.0",
     "ngx-bootstrap": "^3.0.1",
     "rxjs": "^6.0.0",
+    "zlib": "^1.0.5",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

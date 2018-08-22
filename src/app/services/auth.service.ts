@@ -21,7 +21,10 @@ export class AuthService {
 
   public logIn(user: User){
     // // creating base64 encoded String from user name and password
-     const base64Credential: string = btoa( user.username+ ':' + user.password);
+    console.log("Log in ***************");
+    console.log(user);
+     
+    const base64Credential: string = btoa( user.username+ ':' + user.password);
     // headers.append("Authorization", "Basic " + base64Credential);
 
     // let options = new RequestOptions();
@@ -36,8 +39,22 @@ export class AuthService {
        .pipe(
          map(data => {
           console.log("After mapping: ");
-          console.log(data.principal.username);
-          this.changeUser(data.principal);  
+          // console.log(typeof data);
+          //  console.log("STRINGIFY  --------------");
+           
+          // let data1 =  console.log(JSON.stringify(data)); 
+          // console.log(data1.principal.username);
+          
+          //  console.log("JSON parse only -----------");
+          let dataNew =JSON.parse(JSON.stringify(data));
+           
+          //  console.log("Data new: ");
+          //  console.log(dataNew);
+           
+           console.log("Username --------------: ");
+           console.log(dataNew.principal.username);
+           localStorage.setItem('currentUser', JSON.stringify(dataNew.principal)); 
+           this.changeUser(dataNew.principal);  
           return data; 
           })
        )
