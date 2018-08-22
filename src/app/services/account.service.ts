@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class AccountService {
   constructor(public http: HttpClient) { }
 
-  createAccount(user:User){
-    return this.http.post(AppComponent.API_URL+'/account/register',user) ; 
+  createAccount(user: User){
+    return this.http.post(AppComponent.API_URL+'/account/register',user); 
       // .subscribe(resp =>resp.json());
   }
 }

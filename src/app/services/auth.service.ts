@@ -3,31 +3,44 @@ import { Http, Headers, RequestOptions,Response} from '@angular/http';
 import {AppComponent} from "../app.component";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from '../models/user.model';
+import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class AuthService {
   
-  // constructor(public http: Http) { }
+  //subscribe to changes in  currentUser 
+  private messageSource = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("currentUser")));
+  currentUser = this.messageSource.asObservable();
+
   constructor(public http: HttpClient) { }
 
+  changeUser(user: User) {
+    this.messageSource.next(user)
+  }
+
   public logIn(user: User){
-    // let headers = new Headers();
-    // headers.append('Accept', 'application/json')
     // // creating base64 encoded String from user name and password
-     var base64Credential: string = btoa( user.username+ ':' + user.password);
+     const base64Credential: string = btoa( user.username+ ':' + user.password);
     // headers.append("Authorization", "Basic " + base64Credential);
 
     // let options = new RequestOptions();
     // options.headers=headers;
     
-    //My headers  : 
+    //Set headers  : 
     const headers = new HttpHeaders()
       .set('Accept', 'application/json')
       .set("Authorization", "Basic " + base64Credential); 
 
-    //return this.http.get(AppComponent.API_URL+"/account/login" ,  options)    // -> old version
     return this.http.get(AppComponent.API_URL+"/account/login" ,  {headers} )
-      // .subscribe((response: Response) => {
+       .pipe(
+         map(data => {
+          console.log("After mapping: ");
+          console.log(data.principal.username);
+          this.changeUser(data.principal);  
+          return data; 
+          })
+       )
       // // login successful if there's a jwt token in the response
       // let user = response.json().principal;// the returned user object is a principal object
       // if (user) {
@@ -37,13 +50,13 @@ export class AuthService {
     // });
   }
 
-  public logOut() {
+  public logOut(user: User) {
     // remove user from local storage to log user out
-    return this.http.post(AppComponent.API_URL+"logout",{})
+    return this.http.post(AppComponent.API_URL+"logout", user); 
       //remove the logic from here  
-      .subscribe((response: Response) => {
-          localStorage.removeItem('currentUser');
-      });
+      // .subscribe((response: Response) => {
+      //     localStorage.removeItem('currentUser');
+      // });
   }
 
 }
