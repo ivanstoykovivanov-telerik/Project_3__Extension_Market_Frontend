@@ -23,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthService } from './services/auth.service';
 import { AccountService } from './services/account.service';
 import { ProductService } from './services/product.service';
+import { AuthGuard } from '../guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ProductService } from './services/product.service';
   providers: [
     AuthService,
     AccountService, 
-    ProductService
+    ProductService, 
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

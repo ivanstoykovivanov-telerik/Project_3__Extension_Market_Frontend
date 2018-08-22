@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-  
+
   //subscribe to changes in  currentUser 
   private messageSource = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("currentUser")));
   currentUser = this.messageSource.asObservable();
