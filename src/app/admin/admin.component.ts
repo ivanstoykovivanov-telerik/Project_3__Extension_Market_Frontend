@@ -25,13 +25,17 @@ export class AdminComponent implements OnInit {
   }
 
 
-  deActivateUser(user: User){
-
+  deActivateUser(event, user: User){
+    
+    user.active = false; 
+    console.log(user);
+   
+    this.userService.save(user).subscribe(); 
   }
 
   findProducts(user: User){
     //navigate to another component UserProducts
-      
+
     //
   }
 

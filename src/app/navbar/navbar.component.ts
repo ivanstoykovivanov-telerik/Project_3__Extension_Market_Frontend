@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit {
   logOut() {
     this.authService.changeUser(null); 
     localStorage.removeItem('currentUser');
-    localStorage.removeItem('user');
     this.router.navigate(['/login']);
     console.log("successfully logged out");
 
@@ -37,15 +36,15 @@ export class NavbarComponent implements OnInit {
         data => {
           this.router.navigate(['/login']);
           localStorage.removeItem('currentUser');
-          localStorage.removeItem('user');
           console.log("successfully logged out");
-          console.log(data);
-        },
-        error => {
-          console.log("Error logging out: ");
-          console.log(error);
-          
-        });
+          // console.log(data);
+        }
+        // ,
+        // error => {
+        //   console.log("Error logging out: ");
+        //   console.log(error);
+        // }
+      );
   }
 
 }

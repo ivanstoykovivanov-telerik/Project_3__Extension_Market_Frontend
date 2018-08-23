@@ -10,7 +10,7 @@
             <th>Username</th>
             <th>Email</th>
             <th>Password</th>
-            <th>Deactivate</th>
+            <th class="text-danger">Deactivate</th>
             <th>Extensions</th>
             <th>  </th>
           </tr>
@@ -24,8 +24,9 @@
             <td>{{user.email}}</td>
             <td>{{user.password}}</td>
             <td>
-              <i class="btn fa fa-trash-o text-danger del_btn" aria-hidden="true" (click)="deActivateUser(user)">
-              </i>
+                <input type="checkbox" (change)="deActivateUser($event, user)" [checked]="user.active">
+                <!-- <i class="btn fa fa-trash-o text-danger del_btn" aria-hidden="true" (click)="deActivateUser(user)">
+                </i> -->
             </td>
             <td>
               <i class="btn fa fa-eye text-primary del_btn" aria-hidden="true" (click)="findProducts(user)">

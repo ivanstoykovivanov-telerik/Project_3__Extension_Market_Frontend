@@ -17,6 +17,10 @@ export class UserService {
       return this.http.get<User[]>(AppComponent.API_URL + '/account' ); 
   }
 
+  public save(user: User){
+    return this.http.post<User>(AppComponent.API_URL + '/account/save', user ); 
+  } 
+
 
 }
 

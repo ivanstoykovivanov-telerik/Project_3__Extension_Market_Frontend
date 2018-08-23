@@ -49,6 +49,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(user: User){
+    
+   // TODO: Check if user is not deactivated by admin
+    
     this.authService.logIn(user)
       .subscribe(
         data => {

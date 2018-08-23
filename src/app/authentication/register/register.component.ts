@@ -75,9 +75,9 @@ export class RegisterComponent implements OnInit {
       let username = this.f.username.value; 
       let email = this.f.email.value; 
       let password = this.f.password.value;
+      let active = true; 
 
-      //For test purposes the email is the username right now
-      let user: User = new User(username, password, firstName, lastName, email);  
+      let user: User = new User(username, password, firstName, lastName, email, active);  
       console.log(user);
       
       this.register(user);   
