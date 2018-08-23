@@ -1,0 +1,15 @@
+.product_desc{
+    font-size: .8rem;
+    color: gray;  
+}
+
+.pull-requests{
+    font-size: .9rem;
+    color: gray;
+    font-weight: bold;
+}
+
+.product_name{
+    /* color: rgb(226, 115, 10);  */
+    font-weight:bold; 
+}

@@ -18,8 +18,8 @@ export class ProductService {
     new Tag("great") 
   ]; 
   private products: Product[] = [
-    new Product("windows", "operational system", "2.33", this.user1, 23, "www.win.com", "http://www.github.com",12, this.tags1, new Date()), 
-    new Product("linux", "operational system", "7.43", this.user1, 3, "www.lin.com", "http://www.github.com",6, this.tags1, new Date()  )
+    // new Product("windows", "operational system", "2.33", this.user1, 23, "www.win.com", "http://www.github.com",12, this.tags1, new Date()), 
+    // new Product("linux", "operational system", "7.43", this.user1, 3, "www.lin.com", "http://www.github.com",6, this.tags1, new Date()  )
   ];  
   
   constructor(private http: HttpClient) { }  
