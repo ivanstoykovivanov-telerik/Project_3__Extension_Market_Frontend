@@ -41,6 +41,7 @@ export class AuthService {
           
           //  console.log("JSON parse only -----------");
           let dataNew = JSON.parse(JSON.stringify(data));
+          //let dataNew = JSON.stringify(data);  //TODO: 
            
           localStorage.setItem('currentUser', JSON.stringify(dataNew.principal)); 
           this.changeUser(dataNew.principal);  
