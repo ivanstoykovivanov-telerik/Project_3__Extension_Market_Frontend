@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeaturedComponent implements OnInit {
 
+  carouselTitle :string = "Featured"; 
+
   constructor() { }
 
   ngOnInit() {

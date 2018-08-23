@@ -6,6 +6,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
   styleUrls: ['./new.component.css']
 })
 export class NewComponent implements OnInit {
+  
+  carouselTitle: string  = "New Extensions" 
 
   constructor() { }
 

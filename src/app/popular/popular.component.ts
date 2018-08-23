@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopularComponent implements OnInit {
 
+  carouselTitle :string = "Most Popular"; 
+
   constructor() { }
 
   ngOnInit() {
