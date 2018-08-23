@@ -17,6 +17,9 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       
+
+
+      // TODO: check the log in status in the backend - link to see 
       if(localStorage.getItem("currentUser")){
         return true;
       }

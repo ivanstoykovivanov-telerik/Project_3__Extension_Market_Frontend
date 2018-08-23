@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Product } from "../models/product.model";
-import { User } from '../models/user.model';
-import { Tag } from '../models/tag.model';
-
+import { NgxCarousel } from 'ngx-carousel';
 
 @Component({
   selector: 'app-product',
@@ -12,15 +8,14 @@ import { Tag } from '../models/tag.model';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private productService : ProductComponent) { }
+  public carouselOne: NgxCarousel;
 
-  ngOnInit() { }
 
-  public getAllproducts(){
+  constructor() { }
 
+  ngOnInit() {
+   
   }
 
-  public save(product: Product){
-  }
 
 }

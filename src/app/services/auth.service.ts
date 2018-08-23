@@ -30,18 +30,18 @@ export class AuthService {
 
     return this.http.get(AppComponent.API_URL+"/account/login",  {headers} )
        .pipe(
-         map(data => {
+         map((data: any) => {
           console.log("After mapping: ");
           // console.log(typeof data);
           //  console.log("STRINGIFY  --------------");
           
           // !!!!!! TODO:  Show PAVEL
           // let data1 =  console.log(JSON.stringify(data)); 
-          // console.log(data1.principal.username);
+          //console.log(data.principal.username);
           
           //  console.log("JSON parse only -----------");
           let dataNew = JSON.parse(JSON.stringify(data));
-          //let dataNew = JSON.stringify(data);  //TODO: 
+          let dataNew1 = JSON.stringify(data.principal);  //TODO: 
            
           localStorage.setItem('currentUser', JSON.stringify(dataNew.principal)); 
           this.changeUser(dataNew.principal);  

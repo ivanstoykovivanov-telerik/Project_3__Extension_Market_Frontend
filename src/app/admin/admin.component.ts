@@ -9,7 +9,7 @@ import { User } from '../models/user.model';
 })
 export class AdminComponent implements OnInit {
   users: User[];
-  
+
   constructor(
     private userService: UserService 
   ) { }
@@ -26,8 +26,7 @@ export class AdminComponent implements OnInit {
 
 
   deActivateUser(event, user: User){
-    
-    user.active = false; 
+    user.active = !user.active; 
     console.log(user);
    
     this.userService.save(user).subscribe(); 

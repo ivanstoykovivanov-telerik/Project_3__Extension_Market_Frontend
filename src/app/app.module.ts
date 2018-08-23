@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoutingModule } from './routing/routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import 'hammerjs';
 
 //Components:
 import { AppComponent } from './app.component';
@@ -13,18 +14,26 @@ import { NewComponent } from './new/new.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { LogoutComponent } from './authentication/logout/logout.component';
-import { ProductComponent } from './product/product.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AdminComponent } from './admin/admin.component';
+import { ListOfProductsComponent } from './profile/list-of-products/list-of-products.component';
+import { TestComponent } from './test/test.component';
+import { ProductComponent } from './product/product.component';
 
 // Bootstrap modules: 
 import { BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { ProfileComponent } from './profile/profile.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NgxCarouselModule } from 'ngx-carousel';
+
+//Services: 
 import { AuthService } from './services/auth.service';
 import { AccountService } from './services/account.service';
 import { ProductService } from './services/product.service';
 import { AuthGuard } from '../guards/auth.guard';
-import { AdminComponent } from './admin/admin.component';
+import { CarouselComponent } from './carousel/carousel.component';
+
 
 @NgModule({
   declarations: [
@@ -36,10 +45,13 @@ import { AdminComponent } from './admin/admin.component';
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
-    ProductComponent,
     NavbarComponent,
     ProfileComponent,
-    AdminComponent
+    AdminComponent,
+    ListOfProductsComponent,
+    TestComponent,
+    ProductComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule, 
@@ -47,9 +59,11 @@ import { AdminComponent } from './admin/admin.component';
     HttpClientModule,
     ReactiveFormsModule, 
     RoutingModule, 
+    NgxCarouselModule, 
     BsDropdownModule.forRoot(),
     AngularFontAwesomeModule, 
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(), 
+    CarouselModule.forRoot()
   ],
   providers: [
     AuthService,
