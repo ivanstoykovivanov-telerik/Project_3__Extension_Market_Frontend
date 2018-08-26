@@ -38,6 +38,7 @@ export class AuthService {
           // !!!!!! TODO:  Show PAVEL
           // let data1 =  console.log(JSON.stringify(data)); 
           //console.log(data.principal.username);
+          console.log(data.principal);
           
           //  console.log("JSON parse only -----------");
           let dataNew = JSON.parse(JSON.stringify(data));

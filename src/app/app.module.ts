@@ -34,6 +34,15 @@ import { ProductService } from './services/product.service';
 import { AuthGuard } from '../guards/auth.guard';
 import { CarouselComponent } from './carousel/carousel.component';
 
+//Security
+import { JwtModule } from '@auth0/angular-jwt';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+
+// export function tokenGetter() {
+//   return localStorage.getItem('access_token');
+// }
+
+
 
 @NgModule({
   declarations: [
@@ -52,6 +61,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     TestComponent,
     ProductComponent,
     CarouselComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule, 
@@ -63,7 +73,14 @@ import { CarouselComponent } from './carousel/carousel.component';
     BsDropdownModule.forRoot(),
     AngularFontAwesomeModule, 
     CollapseModule.forRoot(), 
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    // JwtModule.forRoot({
+    //   config: {
+    //     tokenGetter: tokenGetter,
+    //     whitelistedDomains: ['localhost:8080'],
+    //     blacklistedRoutes: ['localhost:3001/auth/'] //example
+    //   }
+    // }), 
   ],
   providers: [
     AuthService,

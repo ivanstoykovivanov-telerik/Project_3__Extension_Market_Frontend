@@ -1,3 +1,8 @@
+
+.product{
+    cursor:pointer; 
+}
+
 .product_desc{
     font-size: .8rem;
     color: gray;  
@@ -13,3 +18,4 @@
     /* color: rgb(226, 115, 10);  */
     font-weight:bold; 
 }
+

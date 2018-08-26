@@ -10,6 +10,10 @@ import { User } from '../models/user.model';
 export class ProductService {
   private productsURL = "/api/product";
 
+  // PRODUCT DETAILS DATA
+  productDetails: Product; 
+  
+
   //For test purposes : 
   private user1 = new User("ivansivanov", "bonbon"); 
   private tags1: Tag[] = [

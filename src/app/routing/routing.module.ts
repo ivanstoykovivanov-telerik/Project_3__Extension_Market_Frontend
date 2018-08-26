@@ -7,6 +7,7 @@ import { HomeComponent } from '../home/home.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { AuthGuard } from '../../guards/auth.guard';
 import { AdminComponent } from '../admin/admin.component';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path  : "profile", 
     component : ProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path  : "productDetails", 
+    component : ProductDetailsComponent,
     canActivate: [AuthGuard]
   },
   {

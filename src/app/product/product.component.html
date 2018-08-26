@@ -1,4 +1,4 @@
-<div class="card border-success mb-3" style="max-width: 18rem;">
+<div class="card border-success mb-3 product" style="max-width: 18rem;" (click)="productClicked(product)">
   <!-- <div class="card-header">Prduct </div> -->
   <div class="card-body text-success">
     <h5 class="card-title text-center product_name">{{product.name}} </h5>
@@ -11,8 +11,8 @@
           {{product.owner.username}}
         </div>
     </div>
-    <div class="text-center">
+    <!-- <div class="text-center">
       <button class="btn btn-success btn-sm text-white mt-4 mb-1">Details</button>
-    </div>
+    </div> -->
   </div>
 </div>
