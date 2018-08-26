@@ -1,0 +1,15 @@
+.product_details{
+    margin-top: 150px; 
+}
+
+.product_name{
+    font-size: 3.4rem;     
+}
+
+.product_version{
+    font-weight: bold; 
+}
+
+.product_description{
+    font-size: 1.2rem; 
+}

@@ -11,8 +11,8 @@ export class ProductService {
   private productsURL = "/api/product";
 
   // PRODUCT DETAILS DATA
-  productDetails: Product; 
-  
+ // productDetails: Product; 
+
 
   //For test purposes : 
   private user1 = new User("ivansivanov", "bonbon"); 
@@ -30,8 +30,16 @@ export class ProductService {
   
   
   public getAllproducts(){
-    
     //return this.http.get<Product[]>(this.productsURL);
+  }
+
+  get productDetails() : Product{
+    return JSON.parse(localStorage.getItem("productDetails"));   
+  }
+
+  set productDetails(product : Product){
+    // this.productDetails = product; 
+    localStorage.setItem("productDetails", JSON.stringify(product)); 
   }
 
   public save(product: Product){

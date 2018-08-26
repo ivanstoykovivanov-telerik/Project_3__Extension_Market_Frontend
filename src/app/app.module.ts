@@ -37,6 +37,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 //Security
 import { JwtModule } from '@auth0/angular-jwt';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductSearchComponent } from './product-search/product-search.component';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
@@ -62,6 +63,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ProductComponent,
     CarouselComponent,
     ProductDetailsComponent,
+    ProductSearchComponent,
   ],
   imports: [
     BrowserModule, 

@@ -18,17 +18,16 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
     this.product = this.data; 
     console.log("Product details: ");
-    
     console.log(this.product);
-    
   }
 
-
   downloadProduct(){
-    
   }
 
   get data(): Product { 
+    console.log("Getting the product data...");
+    
     return this.productService.productDetails; 
+
   } 
 }

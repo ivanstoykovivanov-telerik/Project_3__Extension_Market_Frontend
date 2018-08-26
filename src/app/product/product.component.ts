@@ -21,7 +21,7 @@ export class ProductComponent implements OnInit {
       "http://www.slack-bot.com/download",
       "http://github/slac-chat", 
       12,
-      [new Tag("chat"), new Tag("chatbot")], 
+      [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ], 
       421, 
       new Date(), 
       "pending", 
