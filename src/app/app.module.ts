@@ -38,6 +38,8 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
+import { ProductsOfUserComponent } from './products-of-user/products-of-user.component';
+import { ProfileDataComponent } from './profile-data/profile-data.component';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
@@ -64,6 +66,8 @@ import { ProductSearchComponent } from './product-search/product-search.componen
     CarouselComponent,
     ProductDetailsComponent,
     ProductSearchComponent,
+    ProductsOfUserComponent,
+    ProfileDataComponent,
   ],
   imports: [
     BrowserModule, 

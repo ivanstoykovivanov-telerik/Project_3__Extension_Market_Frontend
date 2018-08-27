@@ -10,19 +10,21 @@ export class AppComponent {
   title = 'extensionMarket';
   static API_URL="http://localhost:8080";
 
-  constructor(public http: HttpClient) {}
+  constructor(
+    // public http: HttpClient
+  ) {}
 
-  ping() {
-    this.http
-      .get('http://example.com/api/things')
-      .subscribe(
-        data => {
-          console.log("Ping data: ");
-          console.log(data)
-        }, 
-        err => {
-          console.log("Error data: ");
-          console.log(err)
-        });
-  }
+  // ping() {
+  //   this.http
+  //     .get('http://example.com/api/things')
+  //     .subscribe(
+  //       data => {
+  //         console.log("Ping data: ");
+  //         console.log(data)
+  //       }, 
+  //       err => {
+  //         console.log("Error data: ");
+  //         console.log(err)
+  //       });
+  // }
 }

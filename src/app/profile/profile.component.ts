@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -10,8 +11,8 @@ import { AuthService } from '../services/auth.service';
 export class ProfileComponent implements OnInit {
   currentUser: User; 
 
-
   constructor(
+    private router: Router,
     private authService : AuthService
   ) { }
 
@@ -22,4 +23,11 @@ export class ProfileComponent implements OnInit {
     console.log(this.currentUser);
   }
 
+
+  goToUserData(){
+    console.log("Clicked...");
+    
+    this.router.navigate([{ outlets: { profileDetails: [ 'profileData'] }}]); 
+    
+  }
 }

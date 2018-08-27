@@ -8,6 +8,8 @@ import { ProfileComponent } from '../profile/profile.component';
 import { AuthGuard } from '../../guards/auth.guard';
 import { AdminComponent } from '../admin/admin.component';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
+import { ProductsOfUserComponent } from '../products-of-user/products-of-user.component';
+import { ProfileDataComponent } from '../profile-data/profile-data.component';
 
 const routes: Routes = [
   {
@@ -16,25 +18,34 @@ const routes: Routes = [
   }, 
   {
     path  : "login", 
-    component : LoginComponent
+    component : LoginComponent, 
   },
   {
     path  : "logout", 
-    component : LoginComponent
+    component : LoginComponent,
   },
   {
     path  : "home", 
-    component : HomeComponent
+    component : HomeComponent,
   }, 
   {
     path  : "profile", 
     component : ProfileComponent,
-    canActivate: [AuthGuard]
+  }, 
+  //PROFILE DETAILS:  
+  {
+    path  : "productsOfUser", 
+    component : ProductsOfUserComponent,
+    outlet: "products"
+  },
+  {
+    path  : "profileData", 
+    component : ProductsOfUserComponent,
+    outlet: "profileDetails"
   },
   {
     path  : "productDetails", 
     component : ProductDetailsComponent,
-    canActivate: [AuthGuard]
   },
   {
     path  : "admin", 
@@ -42,7 +53,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   }, 
   // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  // { path: '**', redirectTo: '' }
 ]
 
 @NgModule({
