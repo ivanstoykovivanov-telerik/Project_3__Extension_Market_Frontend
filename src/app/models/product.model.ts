@@ -16,7 +16,8 @@ export class Product{
         public pullRequests: number, 
         public lastCommitDate : Date,
         public productState: string,     //TODO: type? 
-        public id? : number
+        public id? : number, 
+        public active? : boolean, 
     ){
     }
 }

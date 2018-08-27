@@ -1,0 +1,31 @@
+<div class="container users">
+      <h4> <i class="fa fa-user"></i><span class="ml-2">{{user.username}}</span></h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="hidden">Id</th>
+            <th>Product Name</th>
+            <th>Version</th>
+            <th>Last Commit Date</th>
+            <th>Open Issues</th>
+            <th class="text-danger">Deactivate</th>
+            <th>Extensions Page</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td class="hidden">{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.version}}</td>
+            <td>{{product.lastCommitDate}}</td>
+            <td>{{product.openIssues}}</td>
+            <td>
+                <input type="checkbox" (change)="deActivateProduct($event, product)" [checked]="product.active">
+            </td>
+            <td>
+              <button class="btn btn-primary"  (click)="showProduct(product)">Product Page</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

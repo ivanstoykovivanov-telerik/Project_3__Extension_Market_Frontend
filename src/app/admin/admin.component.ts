@@ -9,6 +9,7 @@ import { User } from '../models/user.model';
 })
 export class AdminComponent implements OnInit {
   users: User[];
+  currentUser : User; 
 
   constructor(
     private userService: UserService 
@@ -24,7 +25,6 @@ export class AdminComponent implements OnInit {
       }); 
   }
 
-
   deActivateUser(event, user: User){
     user.active = !user.active; 
     console.log(user);
@@ -33,6 +33,8 @@ export class AdminComponent implements OnInit {
   }
 
   findProducts(user: User){
+    this.currentUser = user; 
+    
     //navigate to another component UserProducts
 
     //

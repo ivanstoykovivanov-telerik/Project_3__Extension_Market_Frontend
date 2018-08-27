@@ -21,6 +21,9 @@ export class UserService {
     return this.http.post<User>(AppComponent.API_URL + '/account/save', user ); 
   } 
 
+  public getProductsByUser(user: User){
+    //TODO: 
+  }
 
 }
 

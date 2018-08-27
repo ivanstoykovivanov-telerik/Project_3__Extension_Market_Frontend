@@ -26,6 +26,7 @@ import { BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxCarouselModule } from 'ngx-carousel';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 //Services: 
 import { AuthService } from './services/auth.service';
@@ -40,6 +41,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { ProductsOfUserComponent } from './products-of-user/products-of-user.component';
 import { ProfileDataComponent } from './profile-data/profile-data.component';
+import { AdminExtensionsPerUserComponent } from './admin-extensions-per-user/admin-extensions-per-user.component';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
@@ -68,6 +70,7 @@ import { ProfileDataComponent } from './profile-data/profile-data.component';
     ProductSearchComponent,
     ProductsOfUserComponent,
     ProfileDataComponent,
+    AdminExtensionsPerUserComponent,
   ],
   imports: [
     BrowserModule, 
@@ -80,6 +83,7 @@ import { ProfileDataComponent } from './profile-data/profile-data.component';
     AngularFontAwesomeModule, 
     CollapseModule.forRoot(), 
     CarouselModule.forRoot(),
+    ModalModule.forRoot()
     // JwtModule.forRoot({
     //   config: {
     //     tokenGetter: tokenGetter,
