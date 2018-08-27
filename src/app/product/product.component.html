@@ -2,17 +2,21 @@
   <!-- <div class="card-header">Prduct </div> -->
   <div class="card-body text-success">
     <h5 class="card-title text-center product_name">{{product.name}} </h5>
+    <div class="product_icon text-center my-3"><i [ngClass]="icon"></i></div>
     <p class="card-text mt-4 product_desc">{{product.description}}</p>
-    <div class="row mt-2">
-        <div class="col-6 pull-requests">
-            {{product.pullRequests}}
-        </div>
-        <div class="col-6">
-          {{product.owner.username}}
-        </div>
-    </div>
-    <!-- <div class="text-center">
-      <button class="btn btn-success btn-sm text-white mt-4 mb-1">Details</button>
-    </div> -->
+    
+    <div class="row details">
+      <div class="col-12 text-center">
+        <span class="downloads mr-2"><i class="fa fa-download"></i></span>
+        <span class="num_of_downloads">{{product.numberOfDownloads}}</span>
+      </div> 
+    </div>  
+      
+      <div class="row">
+        <div class="col-12 text-center">
+          <span class="username">{{product.owner.username}}</span> 
+        </div> 
+      </div> 
+
   </div>
 </div>

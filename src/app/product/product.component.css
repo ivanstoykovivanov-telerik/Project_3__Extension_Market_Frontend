@@ -8,14 +8,37 @@
     color: gray;  
 }
 
-.pull-requests{
+/* .pull-requests{
     font-size: .9rem;
     color: gray;
     font-weight: bold;
-}
+} */
 
 .product_name{
     /* color: rgb(226, 115, 10);  */
     font-weight:bold; 
+}
+
+.product_icon{
+    font-size: 3.5em;
+    /* color : gray;  */
+}
+
+.details{
+    /* margin: 0 auto;  */
+    margin-top: 30px; 
+}
+
+.num_of_downloads{
+    font-size: 1.2rem; 
+    font-weight: bold; 
+    color: gray; 
+}
+
+.downloads,     
+.username {
+    font-size: .7rem; 
+    color: gray; 
+    font-weight: bold; 
 }
 

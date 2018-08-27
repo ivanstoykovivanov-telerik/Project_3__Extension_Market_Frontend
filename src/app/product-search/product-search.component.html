@@ -1,10 +1,17 @@
-<form>
+<form [formGroup]= "searchForm" (ngSubmit)="onSubmit()">
   <div class="form-group row justify-content-center">
     <div class="col-sm-8">
       <div class="input-group">
-        <input type="text" class="form-control" id="validationCustomUsername" placeholder="SEARCH EXTENSIONS" aria-describedby="inputGroupPrepend"
-          required>
-        <button class="input-group-text btn btn-success bg-success" (click)="onSearch()" id="inputGroupPrepend">
+        <input 
+          class="form-control" 
+          type="text" 
+          placeholder="SEARCH EXTENSIONS" 
+          formControlName="searched"
+          id="validationCustomUsername" 
+          aria-describedby="inputGroupPrepend"
+          required
+          >
+        <button class="input-group-text btn btn-success bg-success" id="inputGroupPrepend">
           <i class="fa fa-search text-white"></i>
         </button>
         <!-- <div class="invalid-feedback">

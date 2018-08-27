@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-product-search',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-search.component.css']
 })
 export class ProductSearchComponent implements OnInit {
-  loginForm : FormGroup; 
+  searchForm : FormGroup; 
   submitted = false; 
   errorMesssage : string;  
   
@@ -20,10 +21,25 @@ export class ProductSearchComponent implements OnInit {
 
 
   ngOnInit() {
+    this.searchForm = this.formBuilder.group({
+      searched: ['', [ Validators.minLength(3) ]]
+    })
   }
 
-  onSearch(){
+  // convenience getter for easy access to form fields
+  get f() { return this.searchForm.controls; }
+  
+  // onSearch(){
+  //   console.log("Searching for : ");
+  // }
+  
+  onSubmit(){
+    let searched: string = this.f.searched.value; 
     console.log("Searching for : ");
+    console.log(searched);
+    
+    //Connect to search service
+    //this.searchService.search(searched)
+      
   }
-
 }

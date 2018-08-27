@@ -65,9 +65,9 @@ export class CarouselComponent implements OnInit {
     this.carouselTileOneLoad();
   }
 
-  onmoveFn(data) {
-    // console.log(data);
-  }
+  // onmoveFn(data) {
+  //   // console.log(data);
+  // }
 
   public carouselTileOneLoad() {
     const len = this.carouselTileOneItems.length;

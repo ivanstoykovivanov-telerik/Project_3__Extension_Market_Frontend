@@ -12,7 +12,9 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-   
+  icons: string[] ; 
+  icon: string; 
+  
   product: Product = new Product("Slack chat", 
       "Next generation chat for the modern office communication", 
       "12.34", 
@@ -34,6 +36,23 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.icons = [
+      "fa fa-car", 
+      "fa fa-binoculars", 
+      "fa fa-bell-o", 
+      "fa fa-bicycle", 
+      "fa fa-briefcase", 
+      "fa fa-bath", 
+      "fa fa-meetup", 
+      "fa fa-microchip", 
+      "fa fa-podcast",
+      "fa fa-free-code-camp",
+      "fa fa-eercast", 
+      "fa fa-university",
+      "fa fa-caret-square-o-down"
+    ]; 
+    
+    this.icon = this.getRandomIcon()
   }
 
   productClicked(product : Product){
@@ -43,12 +62,21 @@ export class ProductComponent implements OnInit {
     this.router.navigate(['/productDetails']);
   }
 
-
   get data(): Product { 
     return this.productService.productDetails; 
   } 
   set data(value: Product) { 
     this.productService.productDetails = value; 
-  } 
+  }
+  
+  // get icon(): string{
+  //   let icon = this.icons[Math.floor(Math.random() * this.icons.length)]; 
+  //   return icon;   
+  // }
 
+
+  getRandomIcon(){
+    let icon = this.icons[Math.floor(Math.random() * this.icons.length)]; 
+    return icon; 
+  }
 }
