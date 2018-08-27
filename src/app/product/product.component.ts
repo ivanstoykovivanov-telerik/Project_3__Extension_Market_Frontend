@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
 import { Product } from '../models/product.model';
 import { Tag } from '../models/tag.model';
@@ -14,21 +14,11 @@ import { ProductService } from '../services/product.service';
 export class ProductComponent implements OnInit {
   icons: string[] ; 
   icon: string; 
-  
-  product: Product = new Product("Slack chat", 
-      "Next generation chat for the modern office communication", 
-      "12.34", 
-      new User("prodan123"),
-      1234, 
-      "http://www.slack-bot.com/download",
-      "http://github/slac-chat", 
-      12,
-      [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ], 
-      421, 
-      new Date(), 
-      "pending", 
-      123
-  ); 
+  product: Product;
+  @Input() productName: string;   
+  @Input() productDescription: string;   
+
+
 
   constructor( 
     private router: Router, 
@@ -36,6 +26,9 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.product = this.productService.product; 
+    
+    //A list of random icons
     this.icons = [
       "fa fa-car", 
       "fa fa-binoculars", 
@@ -68,12 +61,6 @@ export class ProductComponent implements OnInit {
   set data(value: Product) { 
     this.productService.productDetails = value; 
   }
-  
-  // get icon(): string{
-  //   let icon = this.icons[Math.floor(Math.random() * this.icons.length)]; 
-  //   return icon;   
-  // }
-
 
   getRandomIcon(){
     let icon = this.icons[Math.floor(Math.random() * this.icons.length)]; 

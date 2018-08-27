@@ -9,7 +9,21 @@ import { User } from '../models/user.model';
 })
 export class ProductService {
   private productsURL = "/api/product";
-
+  
+  product: Product = new Product("Slack chat", 
+  "Next generation chat for the modern office communication", 
+  "12.34", 
+  new User("prodan123"),
+  1234, 
+  "http://www.slack-bot.com/download",
+  "http://github/slac-chat", 
+  12,
+  [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ], 
+  421, 
+  new Date(), 
+  "pending", 
+  123
+); 
   // PRODUCT DETAILS DATA
  // productDetails: Product; 
 
@@ -48,5 +62,9 @@ export class ProductService {
     return this.http.post<Product>(`${this.productsURL}/save`, product);
   }
 
+
+  public findProductsByUser(user: User){
+    
+  }
 
 }

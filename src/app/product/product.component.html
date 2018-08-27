@@ -1,9 +1,9 @@
 <div class="card border-success mb-3 product" style="max-width: 18rem;" (click)="productClicked(product)">
   <!-- <div class="card-header">Prduct </div> -->
   <div class="card-body text-success">
-    <h5 class="card-title text-center product_name">{{product.name}} </h5>
+    <h5 class="card-title text-center product_name">{{productName}} </h5>
     <div class="product_icon text-center my-3"><i [ngClass]="icon"></i></div>
-    <p class="card-text mt-4 product_desc">{{product.description}}</p>
+    <div class="card-text mt-4 product_desc">{{productDescription}}</div>
     
     <div class="row details">
       <div class="col-12 text-center">

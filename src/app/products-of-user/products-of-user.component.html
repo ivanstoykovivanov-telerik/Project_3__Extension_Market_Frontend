@@ -1,3 +1,20 @@
-<h2>
-  products-of-user works!
-</h2>
+<!-- <div id="resume" class="collapse"> -->
+    <div class="card card-body bg-success text-white py-5">
+      <h2>My Extensions</h2>
+      <p class="lead">Extensions I have designed</p>
+    </div>
+
+    <div class="card card-body py-5">
+      <!-- <h3>Where Have I Worked?</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque similique saepe inventore rem vitae esse.</p> -->
+      <div class="row">
+        <div *ngFor="let product of products" class="col-4">
+            <app-product 
+                [productName]="product.name"
+                [productDescription]= "product.description"
+            ></app-product>
+        </div>
+      </div>  
+
+    </div>
+  <!-- </div> -->
