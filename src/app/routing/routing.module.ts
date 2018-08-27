@@ -31,18 +31,18 @@ const routes: Routes = [
   {
     path  : "profile", 
     component : ProfileComponent,
+    children: [
+      {
+        path  : "profileProducts", 
+        component : ProductsOfUserComponent,
+        outlet: "profileDetails"
+      },
+      {
+        path  : "profileData", 
+        component : ProfileDataComponent,
+        outlet: "profileDetails"
+      }]
   }, 
-  //PROFILE DETAILS:  
-  {
-    path  : "productsOfUser", 
-    component : ProductsOfUserComponent,
-    outlet: "products"
-  },
-  {
-    path  : "profileData", 
-    component : ProductsOfUserComponent,
-    outlet: "profileDetails"
-  },
   {
     path  : "productDetails", 
     component : ProductDetailsComponent,

@@ -60,16 +60,17 @@
       </header>
 </div>
 
-  
   <div class="container">
     <h2>You're on homepage</h2>
-    <!-- <a [routerLink]="['/profile', {outlets: {'profileDetails': ['profileData'] }}]"> Go to articles page </a> -->
-    <!-- <a [routerLink]="[{ outlets: { profileDetails: ['profileData'] } }]" > DATA</a>     
-    <a [routerLink]="[{ outlets: { profileDetails: ['profileData'] } }]" routerLinkActive="active">Add Book</a> -->
-    
-    <a class="btn btn-primary" (click)="goToUserData()" >CLICK TO DATA</a>
+    <button mat-button
+      [routerLink]="[{outlets: {'profileDetails': ['profileProducts']}}]">
+      Products
+    </button>
+    <button mat-button
+      [routerLink]="[{outlets: {'profileDetails': ['profileData']}}]">
+      User Details
+    </button>
   </div>
-  
   <div class="container">
     <router-outlet name="profileDetails"></router-outlet>  
     <router-outlet name="products"></router-outlet>  
