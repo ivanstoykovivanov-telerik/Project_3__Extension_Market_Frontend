@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-search',
@@ -6,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-search.component.css']
 })
 export class ProductSearchComponent implements OnInit {
+  loginForm : FormGroup; 
+  submitted = false; 
+  errorMesssage : string;  
+  
+  constructor( 
+    private formBuilder: FormBuilder, 
+    private searchService : SearchService, 
+    private router: Router
+  ) { }
 
-  constructor() { }
 
   ngOnInit() {
+  }
+
+  onSearch(){
+    console.log("Searching for : ");
   }
 
 }

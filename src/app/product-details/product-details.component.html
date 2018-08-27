@@ -48,17 +48,20 @@
     </div>
         
         <div class="row">
-            <div class="col-12">
-              
+            <div class="col-6">
+              <h5> 
+                <i class="fa fa-link"></i>{{product.downloadLink}}
+              </h5>
+            </div>
+            <div class="col-6">
+                <h5>
+                    <i class="fa fa-github" aria-hidden="true"></i>{{product.sourceRepositoryLink}}
+                </h5>
             </div>
           </div>
 
 
     <h5>{{product.numberOfDownloads}}</h5>
-    <h5>{{product.downloadLink}}</h5>
-    <h5>
-      <i class="fa fa-github" aria-hidden="true"></i>{{product.sourceRepositoryLink}}
-    </h5>
     <span>  Open Issues: </span>
     <span class="badge badge-pill badge-danger">{{product.openIssues}}</span>
    

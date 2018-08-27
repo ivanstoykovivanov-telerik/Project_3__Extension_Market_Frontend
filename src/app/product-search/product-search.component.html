@@ -1,7 +1,16 @@
 <form>
   <div class="form-group row justify-content-center">
     <div class="col-sm-8">
-      <input type="password" class="form-control" id="inputPassword" placeholder="SEARCH EXTENSIONS">
+      <div class="input-group">
+        <input type="text" class="form-control" id="validationCustomUsername" placeholder="SEARCH EXTENSIONS" aria-describedby="inputGroupPrepend"
+          required>
+        <button class="input-group-text btn btn-success bg-success" (click)="onSearch()" id="inputGroupPrepend">
+          <i class="fa fa-search text-white"></i>
+        </button>
+        <!-- <div class="invalid-feedback">
+          Not valid name ...
+        </div> -->
+      </div>
     </div>
   </div>
 </form>
