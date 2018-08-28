@@ -42,6 +42,7 @@ import { ProductSearchComponent } from './product-search/product-search.componen
 import { ProductsOfUserComponent } from './products-of-user/products-of-user.component';
 import { ProfileDataComponent } from './profile-data/profile-data.component';
 import { AdminExtensionsPerUserComponent } from './admin-extensions-per-user/admin-extensions-per-user.component';
+import { UploadProductComponent } from './upload-product/upload-product.component';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
@@ -71,6 +72,7 @@ import { AdminExtensionsPerUserComponent } from './admin-extensions-per-user/adm
     ProductsOfUserComponent,
     ProfileDataComponent,
     AdminExtensionsPerUserComponent,
+    UploadProductComponent,
   ],
   imports: [
     BrowserModule, 

@@ -8,8 +8,9 @@ import { Product } from '../models/product.model';
   styleUrls: ['./products-of-user.component.css']
 })
 export class ProductsOfUserComponent implements OnInit {
-  // products: Product[]; 
+  
   products: Product[] = [] ; 
+  
   constructor(
     private productService: ProductService
   ) { }

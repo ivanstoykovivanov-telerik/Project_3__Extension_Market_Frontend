@@ -10,6 +10,7 @@ import { AdminComponent } from '../admin/admin.component';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { ProductsOfUserComponent } from '../products-of-user/products-of-user.component';
 import { ProfileDataComponent } from '../profile-data/profile-data.component';
+import { UploadProductComponent } from '../upload-product/upload-product.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
       {
         path  : "profileProducts", 
         component : ProductsOfUserComponent,
+        outlet: "profileDetails"
+      },
+      {
+        path  : "uploadlProduct", 
+        component : UploadProductComponent,
         outlet: "profileDetails"
       },
       {

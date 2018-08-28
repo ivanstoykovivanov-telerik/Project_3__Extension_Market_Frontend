@@ -4,13 +4,13 @@ import { Tag } from "./tag.model";
 export class Product{
     
     constructor(
-        public name : string, 
-        public description: string, 
-        public version: string, 
+        public name : string,               //
+        public description: string,         // 
+        public version: string,             //
         public owner: User, 
         public numberOfDownloads: number, 
-        public downloadLink: string, 
-        public sourceRepositoryLink: string, 
+        public downloadLink: string,        // 
+        public sourceRepositoryLink: string,// 
         public openIssues: number, 
         public tags: Tag[], 
         public pullRequests: number, 
