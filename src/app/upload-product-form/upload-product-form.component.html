@@ -1,0 +1,142 @@
+<form [formGroup]="uploadExtensionForm" (ngSubmit)="onSubmit()" >
+    <!-- name    --> 
+    <div class="row justify-content-center">
+      <div class="form-group offset-1 col-10 col-md-8">
+        <input 
+          class="form-control" 
+          type="text" 
+          placeholder="Extension name"  
+          formControlName="name"
+          required 
+          [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+          <!-- error message -->
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Extension name is required</div>
+            <div *ngIf="f.name.errors.minlength">Extension name must be at least 6 characters long</div>
+          </div>  
+          <!-- // error message -->
+      </div>
+      <!-- validation icon -->
+      <span class="col-1">
+        <i *ngIf="f.name.valid" style="color: green" class="fa fa-check"></i>
+        <i *ngIf="submitted && f.name.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+      </span>
+      <!-- //  validation icon -->
+    </div>
+    <!--// name --> 
+    
+    <!-- description    -->  
+    <div class="row justify-content-center">
+      <div class="form-group offset-1 col-10 col-md-8">
+        <textarea 
+          id="description" 
+          rows="5"
+          class="form-control" 
+          type="text" 
+          formControlName="description"
+          required 
+          [ngClass]="{ 'is-invalid': submitted && f.description.errors }">Description...
+        </textarea>
+          <!-- error message -->
+          <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">Description is required</div>
+            <div *ngIf="f.description.errors.minlength">Description must be at least 3 characters long</div>
+          </div>  
+          <!-- // error message -->
+      </div>
+      <!-- validation icon -->
+      <span class="col-1">
+        <i *ngIf="f.description.valid" style="color: green" class="fa fa-check"></i>
+        <i *ngIf="submitted && f.description.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+      </span>
+      <!-- //  validation icon -->
+    </div>
+    <!-- // description    -->  
+    
+    <!-- version    -->
+    <div class="row justify-content-center">
+      <div class="form-group offset-1 col-10 col-md-8">
+        <input 
+          class="form-control" 
+          type="text" 
+          placeholder="Version"  
+          formControlName="version"
+          required 
+          [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+          <!-- error message -->
+          <div *ngIf="submitted && f.version.errors" class="invalid-feedback">
+            <div *ngIf="f.version.errors.required">Version is required</div>
+            <div *ngIf="f.version.errors.minlength">Version must be at least 3 characters long</div>
+          </div>  
+          <!-- // error message -->
+      </div>
+      <!-- validation icon -->
+      <span class="col-1">
+        <i *ngIf="f.version.valid" style="color: green" class="fa fa-check"></i>
+        <i *ngIf="submitted && f.version.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+      </span>
+      <!-- //  validation icon -->
+    </div>
+    <!--// version    -->
+    
+    <!-- downloadLink    -->
+    <div class="row justify-content-center">
+        <div class="form-group offset-1 col-10 col-md-8">
+          <input 
+            class="form-control" 
+            type="text" 
+            placeholder="Download Link"  
+            formControlName="downloadLink"
+            required 
+            [ngClass]="{ 'is-invalid': submitted && f.downloadLink.errors }">
+            <!-- error message -->
+            <div *ngIf="submitted && f.downloadLink.errors" class="invalid-feedback">
+              <div *ngIf="f.downloadLink.errors.required">Download Link is required</div>
+              <div *ngIf="f.downloadLink.errors.minlength">Download Link must be at least 3 characters long</div>
+            </div>  
+            <!-- // error message -->
+        </div>
+        <!-- validation icon -->
+        <span class="col-1">
+          <i *ngIf="f.downloadLink.valid" style="color: green" class="fa fa-check"></i>
+          <i *ngIf="submitted && f.downloadLink.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+        </span>
+        <!-- //  validation icon -->
+      </div>
+      <!--// downloadLink    -->
+      
+      <!-- sourceRepositoryLink    -->
+    <div class="row justify-content-center">
+        <div class="form-group offset-1 col-10 col-md-8">
+          <input 
+            class="form-control" 
+            type="text" 
+            placeholder="Source Repository Link"  
+            formControlName="sourceRepositoryLink"
+            required 
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+            <!-- error message -->
+            <div *ngIf="submitted && f.sourceRepositoryLink.errors" class="invalid-feedback">
+              <div *ngIf="f.sourceRepositoryLink.errors.required">Source Repository is required</div>
+              <div *ngIf="f.sourceRepositoryLink.errors.minlength">Source Repository must be at least 3 characters long</div>
+            </div>  
+            <!-- // error message -->
+        </div>
+        <!-- validation icon -->
+        <span class="col-1">
+          <i *ngIf="f.sourceRepositoryLink.valid" style="color: green" class="fa fa-check"></i>
+          <i *ngIf="submitted && f.sourceRepositoryLink.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+        </span>
+        <!-- //  validation icon -->
+      </div>
+      <!--// sourceRepositoryLink    -->
+
+      <div class="row justify-content-center">
+          <button 
+            class="btn btn-outline-primary btn-lg mt-5"  
+            [disabled]="loading"
+            type="submit">
+                  <i class="fa fa-cloud-upload mr-2"></i>Submit
+          </button>
+      </div>
+  </form>

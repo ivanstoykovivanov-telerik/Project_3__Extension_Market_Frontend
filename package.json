@@ -28,6 +28,7 @@
     "hammerjs": "^2.0.8",
     "ngx-bootstrap": "^3.0.1",
     "ngx-carousel": "^1.3.5",
+    "ngx-click-to-edit": "0.0.7",
     "rxjs-compat": "^6.2.2",
     "zlib": "^1.0.5",
     "zone.js": "~0.8.26"

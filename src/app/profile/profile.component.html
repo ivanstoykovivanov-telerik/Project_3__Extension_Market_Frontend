@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div class="container">
     <header id="main-header">
         <div class="row no-gutters">
           <div class="col-lg-4 col-md-5">
@@ -51,7 +51,7 @@
                   <div class="port-item p-4 bg-danger btn"
                     [routerLink]="[{outlets: {'profileDetails': ['profileData']}}]" >
                     <i class="fa fa-user fa-2x d-block"></i>
-                    <span class="d-none d-sm-block">My Profile</span>
+                    <span class="d-none d-sm-block">Edit Profile</span>
                   </div>
                   <div class="port-item p-4 bg-warning">
                     <i class="fa fa-envelope fa-2x d-block"></i>
@@ -64,10 +64,10 @@
         </div>
       </header>
 
-
       <!-- ROUTING -->
-      <router-outlet name="profileDetails"></router-outlet>  
-      <!-- <router-outlet name="products"></router-outlet>   -->
+      <router-outlet name="profileDetails"></router-outlet>
+       <!--// ROUTING -->  
+
 </div>
 
   

@@ -17,8 +17,8 @@ export class ProductComponent implements OnInit {
   product: Product;
   @Input() productName: string;   
   @Input() productDescription: string;   
-
-
+  
+  @Input() editMode = true;    //TODO: delete true 
 
   constructor( 
     private router: Router, 
@@ -49,9 +49,9 @@ export class ProductComponent implements OnInit {
   }
 
   productClicked(product : Product){
-    console.log("Product clicked:  ");
+   // console.log("Product clicked:  ");
     this.data = product; 
-    console.log(this.data);
+   // console.log(this.data);
     this.router.navigate(['/productDetails']);
   }
 
@@ -65,5 +65,13 @@ export class ProductComponent implements OnInit {
   getRandomIcon(){
     let icon = this.icons[Math.floor(Math.random() * this.icons.length)]; 
     return icon; 
+  }
+
+  onEditClicked(event){
+    console.log("Edit clicked");
+    event.stopPropagation();
+    console.log("Propagation stopped");
+    //open edit Product modal
+    //this.router.navigate(['/home']); 
   }
 }

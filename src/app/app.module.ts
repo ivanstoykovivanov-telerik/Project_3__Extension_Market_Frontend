@@ -18,15 +18,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { ListOfProductsComponent } from './profile/list-of-products/list-of-products.component';
-import { TestComponent } from './test/test.component';
 import { ProductComponent } from './product/product.component';
 
-// Bootstrap modules: 
+// Bootstrap, NGX  modules: 
 import { BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxCarouselModule } from 'ngx-carousel';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxClickToEditModule } from 'ngx-click-to-edit';
 
 //Services: 
 import { AuthService } from './services/auth.service';
@@ -43,6 +43,7 @@ import { ProductsOfUserComponent } from './products-of-user/products-of-user.com
 import { ProfileDataComponent } from './profile-data/profile-data.component';
 import { AdminExtensionsPerUserComponent } from './admin-extensions-per-user/admin-extensions-per-user.component';
 import { UploadProductComponent } from './upload-product/upload-product.component';
+import { UploadProductFormComponent } from './upload-product-form/upload-product-form.component';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
@@ -64,7 +65,6 @@ import { UploadProductComponent } from './upload-product/upload-product.componen
     ProfileComponent,
     AdminComponent,
     ListOfProductsComponent,
-    TestComponent,
     ProductComponent,
     CarouselComponent,
     ProductDetailsComponent,
@@ -73,6 +73,7 @@ import { UploadProductComponent } from './upload-product/upload-product.componen
     ProfileDataComponent,
     AdminExtensionsPerUserComponent,
     UploadProductComponent,
+    UploadProductFormComponent,
   ],
   imports: [
     BrowserModule, 
@@ -85,7 +86,8 @@ import { UploadProductComponent } from './upload-product/upload-product.componen
     AngularFontAwesomeModule, 
     CollapseModule.forRoot(), 
     CarouselModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgxClickToEditModule.forRoot()
     // JwtModule.forRoot({
     //   config: {
     //     tokenGetter: tokenGetter,
