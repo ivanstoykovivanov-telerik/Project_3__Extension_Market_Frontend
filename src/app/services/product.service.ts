@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Tag } from '../models/tag.model';
 import { Product } from '../models/product.model';
 import { User } from '../models/user.model';
+import {from} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,48 @@ export class ProductService {
   private productsURL = "/api/product";
   
   product: Product = new Product("Slack chat", 
-  "Next generation chat for the modern office communication", 
-  "12.34", 
-  new User("prodan123"),
-  1234, 
-  "http://www.slack-bot.com/download",
-  "http://github/slac-chat", 
-  12,
-  [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ], 
-  421, 
-  new Date(), 
-  "pending", 
-  123
-); 
+    "Next generation chat for the modern office communication", 
+    "12.34", 
+    new User("prodan123"),
+    1234, 
+    "http://www.slack-bot.com/download",
+    "http://github/slac-chat", 
+    12,
+    [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ], 
+    421, 
+    new Date(), 
+    "pending", 
+    123
+);
+
+  product2: Product = new Product("Math app", 
+    "Next generation chat for the modern office communication", 
+    "12.34", 
+    new User("prodan123"),
+    1234, 
+    "http://www.slack-bot.com/download",
+    "http://github/slac-chat", 
+    12,
+    [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ], 
+    421, 
+    new Date(), 
+    "pending", 
+    123
+  ); 
+  product3: Product = new Product("New bootstrap", 
+    "Next generation chat for the modern office communication", 
+    "12.34", 
+    new User("prodan123"),
+    1234, 
+    "http://www.slack-bot.com/download",
+    "http://github/slac-chat", 
+    12,
+    [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ], 
+    421, 
+    new Date(), 
+    "pending", 
+    123
+  ); 
   // PRODUCT DETAILS DATA
  // productDetails: Product; 
 
@@ -35,17 +65,39 @@ export class ProductService {
     new Tag("os"), 
     new Tag("great") 
   ]; 
-  private products: Product[] = [
+  
+  products: Product[] = [
+    this.product, 
+    this.product2, 
+    this.product3
     // new Product("windows", "operational system", "2.33", this.user1, 23, "www.win.com", "http://www.github.com",12, this.tags1, new Date()), 
     // new Product("linux", "operational system", "7.43", this.user1, 3, "www.lin.com", "http://www.github.com",6, this.tags1, new Date()  )
   ];  
-  
+
+
+
+
   constructor(private http: HttpClient) { }  
   
   
-  public getAllproducts(){
+  public getProducts(sortedBy: string){
+    
+    //switch to determine the sorting
+ 
+    const productsAsObservable = from(this.products);
+    return productsAsObservable; 
     //return this.http.get<Product[]>(this.productsURL);
   }
+
+  public getNewProducts(){
+  }
+
+  public getPopularProducts(){
+  }
+
+  public getFeaturedProducts(){
+  }
+
 
   get productDetails() : Product{
     return JSON.parse(localStorage.getItem("productDetails"));   

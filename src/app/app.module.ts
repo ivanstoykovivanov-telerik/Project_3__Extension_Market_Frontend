@@ -44,6 +44,7 @@ import { ProfileDataComponent } from './profile-data/profile-data.component';
 import { AdminExtensionsPerUserComponent } from './admin-extensions-per-user/admin-extensions-per-user.component';
 import { UploadProductComponent } from './upload-product/upload-product.component';
 import { UploadProductFormComponent } from './upload-product-form/upload-product-form.component';
+import { MarketShowSectionComponent } from './market-show-section/market-show-section.component';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
@@ -74,6 +75,7 @@ import { UploadProductFormComponent } from './upload-product-form/upload-product
     AdminExtensionsPerUserComponent,
     UploadProductComponent,
     UploadProductFormComponent,
+    MarketShowSectionComponent,
   ],
   imports: [
     BrowserModule, 

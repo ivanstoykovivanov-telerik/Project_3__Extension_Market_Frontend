@@ -1,16 +1,14 @@
 <div class="container">
     <h2>{{title}}</h2>
     <ngx-carousel [inputs]="carouselTileOne" (carouselLoad)="carouselTileOneLoad()">
-        <ngx-tile NgxCarouselItem *ngFor="let tile of carouselTileOneItems; let i = index;">
+        <ngx-tile NgxCarouselItem *ngFor="let product of carouselTileOneItems; let i = index;">
             <div class="wBg">
               <!-- // -->
-              <app-product></app-product>
+              <app-product
+                [product]="product"
+                [editMode]= "false"
+                ></app-product>
               <!-- // -->
-              <!-- <div class="tile" [style.background]="'url(' + tile + ')'">
-                    <h1>{{i}}</h1>
-                </div>
-                <h4>Tile</h4>
-                <p>content</p> -->
             </div>
         </ngx-tile>
         <button NgxCarouselPrev class="leftRs">&lt;</button>

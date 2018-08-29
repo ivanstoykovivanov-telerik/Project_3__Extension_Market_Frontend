@@ -1,14 +1,12 @@
 <div class="card border-success mb-3 product" style="max-width: 18rem;" (click)="productClicked(product)">
     <div *ngIf="editMode" class="btn btn-secondary edit" 
       (click)="onEditClicked($event)"
-      (click)="lgModal.show()" >
-        <!-- <i class="fa fa-cog"></i> -->
-        Edit
+      (click)="lgModal.show()" >Edit
     </div>
   <div class="card-body text-success">
-    <h5 class="card-title text-center product_name">{{productName}} </h5>
+    <h5 class="card-title text-center product_name">{{product.name}} </h5>
     <div class="product_icon text-center my-3"><i [ngClass]="icon"></i></div>
-    <div class="card-text mt-4 product_desc">{{productDescription}}</div>
+    <div class="card-text mt-4 product_desc">{{product.description}}</div>
     
     <div class="row details">
       <div class="col-12 text-center">
@@ -19,7 +17,7 @@
       
       <div class="row">
         <div class="col-12 text-center">
-          <span class="username">{{product.owner.username}}</span> 
+          <!-- <span class="username">{{product.owner.username}}</span>  -->
         </div> 
       </div> 
 
@@ -41,7 +39,9 @@
       </div>
       <div class="modal-body">
          <!-- Product upload form -->
-          <app-upload-product-form></app-upload-product-form>
+          <app-upload-product-form
+            
+            ></app-upload-product-form>
         <!-- //  Product upload form -->
       </div>
     </div>

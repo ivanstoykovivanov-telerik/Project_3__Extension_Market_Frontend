@@ -4,13 +4,36 @@
 </div>
 
 <section class="main_section">
-    <div class="subsection">
+    <!-- <div class="subsection">
         <app-popular></app-popular>
     </div>    
     <div class="subsection">
         <app-featured></app-featured>
+    </div> -->
+    <!-- <div class="subsection">
+        <app-new
+            [sortedBy]="new" 
+            [carouselTitle]="'New Products'">
+        </app-new>
+    </div> -->
+    
+    <div class="subsection">
+        <app-market-show-section
+            [sortedBy]="new" 
+            [carouselTitle]="'New Products'">
+        </app-market-show-section>
     </div>
     <div class="subsection">
-        <app-new></app-new>
-    </div>    
+        <app-market-show-section
+            [sortedBy]="popular" 
+            [carouselTitle]="'Popular Products'">
+        </app-market-show-section>
+    </div>
+    <div class="subsection">
+        <app-market-show-section
+            [sortedBy]="featured" 
+            [carouselTitle]="'Featured Products'">
+        </app-market-show-section>
+    </div>
+
 </section>

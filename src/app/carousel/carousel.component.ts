@@ -10,24 +10,27 @@ export class CarouselComponent implements OnInit {
   imgags: string[];
   @Input() title: string; 
 
-  public carouselTileOneItems: Array<any> = [];
-  public carouselTileOne: NgxCarousel;
+  @Input() carouselTileOneItems: Array<any> = [];
+  carouselTileOne: NgxCarousel;
 
   constructor() {}
 
   ngOnInit() {
     //these could be the products: 
-    this.imgags = [
-      'assets/bg.jpg',
-      'assets/car.png',
-      'assets/canberra.jpg',
-      'assets/holi.jpg'
-    ];
+    // this.imgags = [
+    //   'assets/bg.jpg',
+    //   'assets/car.png',
+    //   'assets/canberra.jpg',
+    //   'assets/holi.jpg'
+    // ];
+    console.log("Title: " + this.title);
+    
+    this.imgags = this.carouselTileOneItems; 
 
     this.carouselTileOne = {
       grid: { xs: 2, sm: 3, md: 4, lg: 6, all: 0 },
       speed: 300,
-      interval: 6000,
+      interval: 4000,
       point: {
         visible: false,  //make the points underneath active or not
         pointStyles: `

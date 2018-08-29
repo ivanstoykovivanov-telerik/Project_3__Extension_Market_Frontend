@@ -14,7 +14,9 @@ import { ProductService } from '../services/product.service';
 export class ProductComponent implements OnInit {
   icons: string[] ; 
   icon: string; 
-  product: Product;
+  @Input() product: Product;
+  
+  
   @Input() productName: string;   
   @Input() productDescription: string;   
   
@@ -26,7 +28,7 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.product = this.productService.product; 
+    // this.product = this.productService.product; 
     
     //A list of random icons
     this.icons = [

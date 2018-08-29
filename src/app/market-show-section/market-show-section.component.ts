@@ -3,11 +3,12 @@ import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.model';
 
 @Component({
-  selector: 'app-new',
-  templateUrl: './new.component.html',
-  styleUrls: ['./new.component.css']
+  selector: 'app-market-show-section',
+  templateUrl: './market-show-section.component.html',
+  styleUrls: ['./market-show-section.component.css']
 })
-export class NewComponent implements OnInit {
+export class MarketShowSectionComponent implements OnInit {
+
   @Input() carouselTitle: string; 
   @Input() sortedBy: string 
 
@@ -27,6 +28,5 @@ export class NewComponent implements OnInit {
       
       console.log(this.products);
   }
-  
 
 }
