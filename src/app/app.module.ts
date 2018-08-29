@@ -8,9 +8,6 @@ import 'hammerjs';
 //Components:
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { FeaturedComponent } from './featured/featured.component';
-import { PopularComponent } from './popular/popular.component';
-import { NewComponent } from './new/new.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { LogoutComponent } from './authentication/logout/logout.component';
@@ -51,14 +48,10 @@ import { MarketShowSectionComponent } from './market-show-section/market-show-se
 // }
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FeaturedComponent,
-    PopularComponent,
-    NewComponent,
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
