@@ -40,8 +40,9 @@
       <div class="modal-body">
          <!-- Product upload form -->
           <app-upload-product-form
-            
-            ></app-upload-product-form>
+            [product]="product"
+            [filled]="filled"
+          ></app-upload-product-form>
         <!-- //  Product upload form -->
       </div>
     </div>

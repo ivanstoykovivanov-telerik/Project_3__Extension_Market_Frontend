@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../models/product.model';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,8 +10,9 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./upload-product.component.css']
 })
 export class UploadProductComponent implements OnInit {
-
-  registerForm: FormGroup;
+    registerForm: FormGroup;
+    @Input() product: Product; 
+    @Input() filled: boolean; 
     submitted = false;
     loading = false;  //making the submit button of the form active
     

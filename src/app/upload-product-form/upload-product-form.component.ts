@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../models/product.model';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,11 +10,11 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./upload-product-form.component.css']
 })
 export class UploadProductFormComponent implements OnInit {
-
-
-  uploadExtensionForm: FormGroup;
-  submitted = false;
-  loading = false;  //making the submit button of the form active
+    @Input() product: Product; 
+    @Input() filled: boolean = false; 
+    uploadExtensionForm: FormGroup;
+    submitted = false;
+    loading = false;  //making the submit button of the form active
   
   //user: User ; 
   errorMessage: string; 
@@ -27,16 +27,18 @@ export class UploadProductFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.uploadExtensionForm = this.formBuilder.group({
+        this.uploadExtensionForm = this.formBuilder.group({
           name: ['', Validators.required],
           description: ['', Validators.required],
           version: ['', Validators.minLength(3)],
           downloadLink: ['', Validators.minLength(3)],
           sourceRepositoryLink: ['', Validators.minLength(3)],
-          productState: ['', [ Validators.email] ],
-          password: ['', [ Validators.minLength(3)]],
-          confirm_password: ['', [ Validators.minLength(3), this.passwordValidator]]
-      });
+        //   productState: ['', [ Validators.email] ],
+        //   password: ['', [ Validators.minLength(3)]],
+        //   confirm_password: ['', [ Validators.minLength(3), this.passwordValidator]]
+        });
+
+        this.populateValues(); 
   }
 
   // a getter for easy access to form fields
@@ -74,7 +76,7 @@ export class UploadProductFormComponent implements OnInit {
     console.log('REGISTERED FORM SUBMITTED: ');
     console.log(this.f.username.value);
     console.log(this.f.email.value);
-
+     //TODO: 
     let firstName = this.f.firstName.value;  
     let lastName = this.f.lastName.value;  
     let username = this.f.username.value; 
@@ -104,6 +106,17 @@ export class UploadProductFormComponent implements OnInit {
       // )
     }
 
+    populateValues(){
+        console.log("Populating");
+        if(this.filled){
+            this.f.name.setValue(this.product.name);
+            this.f.description.setValue(this.product.description);
+            this.f.version.setValue(this.product.version);
+            this.f.downloadLink.setValue(this.product.downloadLink);
+            this.f.sourceRepositoryLink.setValue(this.product.sourceRepositoryLink);
+             //TODO: 
+        }
+    }
 
   movetToLogin(){
       this.router.navigate(['../login'], {relativeTo: this.activatedRoute}); 

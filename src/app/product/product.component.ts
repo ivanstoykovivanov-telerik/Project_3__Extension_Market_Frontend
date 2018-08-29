@@ -12,15 +12,14 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+  
+  @Input() product: Product;
+  @Input() editMode;    //when true the edit button is visualized
   icons: string[] ; 
   icon: string; 
-  @Input() product: Product;
-  
-  
-  @Input() productName: string;   
-  @Input() productDescription: string;   
-  
-  @Input() editMode = true;    //TODO: delete true 
+  productToEdit: Product; 
+  filled : boolean ; 
+
 
   constructor( 
     private router: Router, 
@@ -70,9 +69,9 @@ export class ProductComponent implements OnInit {
   }
 
   onEditClicked(event){
-    console.log("Edit clicked");
     event.stopPropagation();
-    console.log("Propagation stopped");
+    this.productToEdit = this.product; 
+    this.filled = true; 
     //open edit Product modal
     //this.router.navigate(['/home']); 
   }

@@ -24,13 +24,6 @@ export class ProductsOfUserComponent implements OnInit {
       .subscribe(
         data => this.products.push(data)
       ) 
-    // this.products.push(this.productService.product ); 
-    // this.products.push(this.productService.product ); 
-    // this.products.push(this.productService.product ); 
-    // this.products.push(this.productService.product ); 
-    // this.products.push(this.productService.product ); 
   }
-
-
 
 }
