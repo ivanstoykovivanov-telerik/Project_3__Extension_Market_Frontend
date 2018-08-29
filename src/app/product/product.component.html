@@ -1,7 +1,7 @@
 <div class="card border-success mb-3 product" style="max-width: 18rem;" (click)="productClicked(product)">
     <div *ngIf="editMode" class="btn btn-secondary edit" 
       (click)="onEditClicked($event)"
-      (click)="lgModal.show()" >Edit
+      (click)="lgModal.show(template)">Edit
     </div>
   <div class="card-body text-success">
     <h5 class="card-title text-center product_name">{{product.name}} </h5>
@@ -26,6 +26,7 @@
 
 
 <!-- MODAL -->
+<!-- <ng-template #template> -->
 <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
      role="dialog" aria-labelledby="dialog-sizes-name1">
   <div class="modal-dialog modal-lg">
@@ -41,11 +42,13 @@
          <!-- Product upload form -->
           <app-upload-product-form
             [product]="product"
-            [filled]="filled"
+            [filled]="true"
+            (onFormSubmitted) = "lgModal.hide()"
           ></app-upload-product-form>
         <!-- //  Product upload form -->
       </div>
     </div>
   </div>
 </div>
+<!-- </ng-template> -->
 <!--//  MODAL -->

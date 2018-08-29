@@ -8,7 +8,7 @@
           placeholder="Extension name"  
           formControlName="name"
           required 
-          [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+          [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
           <!-- error message -->
           <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
             <div *ngIf="f.name.errors.required">Extension name is required</div>
@@ -62,7 +62,7 @@
           placeholder="Version"  
           formControlName="version"
           required 
-          [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+          [ngClass]="{ 'is-invalid': submitted && f.version.errors }">
           <!-- error message -->
           <div *ngIf="submitted && f.version.errors" class="invalid-feedback">
             <div *ngIf="f.version.errors.required">Version is required</div>
@@ -114,7 +114,7 @@
             placeholder="Source Repository Link"  
             formControlName="sourceRepositoryLink"
             required 
-            [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+            [ngClass]="{ 'is-invalid': submitted && f.sourceRepositoryLink.errors }">
             <!-- error message -->
             <div *ngIf="submitted && f.sourceRepositoryLink.errors" class="invalid-feedback">
               <div *ngIf="f.sourceRepositoryLink.errors.required">Source Repository is required</div>

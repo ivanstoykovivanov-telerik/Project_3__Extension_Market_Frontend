@@ -8,14 +8,14 @@ export class Product{
         public description: string,         // 
         public version: string,             //
         public owner: User, 
-        public numberOfDownloads: number, 
         public downloadLink: string,        // 
         public sourceRepositoryLink: string,// 
-        public openIssues: number, 
         public tags: Tag[], 
-        public pullRequests: number, 
-        public lastCommitDate : Date,
-        public productState: string,     //TODO: type? 
+        public numberOfDownloads?: number, 
+        public openIssues?: number, 
+        public pullRequests?: number, 
+        public lastCommitDate? : Date,
+        public productState?: string,     //TODO: type? 
         public id? : number, 
         public active? : boolean, 
     ){

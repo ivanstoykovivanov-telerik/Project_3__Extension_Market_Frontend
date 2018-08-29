@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ViewChild } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
 import { Product } from '../models/product.model';
 import { Tag } from '../models/tag.model';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-product',
@@ -19,11 +20,13 @@ export class ProductComponent implements OnInit {
   icon: string; 
   productToEdit: Product; 
   filled : boolean ; 
-
+  modalRef: BsModalRef;
+ 
 
   constructor( 
     private router: Router, 
-    private productService: ProductService 
+    private productService: ProductService , 
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
@@ -50,9 +53,7 @@ export class ProductComponent implements OnInit {
   }
 
   productClicked(product : Product){
-   // console.log("Product clicked:  ");
     this.data = product; 
-   // console.log(this.data);
     this.router.navigate(['/productDetails']);
   }
 
@@ -71,8 +72,21 @@ export class ProductComponent implements OnInit {
   onEditClicked(event){
     event.stopPropagation();
     this.productToEdit = this.product; 
-    this.filled = true; 
+    
+    //this.filled = true; 
     //open edit Product modal
     //this.router.navigate(['/home']); 
   }
+
+  // closeMod($event){
+  //   if($event == true ){
+  //     lgModal.hide(); 
+  //   }
+  // }
+
+  // closeModal(template: TemplateRef<any>) {
+  //   this.modalRef = this.modalService.hide(template);
+  //   this.modalRef = this.modalService.hide(template);
+  // }
+  
 }

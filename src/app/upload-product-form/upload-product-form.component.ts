@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Product } from '../models/product.model';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { ProductService } from '../services/product.service';
 export class UploadProductFormComponent implements OnInit {
     @Input() product: Product; 
     @Input() filled: boolean = false; 
+    @Output() onFormSubmitted = new EventEmitter<boolean>();   
     uploadExtensionForm: FormGroup;
     submitted = false;
     loading = false;  //making the submit button of the form active
@@ -33,12 +34,10 @@ export class UploadProductFormComponent implements OnInit {
           version: ['', Validators.minLength(3)],
           downloadLink: ['', Validators.minLength(3)],
           sourceRepositoryLink: ['', Validators.minLength(3)],
-        //   productState: ['', [ Validators.email] ],
-        //   password: ['', [ Validators.minLength(3)]],
-        //   confirm_password: ['', [ Validators.minLength(3), this.passwordValidator]]
         });
 
-        this.populateValues(); 
+        this.populateValues();
+         
   }
 
   // a getter for easy access to form fields
@@ -73,23 +72,26 @@ export class UploadProductFormComponent implements OnInit {
       return;
     }
     
-    console.log('REGISTERED FORM SUBMITTED: ');
-    console.log(this.f.username.value);
-    console.log(this.f.email.value);
+   
      //TODO: 
-    let firstName = this.f.firstName.value;  
-    let lastName = this.f.lastName.value;  
-    let username = this.f.username.value; 
-    let email = this.f.email.value; 
-    let password = this.f.password.value;
-    let active = true; 
+    let name = this.f.name.value;  
+    let description = this.f.description.value;  
+    let owner = this.product.owner; 
+    let version = this.f.version.value; 
+    let downloadLink = this.f.downloadLink.value; 
+    let sourceRepositoryLink = this.f.sourceRepositoryLink.value;
+    let tags = this.product.tags; 
   
     //TODO: 
-  //  let product: Product = new Product();   
-   // let user: User = new User(username, password, firstName, lastName, email, active);  
-    // console.log(product);
-    
-    // this.register(product);   
+    let product: Product = new Product(name, description, version, owner, downloadLink,sourceRepositoryLink, tags);   
+    console.log('Product updated : ');
+    console.log(product);
+    //UPDATE PRODUCT
+    this.productService.update(product); 
+
+    //CLOSE THE MODAL
+    this.onFormSubmitted.emit(true); 
+
   }
 
   register(product: Product) {
@@ -107,7 +109,7 @@ export class UploadProductFormComponent implements OnInit {
     }
 
     populateValues(){
-        console.log("Populating");
+       //console.log("Populating");
         if(this.filled){
             this.f.name.setValue(this.product.name);
             this.f.description.setValue(this.product.description);

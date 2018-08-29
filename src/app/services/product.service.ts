@@ -11,30 +11,32 @@ import {from, Observable} from 'rxjs';
 export class ProductService {
   private productsURL = "/api/product";
   
-  product: Product = new Product("Slack chat", 
+  product: Product = new Product(
+    "Slack chat", 
     "Next generation chat for the modern office communication", 
     "12.34", 
     new User("prodan123"),
-    1234, 
     "http://www.slack-bot.com/download",
     "http://github/slac-chat", 
-    12,
     [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ], 
+    1234, 
+    12,
     421, 
     new Date(), 
     "pending", 
     123
 );
 
-  product2: Product = new Product("Math app", 
+  product2: Product = new Product(
+    "Math app", 
     "Next generation chat for the modern office communication", 
     "12.34", 
     new User("prodan123"),
-    1234, 
     "http://www.slack-bot.com/download",
     "http://github/slac-chat", 
-    12,
     [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ], 
+    1234, 
+    12,
     421, 
     new Date(), 
     "pending", 
@@ -44,45 +46,32 @@ export class ProductService {
     "Next generation chat for the modern office communication", 
     "12.34", 
     new User("prodan123"),
-    1234, 
     "http://www.slack-bot.com/download",
     "http://github/slac-chat", 
-    12,
     [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ], 
+    1234, 
+    12,
     421, 
     new Date(), 
     "pending", 
     123
   ); 
-  // PRODUCT DETAILS DATA
- // productDetails: Product; 
-
 
   //For test purposes : 
-  private user1 = new User("ivansivanov", "bonbon"); 
-  private tags1: Tag[] = [
-    new Tag("windows"), 
-    new Tag("os"), 
-    new Tag("great") 
-  ]; 
   
   products: Product[] = [
     this.product, 
     this.product2, 
     this.product3
-    // new Product("windows", "operational system", "2.33", this.user1, 23, "www.win.com", "http://www.github.com",12, this.tags1, new Date()), 
-    // new Product("linux", "operational system", "7.43", this.user1, 3, "www.lin.com", "http://www.github.com",6, this.tags1, new Date()  )
   ];  
-
-
 
 
   constructor(private http: HttpClient) { }  
   
   
   public getProducts(sortedBy: string){
-    
-    //switch to determine the sorting
+    //TODO: 
+    //switch statement  to determine the sorting
  
     const productsAsObservable = from(this.products);
     return productsAsObservable; 
@@ -117,6 +106,13 @@ export class ProductService {
 
   public getProductsByUser(user: User): Observable<Product>{
     return from(this.products); 
+  }
+
+  public update(product: Product){
+    console.log("product updated: ");
+    console.log(product);
+    
+    
   }
 
 }
