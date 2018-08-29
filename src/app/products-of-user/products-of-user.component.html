@@ -10,8 +10,7 @@
       <div class="row">
         <div *ngFor="let product of products" class="col-4">
             <app-product 
-                [productName]="product.name"
-                [productDescription]= "product.description"
+                [product]="product"
             ></app-product>
         </div>
       </div>  

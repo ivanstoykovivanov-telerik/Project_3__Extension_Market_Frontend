@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Tag } from '../models/tag.model';
 import { Product } from '../models/product.model';
 import { User } from '../models/user.model';
-import {from} from 'rxjs';
+import {from, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -115,8 +115,8 @@ export class ProductService {
   }
 
 
-  public findProductsByUser(user: User){
-    
+  public getProductsByUser(user: User): Observable<Product>{
+    return from(this.products); 
   }
 
 }
