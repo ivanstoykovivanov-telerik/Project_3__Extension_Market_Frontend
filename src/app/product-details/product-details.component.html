@@ -1,76 +1,68 @@
 <div class="container">
   <section class="product_details">
-    
     <div class="row">
       <div class="col-6 product_name">
-          <span>{{product.name}}</span>
-      </div>
-      <div class="col-6 product_version">
-        <span>Version:</span>
-        <span class="badge badge-pill badge-info mx-2">{{product.version}}</span>
-      <div>
-          <span>Open Issues:</span><span class="badge badge-pill badge-danger mx-2"> {{product.openIssues}}</span>
-        </div>
-         <!-- tags -->
-        <div>
-          <span *ngFor="let tag of product.tags" class="badge badge-primary mr-1">{{tag.name}}</span>
-        </div>
-        <!-- // tags -->      
-        <div>
-            <span class="text-dark"> Author: </span><span class="text-secondary">{{product.owner.username}}</span>
-        </div>
+        <span>{{product.name}}</span>
       </div>
     </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-6">
         <span class="product_description">{{product.description}}</span>
       </div>
     </div>
-    
-
     <div class="row">
-      <div class="col-12">
-        <span class="text-dark">Number of Downloads :</span>{{product.numberOfDownloads}}
+      <div class="col-3">
+      </div>  
+      <div class="col-6">
+          <span class="text-dark"> Created by: </span><span class="author">{{product.owner.username}}</span>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-6 product_version">
+        <span>Version:</span>
+        <span class="badge badge-pill badge-info mx-2">{{product.version}}</span>
+        <div>
+          <span>Open Issues:</span>
+          <span class="badge badge-pill badge-danger mx-2"> {{product.openIssues}}</span>
+        </div>
+        <!-- tags -->
+        <div>
+          <span *ngFor="let tag of product.tags" class="badge badge-primary mr-1">{{tag.name}}</span>
+        </div>
+        <!-- // tags -->
+        <div>
+          <span class="text-dark">Number of Downloads: </span>
+          <span class="badge badge-pill badge-danger mx-2">{{product.numberOfDownloads}}</span> 
+        </div>
+        <div>
+          <span class="text-dark">Pull Requests:</span>
+          <span class="badge badge-pill badge-danger mx-2">{{product.pullRequests}}</span> 
+        </div>
+        <div>
+          <span class="text-dark">Last Commit Date :</span>
+          <span class="text-secondary">{{product.lastCommitDate}}</span> 
+        </div>
       </div>
     </div>
-
-    <div class="row">
-        <div class="col-12">
-          
+    <div class="row download_link">
+      <div class="col-4">
+        <h5 class="link">
+          <i class="fa fa-link"></i>{{product.downloadLink}}
+        </h5>
+        <h5 class="link">
+          <i class="fa fa-github" aria-hidden="true"></i>{{product.sourceRepositoryLink}}
+        </h5>
+      </div>
+      <div class="col-6">
+          <button class="btn btn-outline-success btn-lg" (click)="downloadProduct()">
+              <i class="fa fa-download">Download</i>
+          </button>
       </div>
     </div>
-
-
-    <div class="row">
-        <div class="col-12">
-            
-      </div>
-    </div>
-        
-        <div class="row">
-            <div class="col-6">
-              <h5> 
-                <i class="fa fa-link"></i>{{product.downloadLink}}
-              </h5>
-            </div>
-            <div class="col-6">
-                <h5>
-                    <i class="fa fa-github" aria-hidden="true"></i>{{product.sourceRepositoryLink}}
-                </h5>
-            </div>
-          </div>
-
-
-    <h5>{{product.numberOfDownloads}}</h5>
-    <span>  Open Issues: </span>
-    <span class="badge badge-pill badge-danger">{{product.openIssues}}</span>
-   
-    <h5>{{product.pullRequests}}</h5>
-    <h5>{{product.lastCommitDate}}</h5>
-    
-    <h5>{{product.productState}}</h5>
-    <button class="btn btn-outline-success btn-lg" (click)= "downloadProduct()">
-      <i class="fa fa-download">Download</i>
-    </button>
+    <!-- <div class="text-center">
+      
+    </div> -->
   </section>
 </div>
+
+<!-- //  card -->

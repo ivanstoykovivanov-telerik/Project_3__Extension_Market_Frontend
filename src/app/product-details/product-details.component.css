@@ -1,15 +1,51 @@
 .product_details{
-    margin-top: 150px; 
+    margin-top: 30px; 
+    margin-left: 10%; 
 }
 
 .product_name{
-    font-size: 3.4rem;     
+    font-size: 3.4rem;   
+    margin: 40px 0;   
+}
+
+.product_description{
+    margin-top: 30px;
+    margin-bottom: 120px;
+}
+
+.author{
+    font-size: 1.2rem; 
+    font-weight: bold;
+    color: black;
+
 }
 
 .product_version{
     font-weight: bold; 
+    margin-top: 30px;
+    margin-bottom: 14px;
 }
 
 .product_description{
     font-size: 1.2rem; 
 }
+
+.download_link{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.link{
+    margin-top: 16px; 
+}
+
+i {
+    margin-right: 3%; 
+}
+
+button{
+    margin-top: 10px;
+    margin:0 auto; 
+}
+
+

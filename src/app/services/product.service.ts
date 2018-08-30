@@ -4,6 +4,7 @@ import { Tag } from '../models/tag.model';
 import { Product } from '../models/product.model';
 import { User } from '../models/user.model';
 import {from, Observable} from 'rxjs';
+import { AppComponent } from '../app.component';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import {from, Observable} from 'rxjs';
 export class ProductService {
   private productsURL = "/api/product";
   
+  //For testing purposes: 
   product: Product = new Product(
     "Slack chat", 
     "Next generation chat for the modern office communication", 
@@ -76,6 +78,10 @@ export class ProductService {
     const productsAsObservable = from(this.products);
     return productsAsObservable; 
     //return this.http.get<Product[]>(this.productsURL);
+  }
+
+  public getAllProducts(){
+    return this.http.get<Product[]>(AppComponent.API_URL+"/productsOld")
   }
 
   public getNewProducts(){

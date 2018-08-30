@@ -28,7 +28,8 @@ export class AuthService {
       .set('Accept', 'application/json')
       .set("Authorization", "Basic " + base64Credential); 
 
-    return this.http.get(AppComponent.API_URL+"/account/login",  {headers} )
+    // return this.http.get(AppComponent.API_URL+"/account/login",  {headers} )
+    return this.http.get(AppComponent.API_URL+"/account/login"  )
        .pipe(
          map((data: any) => {
           console.log("After mapping: ");
