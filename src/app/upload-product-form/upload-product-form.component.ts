@@ -3,6 +3,8 @@ import { Product } from '../models/product.model';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
+import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-upload-product-form',
@@ -17,24 +19,27 @@ export class UploadProductFormComponent implements OnInit {
     submitted = false;
     loading = false;  //making the submit button of the form active
   
-  //user: User ; 
+//   currentUser: User ; 
   errorMessage: string; 
 
   constructor(
       private formBuilder: FormBuilder, 
       private activatedRoute: ActivatedRoute,
       private router: Router,
-      private productService: ProductService
+      private productService: ProductService, 
+      private authService: AuthService
   ) { }
 
   ngOnInit() {
         this.uploadExtensionForm = this.formBuilder.group({
           name: ['', Validators.required],
           description: ['', Validators.required],
+          tags: ['', Validators.minLength(3)],
           version: ['', Validators.minLength(3)],
           downloadLink: ['', Validators.minLength(3)],
           sourceRepositoryLink: ['', Validators.minLength(3)],
         });
+
 
         this.populateValues();
          
@@ -73,16 +78,20 @@ export class UploadProductFormComponent implements OnInit {
     }
     
    
-     //TODO: 
+    
     let name = this.f.name.value;  
     let description = this.f.description.value;  
-    let owner = this.product.owner; 
+    let owner: User ; 
+    this.filled == false  ?  
+        this.authService.currentUser.subscribe( user => owner = user) : 
+        owner = this.product.owner; 
     let version = this.f.version.value; 
     let downloadLink = this.f.downloadLink.value; 
     let sourceRepositoryLink = this.f.sourceRepositoryLink.value;
-    let tags = this.product.tags; 
-  
     //TODO: 
+    let tags = this.product.tags; 
+    
+
     let product: Product = new Product(name, description, version, owner, downloadLink,sourceRepositoryLink, tags);   
     console.log('Product updated : ');
     console.log(product);
@@ -109,7 +118,6 @@ export class UploadProductFormComponent implements OnInit {
     }
 
     populateValues(){
-       //console.log("Populating");
         if(this.filled){
             this.f.name.setValue(this.product.name);
             this.f.description.setValue(this.product.description);

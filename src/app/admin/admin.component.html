@@ -29,8 +29,7 @@
                 </i> -->
             </td>
             <td>
-              <button class="btn btn-primary"  (click)="findProducts(user)" (click)="lgModal.show()">View Extensions</button>
-              <!-- <i class="btn fa fa-eye text-primary del_btn" aria-hidden="true" (click)="findProducts(user)"></i> -->
+              <button class="btn btn-primary"  (click)="findProductsOf(user)" (click)="lgModal.show()">View Extensions</button>
             </td>
           </tr>
         </tbody>
@@ -50,8 +49,8 @@
       </div>
       <div class="modal-body">
           <app-admin-extensions-per-user 
-            [user]="currentUser"  
           ></app-admin-extensions-per-user>
+          <!-- [user]="currentUser"   -->
       </div>
     </div>
   </div>

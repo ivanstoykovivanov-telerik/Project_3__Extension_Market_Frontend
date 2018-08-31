@@ -90,14 +90,14 @@ export class ProductService {
     return this.http.get<Product[]>(AppComponent.API_URL+"/productsOld")
   }
 
-  public getNewProducts(){
-  }
+  // public getNewProducts(){
+  // }
 
-  public getPopularProducts(){
-  }
+  // public getPopularProducts(){
+  // }
 
-  public getFeaturedProducts(){
-  }
+  // public getFeaturedProducts(){
+  // }
 
 
   get productDetails() : Product{
@@ -117,15 +117,19 @@ export class ProductService {
     return this.http.post<Product>(`${this.productsURL}/save`, product);
   }
 
-
-  public getProductsByUser(user: User): Observable<Product>{
-    return from(this.products); 
+  //TODO: 
+  public getProductsByUser(userID: number): Observable<Product[]>{
+    
+    let params = new HttpParams().set('id', userID.toString());
+    return this.http.get<Product[]>(AppComponent.API_URL+"/users/products", {params}  )
+    
+    // return from(this.products); 
   }
 
   public update(product: Product){
     console.log("product updated: ");
     console.log(product);
-    
+    return this.http.post<Product>(AppComponent.API_URL + "/productsOld/add", product); 
     
   }
 

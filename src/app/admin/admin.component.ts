@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
+import { AdminExtensionsPerUserComponent } from '../admin-extensions-per-user/admin-extensions-per-user.component';
 
 @Component({
   selector: 'app-admin',
@@ -10,17 +11,16 @@ import { User } from '../models/user.model';
 export class AdminComponent implements OnInit {
   users: User[];
   currentUser : User; 
-
+  @ViewChild(AdminExtensionsPerUserComponent) child;
   constructor(
     private userService: UserService 
   ) { }
 
   ngOnInit() {
+    
+    //GET ALL USERS 
     this.userService.getAllUsers()
       .subscribe( data => {
-        console.log("Users from admin");
-        console.log(data);
-        
         this.users = data; 
       }); 
   }
@@ -31,14 +31,17 @@ export class AdminComponent implements OnInit {
    
     this.userService.save(user).subscribe(); 
   }
-
-  findProducts(user: User){
-    this.currentUser = user; 
-    
-    //navigate to another component UserProducts
-
-    //
+  
+  
+  findProductsOf(user: User){
+    // this.currentUser = user; 
+    // console.log(this.currentUser);
+    this.child.getUser(user); 
   }
 
+
+  // ngAfterViewInit() {
+  //   this.message = this.child.message
+  // }
 
 }

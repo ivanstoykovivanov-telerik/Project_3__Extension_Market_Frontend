@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-extensions-per-user.component.css']
 })
 export class AdminExtensionsPerUserComponent implements OnInit {
-  products: Product[] = []; 
-  
-  @Input() user: User; 
+  products: Product[]; 
+  // @Input() user: User; 
+  currentUser: User; 
   
   constructor(
     private userService: UserService, 
@@ -22,9 +22,38 @@ export class AdminExtensionsPerUserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.products.push(this.productService.product) ; 
-    this.products.push(this.productService.product) ; 
-    this.products.push(this.productService.product) ; 
+    console.log("USER: ----------- ");
+    // console.log(this.user);
+    // this.productService.getProductsByUser(this.user.id)
+    //   .subscribe(
+    //     data => {
+    //       this.products = data; 
+    //       console.log("DAta from AdminExtensionPerUser");
+    //       console.log(data);
+          
+    //     }
+    //   )
+  }
+
+  getProductsOfUser(id: number ){
+    this.productService.getProductsByUser(this.currentUser.id)
+    .subscribe(
+      data => {
+        //this.products = data; 
+        console.log("DAta from AdminExtensionPerUser");
+        console.log(data);
+        this.products = data; 
+      }
+    )
+  }
+
+
+  getUser(user: User){
+    this.currentUser = user; 
+    console.log("Getting user");
+    console.log( this.currentUser);
+    console.log( this.currentUser.id);
+    this.getProductsOfUser(this.currentUser.id); 
   }
 
 
@@ -39,7 +68,5 @@ export class AdminExtensionsPerUserComponent implements OnInit {
   showProduct(product){
     this.router.navigate(['/productDetails']); 
   }
-
-
 
 }

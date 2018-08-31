@@ -8,9 +8,11 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-
+  //TODO: Change later to real authentication 
   //subscribe to changes in  currentUser 
-  private messageSource = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("currentUser")));
+  //private messageSource = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("currentUser")));
+  dummy: User  = new User("ivanov", "bonbon800", "Ivan", "Ivanov", "ivanov@gmail.com", true, 1); 
+  private messageSource = new BehaviorSubject<User>(this.dummy);
   currentUser = this.messageSource.asObservable();
 
   constructor(public http: HttpClient) { }
@@ -45,7 +47,8 @@ export class AuthService {
           let dataNew = JSON.parse(JSON.stringify(data));
           let dataNew1 = JSON.stringify(data.principal);  //TODO: 
            
-          localStorage.setItem('currentUser', JSON.stringify(dataNew.principal)); 
+          // localStorage.setItem('currentUser', JSON.stringify(dataNew.principal)); 
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser)); 
           this.changeUser(dataNew.principal);  
           return data; 
           })

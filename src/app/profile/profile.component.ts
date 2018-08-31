@@ -17,17 +17,14 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //this.authService.currentUser.subscribe(data => this.currentUser = data)
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.authService.currentUser.subscribe(data => this.currentUser = data)
+    //this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log("Current User");
     console.log(this.currentUser);
   }
 
-
   goToUserData(){
     console.log("Clicked...");
-    
     this.router.navigate([{ outlets: { profileDetails: [ 'profileData'] }}]); 
-    
   }
 }
