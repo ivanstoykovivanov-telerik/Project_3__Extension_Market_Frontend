@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Tag } from '../models/tag.model';
 import { Product } from '../models/product.model';
 import { User } from '../models/user.model';
@@ -12,7 +12,7 @@ import { AppComponent } from '../app.component';
 export class ProductService {
   private productsURL = "/api/product";
   
-  //For testing purposes: 
+ // For testing purposes: 
   product: Product = new Product(
     "Slack chat", 
     "Next generation chat for the modern office communication", 
@@ -67,16 +67,22 @@ export class ProductService {
     this.product3
   ];  
 
-
-  constructor(private http: HttpClient) { }  
+  constructor(
+    private http: HttpClient
+  ) { }  
   
   
   public getProducts(sortedBy: string){
-    //TODO: 
     //switch statement  to determine the sorting
- 
-    const productsAsObservable = from(this.products);
-    return productsAsObservable; 
+    
+    //TODO: 
+    let params = new HttpParams().set('sortBy', sortedBy);
+    return this.http.get<Product[]>(AppComponent.API_URL + "/products/filter", { params: params }); 
+
+    
+    // TEST
+    // const productsAsObservable = from(this.products);
+    // return productsAsObservable; 
     //return this.http.get<Product[]>(this.productsURL);
   }
 
@@ -103,6 +109,8 @@ export class ProductService {
     localStorage.setItem("productDetails", JSON.stringify(product)); 
   }
 
+
+  //TODO: 
   public save(product: Product){
     // console.log("From save product input");
     // console.log(product);

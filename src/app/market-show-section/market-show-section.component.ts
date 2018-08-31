@@ -20,24 +20,25 @@ export class MarketShowSectionComponent implements OnInit {
 
   ngOnInit() {
     
+    console.log(this.sortedBy);
+    
     //GET PRODUCTS 
-    //OLD VERSION : 
-    // this.productService.getProducts(this.sortedBy)
-    //   .subscribe(
-    //     data => this.products.push(data) 
-    //   )
-      
-    //   console.log(this.products);
+    //WORKS -> All Products
+    // this.productService.getAllProducts()
+    //   .subscribe( 
+    //     data => {
+    //       this.products = data; 
+    //       console.log(data); 
+    //     }
+    //   );
 
-    //GET PRODUCTS 
-    this.productService.getAllProducts()
+    this.productService.getProducts(this.sortedBy)
       .subscribe( 
-        data => {
-          this.products = data; 
-          console.log(data); 
-        }
-      
-      );
+          data => {
+            this.products = data; 
+            console.log(data); 
+          }
+      );  
   }
 
 }
