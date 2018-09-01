@@ -1,8 +1,8 @@
-
-export class Tag {
-    
+export class Tag{
+   
     constructor(
-        public name : string, 
+        public tagName : string, 
         public id? : number
     ){ }
 }
+

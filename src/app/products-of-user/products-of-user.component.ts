@@ -20,9 +20,9 @@ export class ProductsOfUserComponent implements OnInit {
 
   ngOnInit() {
     //TODO:
-    this.productService.getProductsByUser(this.user)
+    this.productService.getProductsByUser(this.user.id)
       .subscribe(
-        data => this.products.push(data)
+        data => this.products = data
       ) 
   }
 

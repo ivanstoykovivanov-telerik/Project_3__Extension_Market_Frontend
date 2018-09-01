@@ -42,6 +42,8 @@ import { AdminExtensionsPerUserComponent } from './admin-extensions-per-user/adm
 import { UploadProductComponent } from './upload-product/upload-product.component';
 import { UploadProductFormComponent } from './upload-product-form/upload-product-form.component';
 import { MarketShowSectionComponent } from './market-show-section/market-show-section.component';
+import { TagComponent } from './tag/tag.component';
+import { TagAddComponent } from './tag-add/tag-add.component';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
@@ -69,6 +71,8 @@ import { MarketShowSectionComponent } from './market-show-section/market-show-se
     UploadProductComponent,
     UploadProductFormComponent,
     MarketShowSectionComponent,
+    TagComponent,
+    TagAddComponent,
   ],
   imports: [
     BrowserModule, 

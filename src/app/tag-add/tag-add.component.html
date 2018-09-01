@@ -1,0 +1,11 @@
+<form>
+  <div class="form-group">
+    <input 
+    type="text" 
+    class="form-control" 
+        name= "tagName"
+        placeholder="Add new Tag"
+        (keyup.enter)="onTagAdd($event)"
+        [(ngModel)]="addTagValue">
+  </div>
+</form>

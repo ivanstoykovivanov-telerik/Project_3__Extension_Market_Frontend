@@ -34,9 +34,9 @@
           class="form-control" 
           type="text" 
           formControlName="description"
+          placeholder="Describe your extension here..."
           required 
           [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
-          Description...
         </textarea>
           <!-- error message -->
           <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
@@ -54,35 +54,6 @@
     </div>
     <!-- // description    -->  
 
-    <!-- tags -->
-    <div class="row justify-content-center">
-      <div class="col-4"><h4>Tags</h4></div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="form-group offset-1 col-10 col-md-8">
-          <input 
-            class="form-control" 
-            type="text" 
-            placeholder="Version"  
-            formControlName="tags"
-            required 
-            [ngClass]="{ 'is-invalid': submitted && f.tags.errors }">
-            <!-- error message -->
-            <div *ngIf="submitted && f.tags.errors" class="invalid-feedback">
-              <div *ngIf="f.tags.errors.required">Tags is required</div>
-              <div *ngIf="f.tags.errors.minlength">Version must be at least 3 characters long</div>
-            </div>  
-            <!-- // error message -->
-        </div>
-        <!-- validation icon -->
-        <span class="col-1">
-          <i *ngIf="f.tags.valid" style="color: green" class="fa fa-check"></i>
-          <i *ngIf="submitted && f.tags.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
-        </span>
-        <!-- //  validation icon -->
-      </div>
-    <!--//  tags -->
-    
     <!-- version    -->
     <div class="row justify-content-center">
       <div class="form-group offset-1 col-10 col-md-8">
@@ -161,7 +132,17 @@
       </div>
       <!--// sourceRepositoryLink    -->
 
+      <!-- tags -->
       <div class="row justify-content-center">
+        <div class="col-6">
+          
+          <app-tag></app-tag>
+        
+        </div>
+      </div>
+      <!--//  tags -->
+
+      <div class="row justify-content-center my-5">
           <button 
             class="btn btn-outline-primary btn-lg mt-5"  
             [disabled]="loading"

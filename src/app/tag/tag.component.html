@@ -1,0 +1,12 @@
+<h3 class="text-center mt-3 mb-2">Tags</h3>
+<app-tag-add
+  (tagAddedEvent)="getTag($event)">
+</app-tag-add>
+<div class="pill_section text-center">
+  <div *ngFor="let tag of tags" >
+    <div class="badge badge-pill badge-info mx-2">
+      {{tag.tagName}} 
+      <span class="btn" (click)="onDelete(tag)"><i class="fa fa-times"></i></span>
+    </div>
+  </div>
+</div>

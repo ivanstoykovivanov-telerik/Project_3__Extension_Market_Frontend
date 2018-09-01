@@ -1,0 +1,10 @@
+.pill_section{
+    margin: 0 auto;     
+}
+
+.badge-pill{
+    width: 50%; 
+    /* padding: 1rem;  */
+    font-size: 1.3rem; 
+    margin-top: .4rem;
+}
