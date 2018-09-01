@@ -6,6 +6,9 @@
         name= "tagName"
         placeholder="Add new Tag"
         (keyup.enter)="onTagAdd($event)"
-        [(ngModel)]="addTagValue">
+        [(ngModel)]="addTagValue"
+        tooltip="Add tag name here"
+        placement="right"
+        [delay]="500">
   </div>
 </form>

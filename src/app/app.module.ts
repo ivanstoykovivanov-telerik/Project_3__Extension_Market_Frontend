@@ -24,6 +24,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxCarouselModule } from 'ngx-carousel';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxClickToEditModule } from 'ngx-click-to-edit';
+import { TooltipModule } from 'ngx-bootstrap';  
 
 //Services: 
 import { AuthService } from './services/auth.service';
@@ -86,7 +87,8 @@ import { TagAddComponent } from './tag-add/tag-add.component';
     CollapseModule.forRoot(), 
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
-    NgxClickToEditModule.forRoot()
+    NgxClickToEditModule.forRoot(), 
+    TooltipModule.forRoot()
     // JwtModule.forRoot({
     //   config: {
     //     tokenGetter: tokenGetter,

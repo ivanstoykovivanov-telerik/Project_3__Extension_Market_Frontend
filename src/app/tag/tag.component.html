@@ -5,8 +5,18 @@
 <div class="pill_section text-center">
   <div *ngFor="let tag of tags" >
     <div class="badge badge-pill badge-info mx-2">
-      {{tag.tagName}} 
-      <span class="btn" (click)="onDelete(tag)"><i class="fa fa-times"></i></span>
+      <div class="row">
+        <div class="col-6 text-left offset-2 mt-2"><span>{{tag.tagName}} </span></div>
+        <span class="col-4 text-right">
+          <span class="btn text-dark" 
+            (click)="onDelete(tag)"
+            tooltip="Delete Tag"
+            placement="right"
+            [delay]="500">
+            <i class="fa fa-times"></i>
+          </span>
+        </span>
+      </div>
     </div>
   </div>
 </div>
