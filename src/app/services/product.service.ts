@@ -74,7 +74,7 @@ export class ProductService {
   
   public getProducts(sortedBy: string){
     
-    //TODO: 
+    //TODO: change to top10 
     let params = new HttpParams().set('sortBy', sortedBy);
     
     return this.http.get<Product[]>(AppComponent.API_URL + "/products", { params: params }); 
@@ -103,20 +103,22 @@ export class ProductService {
 
   //TODO: 
   public save(product: Product){
-    // console.log("From save product input");
-    // console.log(product);
-    return this.http.post<Product>(`${this.productsURL}/save`, product);
+    console.log("From save product input");
+    console.log(product);
+    return this.http.post<Product>(AppComponent.API_URL + "/products/add", product);
   }
 
   //TODO: 
   public getProductsByUser(userID: number): Observable<Product[]>{
     
     let params = new HttpParams().set('id', userID.toString());
-    return this.http.get<Product[]>(AppComponent.API_URL+"/users/products", {params}  )
+    return this.http.get<Product[]>(AppComponent.API_URL + "/users/products", {params}  )
     
     // return from(this.products); 
   }
 
+
+  //TODO
   public update(product: Product){
     console.log("product updated: ");
     console.log(product);

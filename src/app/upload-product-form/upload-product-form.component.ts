@@ -12,15 +12,17 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./upload-product-form.component.css']
 })
 export class UploadProductFormComponent implements OnInit {
+    // This component is used for both Upload Extension Page , and the user's extension card 
+    
     @Input() product: Product; 
     @Input() filled: boolean = false; 
-    @Output() onFormSubmitted = new EventEmitter<boolean>();   
-    uploadExtensionForm: FormGroup;
+    @Output() onFormSubmitted = new EventEmitter<boolean>();  // for the modal
+    uploadProductForm: FormGroup;
     submitted = false;
     loading = false;  //making the submit button of the form active
   
-//   currentUser: User ; 
-  errorMessage: string; 
+    //  currentUser: User ; 
+    errorMessage: string; 
 
   constructor(
       private formBuilder: FormBuilder, 
@@ -31,57 +33,34 @@ export class UploadProductFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-        this.uploadExtensionForm = this.formBuilder.group({
+        this.uploadProductForm = this.formBuilder.group({
           name: ['', Validators.required],
           description: ['', Validators.required],
-          tags: ['', Validators.minLength(3)],
           version: ['', Validators.minLength(3)],
           downloadLink: ['', Validators.minLength(3)],
           sourceRepositoryLink: ['', Validators.minLength(3)],
         });
 
-
         this.populateValues();
-         
   }
 
-  // a getter for easy access to form fields
-  get f() { return this.uploadExtensionForm.controls; }
+    // a getter for easy access to form fields
+  get f() { return this.uploadProductForm.controls; }
   
-
-  //confirm if password and repeated password match 
-  passwordValidator(control: AbstractControl) {
-      if (control && (control.value !== null || control.value !== undefined)) {
-          const cnfpassValue = control.value;
-  
-          const passControl = control.root.get('password'); // magic is this
-          if (passControl) {
-              const passValue = passControl.value;
-              if (passValue !== cnfpassValue || passValue === '') {
-                  return {
-                      isError: true
-                  };
-              }
-          }
-      }
-      return null;
-  }
 
   onSubmit() {
     this.submitted = true;
-    console.log("Submitted");
+    console.log("Product Submitted");
     
     // stop here if form is invalid
-    if (this.uploadExtensionForm.invalid) {
-      console.log("Invalid registration form");
+    if (this.uploadProductForm.invalid) {
+      console.log("Invalid product form");
       return;
     }
     
-   
-    
     let name = this.f.name.value;  
     let description = this.f.description.value;  
-    let owner: User ; 
+    let owner: User ; // //TODO: current user ? 
     this.filled == false  ?  
         this.authService.currentUser.subscribe( user => owner = user) : 
         owner = this.product.owner; 
@@ -93,17 +72,21 @@ export class UploadProductFormComponent implements OnInit {
     
 
     let product: Product = new Product(name, description, version, owner, downloadLink,sourceRepositoryLink, tags);   
-    console.log('Product updated : ');
+    console.log('Product to submit: ');
     console.log(product);
-    //UPDATE PRODUCT
-    this.productService.update(product); 
+    
+    
 
-    //CLOSE THE MODAL
+
+
+    //UPDATE PRODUCT TODO:
+   this.productService.update(product); 
+    //CLOSE THE MODAL , check where we are
     this.onFormSubmitted.emit(true); 
 
   }
 
-  register(product: Product) {
+  create(product: Product) {
     //TODO:  
     //this.productService 
 
