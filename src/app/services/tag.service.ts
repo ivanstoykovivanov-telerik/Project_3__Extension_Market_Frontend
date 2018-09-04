@@ -9,19 +9,18 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TagService {
     // tags: Tag[] = [];
-    tag: Tag; 
-    private tagSource =  new BehaviorSubject<Tag>(this.tag);
-    currentTag = this.tagSource.asObservable();
+    // tag: Tag; 
+    // private tagSource =  new BehaviorSubject<Tag>(this.tag);
+    // currentTag = this.tagSource.asObservable();
 
-    updateTag(tag: Tag) {
-      this.tagSource.next(tag); 
-    }
+    // updateTag(tag: Tag) {
+    //   this.tagSource.next(tag); 
+    // }
 
 
 constructor(
     private http: HttpClient
     ) {
-      
   }
 
   // getTags() {
@@ -38,17 +37,8 @@ constructor(
   //   this.observableTags.next(Object.assign({}, this.tags));
   // }  
 
-
   // public getTags(){
   //   return this.http.get<Tag[]>(AppComponent.API_URL + "/tags" ); 
-  // }
-
-  // public addTag(tag: Tag){
-  //   return this.http.post<Tag>(AppComponent.API_URL + "/tags/add", tag ); 
-  // }
-  
-  // public deleteTag(tag: Tag){
-  //   return this.http.post<Tag>(AppComponent.API_URL + "/tags/delete", tag ); 
   // }
 
 }

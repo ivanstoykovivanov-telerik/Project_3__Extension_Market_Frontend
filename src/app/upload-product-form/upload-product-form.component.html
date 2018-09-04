@@ -136,14 +136,12 @@
       <div class="row justify-content-center">
         <div class="col-6">
           
-          <app-tag-add
-            (tagAddedEvent) = "receiveNewTag($event)">
-          </app-tag-add>  
+          <app-tag-section
+            (tagAddedEvent) = "receiveNewTag($event)"
+            (tagDeletedEvent)="deleteTag($event)"
+            >
+          </app-tag-section>  
 
-          <app-tag
-            (tagDeletedEvent) = "onTagDeleted($event)"
-          >
-          </app-tag>
         
         </div>
       </div>

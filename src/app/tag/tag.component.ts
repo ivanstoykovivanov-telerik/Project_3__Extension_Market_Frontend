@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Output, EventEmitter, Input } from '@angular/core';
 import { Tag } from '../models/tag.model';
 import { TagService } from '../services/tag.service';
 import {Observable, from } from 'rxjs';
@@ -10,7 +10,8 @@ import {Observable, from } from 'rxjs';
 })
 export class TagComponent implements OnInit {
   @Output() tagDeletedEvent = new EventEmitter<Tag>(); 
-  tags: Tag[] = []; 
+  @Output() tagAddedEvent = new EventEmitter<Tag>(); 
+  @Input() tags: Tag[]; 
   tagFromChild: Tag ; 
 
   constructor(
@@ -18,10 +19,30 @@ export class TagComponent implements OnInit {
   ){ }
 
   ngOnInit() {
-    this.tagService.currentTag
-      .subscribe(
-        data => this.tags.push(data)
-      )
+    // this.tagService.getTags()
+    //   .subscribe(data => {
+    //     this.tags = data; 
+    //   }); 
+  }
+
+  getTag($event){
+    console.log("getEvent");
+    console.log($event);
+    this.tags.push($event);
+  }
+
+
+  onTagAdd($event){
+    let tag = new Tag($event); 
+    this.tags.push(tag); 
+    this.tagAddedEvent.emit(tag); 
+  }
+
+  onDelete(tag:Tag){
+    console.log("Deleting...");
+    console.log(tag);
+    this.tagDeletedEvent.emit(tag);
+    this.tags = this.tags.filter(e => tag.tagName !== e.tagName); 
   }
 
   // receiveTagFromParent(){
@@ -30,13 +51,5 @@ export class TagComponent implements OnInit {
   //   this.tags.push($event);  //this should go to form
   // }
 
-  onDelete(tag: Tag){
-    console.log("Deleting...");
-    console.log(tag);
-    //this.tagService.tags = this.tags.filter(e => tag.tagName !== e.tagName);  
-    
-    this.tagDeletedEvent.emit(tag); 
-    this.tags = this.tags.filter(e => tag.tagName !== e.tagName); 
-  }
 
 }

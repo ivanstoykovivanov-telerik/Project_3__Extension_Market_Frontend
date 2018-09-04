@@ -1,23 +1,26 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Tag } from '../models/tag.model';
 import { TagService } from '../services/tag.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-tag-add',
-  templateUrl: './tag-add.component.html',
-  styleUrls: ['./tag-add.component.css']
+  selector: 'app-tag-section',
+  templateUrl: './tag-section.component.html',
+  styleUrls: ['./tag-section.component.css']
 })
-export class TagAddComponent implements OnInit {
+export class TagSectionComponent implements OnInit {
   tagAddForm: FormGroup;
-  tags : Tag[]; 
-  addTagValue: string  = null;
+  tags : Tag[] = [] ; 
+  newTag : Tag ; 
   @Output() tagAddedEvent = new EventEmitter<Tag>();
+  @Output() tagDeletedEvent = new EventEmitter<Tag>(); 
   
   constructor(
-    private tagService: TagService , 
+    private tagService: TagService, 
     private formBuilder: FormBuilder 
-  ) { }
+  ) {
+    // this.tags = []; 
+   }
 
   ngOnInit() {
     this.tagAddForm = this.formBuilder.group({
@@ -28,7 +31,18 @@ export class TagAddComponent implements OnInit {
   onTagAdd($event){
     let tag: Tag = new Tag($event.target.value);  
     console.log(tag);
+    this.tags.push(tag); 
     // this.tagService.updateTag(tag); 
     this.tagAddedEvent.emit(tag);
   }
+
+  onDelete(tag:Tag){
+    console.log("Deleting...");
+    console.log(tag);
+    this.tagDeletedEvent.emit(tag);
+    this.tags = this.tags.filter(e => tag.tagName !== e.tagName);
+     
+  }
+
+
 }

@@ -45,6 +45,7 @@ import { UploadProductFormComponent } from './upload-product-form/upload-product
 import { MarketShowSectionComponent } from './market-show-section/market-show-section.component';
 import { TagComponent } from './tag/tag.component';
 import { TagAddComponent } from './tag-add/tag-add.component';
+import { TagSectionComponent } from './tag-section/tag-section.component';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
@@ -74,6 +75,7 @@ import { TagAddComponent } from './tag-add/tag-add.component';
     MarketShowSectionComponent,
     TagComponent,
     TagAddComponent,
+    TagSectionComponent,
   ],
   imports: [
     BrowserModule, 

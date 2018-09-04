@@ -22,7 +22,7 @@ export class UploadProductFormComponent implements OnInit {
     uploadProductForm: FormGroup;
     submitted = false;
     loading = false;  //making the submit button of the form active
-    tags: Tag[]; 
+    tags: Tag[] = []; 
     //  currentUser: User ; 
     errorMessage: string; 
 
@@ -55,11 +55,7 @@ export class UploadProductFormComponent implements OnInit {
     // a getter for easy access to form fields
   get f() { return this.uploadProductForm.controls; }
   
-  receiveNewTag($event){
-    console.log("Tag received: ");
-    console.log($event);
-    this.tags.push($event); 
-  }
+  
 
   onSubmit() {
     this.submitted = true;
@@ -113,6 +109,19 @@ export class UploadProductFormComponent implements OnInit {
             this.f.sourceRepositoryLink.setValue(this.product.sourceRepositoryLink);
              //TODO: 
         }
+    }
+  
+  receiveNewTag($event){
+      console.log("Tag received: ");
+      console.log($event);
+      this.tags.push($event); 
+    }  
+
+    deleteTag($event){
+      console.log("Deleting tag");
+      let tag = $event; 
+      console.log(tag);
+      this.tags = this.tags.filter(e => tag.tagName !== e.tagName); 
     }
 
   movetToLogin(){

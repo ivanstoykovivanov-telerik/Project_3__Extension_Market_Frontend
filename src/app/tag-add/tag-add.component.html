@@ -12,3 +12,8 @@
         [delay]="500">
   </div>
 </form>
+
+<app-tag
+        [tags]="tags"
+        (tagDeletedEvent) = "onTagDeleted($event)">
+</app-tag>

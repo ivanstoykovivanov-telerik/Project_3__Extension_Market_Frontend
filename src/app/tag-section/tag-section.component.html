@@ -1,4 +1,21 @@
+<!-- TAG ADD -->
 <h3 class="text-center mt-3 mb-2">Tags</h3>
+<form>
+  <div class="form-group">
+    <input 
+    type="text" 
+    class="form-control" 
+        name= "tagName"
+        placeholder="Add new Tag"
+        (keyup.enter)="onTagAdd($event)"
+        [(ngModel)]="addTagValue"
+        tooltip="Add tag name here"
+        placement="right"
+        [delay]="500">
+  </div>
+</form>
+<!--// TAG ADD -->
+<!-- TAG LIST -->
 <div class="pill_section text-center">
     <div *ngFor="let tag of tags">
       <div class="badge badge-pill badge-info mx-2">
@@ -13,3 +30,4 @@
       </div>
     </div>
 </div>
+<!-- TAG LIST -->

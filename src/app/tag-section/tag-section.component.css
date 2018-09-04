@@ -1,0 +1,16 @@
+input  {
+    border-color: #00A1B5 ; 
+    width:60%;  
+    margin: 0 auto; 
+ }
+
+ .pill_section{
+    margin: 0 auto;     
+}
+
+.badge-pill{
+    width: 40%; 
+    /* padding: 1rem;  */
+    font-size: 1.1rem; 
+    margin-top: .4rem;
+}
