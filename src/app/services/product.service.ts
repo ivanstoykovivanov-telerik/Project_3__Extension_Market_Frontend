@@ -12,7 +12,7 @@ import { AppComponent } from '../app.component';
 export class ProductService {
   private productsURL = "/api/product";
   
- // For testing purposes: 
+ // For test purposes: 
   product: Product = new Product(
     "Slack chat", 
     "Next generation chat for the modern office communication", 
@@ -73,13 +73,13 @@ export class ProductService {
   
   
   public getProducts(sortedBy: string){
-    //switch statement  to determine the sorting
     
     //TODO: 
     let params = new HttpParams().set('sortBy', sortedBy);
-    return this.http.get<Product[]>(AppComponent.API_URL + "/products/filter", { params: params }); 
-
     
+    return this.http.get<Product[]>(AppComponent.API_URL + "/products", { params: params }); 
+
+          
     // TEST
     // const productsAsObservable = from(this.products);
     // return productsAsObservable; 
@@ -87,17 +87,8 @@ export class ProductService {
   }
 
   public getAllProducts(){
-    return this.http.get<Product[]>(AppComponent.API_URL+"/productsOld")
+    return this.http.get<Product[]>(AppComponent.API_URL+"/products")
   }
-
-  // public getNewProducts(){
-  // }
-
-  // public getPopularProducts(){
-  // }
-
-  // public getFeaturedProducts(){
-  // }
 
 
   get productDetails() : Product{

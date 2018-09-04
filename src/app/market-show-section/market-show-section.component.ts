@@ -22,8 +22,8 @@ export class MarketShowSectionComponent implements OnInit {
     
     console.log(this.sortedBy);
     
-    //GET PRODUCTS 
-    //WORKS -> All Products
+    // GET PRODUCTS 
+    // WORKS -> All Products
     // this.productService.getAllProducts()
     //   .subscribe( 
     //     data => {
@@ -32,11 +32,17 @@ export class MarketShowSectionComponent implements OnInit {
     //     }
     //   );
 
+     
+    //*
+    //*  Getting sorted products 
+    //*   
     this.productService.getProducts(this.sortedBy)
       .subscribe( 
           data => {
-            this.products = data; 
+            console.log("products : ");
+            
             console.log(data); 
+            this.products = data; 
           }
       );  
   }
