@@ -112,7 +112,7 @@ export class ProductService {
   public getProductsByUser(userID: number): Observable<Product[]>{
     // let params = new HttpParams().set('id', userID.toString());
     
-    return this.http.get<Product[]>(` ${userID}`); 
+    return this.http.get<Product[]>(`${AppComponent.API_URL}/users/products/${userID}`); 
   }
 
 
