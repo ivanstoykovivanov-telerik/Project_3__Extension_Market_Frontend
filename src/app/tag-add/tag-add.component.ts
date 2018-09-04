@@ -26,20 +26,24 @@ export class TagAddComponent implements OnInit {
     })
    }
 
-  onTagAdd(event){
-    let tag: Tag = new Tag(event.target.value);  
+  onTagAdd($event){
+    let tag: Tag = new Tag($event.target.value);  
     console.log(tag);
+    this.tagService.updateTag(tag); 
+     
+    
+    //this.tagAddedEvent.emit(tag);
     
     //saved Tag to DB
-    this.tagService.addTag(tag)
-    .subscribe(
-      (tagNew: Tag ) => {
-          //clear the input
-          this.addTagValue = ' ';
-          this.newTag = tagNew; 
-          // console.log(this.newTag);
-          this.tagAddedEvent.emit(this.newTag);
-        }
-      );
+    // this.tagService.addTag(tag)
+    // .subscribe(
+    //   (tagNew: Tag ) => {
+    //       //clear the input
+    //       this.addTagValue = ' ';
+    //       this.newTag = tagNew; 
+    //       // console.log(this.newTag);
+    //       this.tagAddedEvent.emit(this.newTag);
+    //     }
+    //   );
   }
 }

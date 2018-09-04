@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
+import { Tag } from '../models/tag.model';
+import { TagService } from '../services/tag.service';
 
 @Component({
   selector: 'app-upload-product-form',
@@ -16,11 +18,11 @@ export class UploadProductFormComponent implements OnInit {
     
     @Input() product: Product; 
     @Input() filled: boolean = false; 
-    @Output() onFormSubmitted = new EventEmitter<boolean>();  // for the modal
+    @Output() onFormSubmitted = new EventEmitter<boolean>();  // for the modal in products of user comp 
     uploadProductForm: FormGroup;
     submitted = false;
     loading = false;  //making the submit button of the form active
-  
+    tags: Tag[]; 
     //  currentUser: User ; 
     errorMessage: string; 
 
@@ -29,7 +31,8 @@ export class UploadProductFormComponent implements OnInit {
       private activatedRoute: ActivatedRoute,
       private router: Router,
       private productService: ProductService, 
-      private authService: AuthService
+      private authService: AuthService,
+      private tagService: TagService
   ) { }
 
   ngOnInit() {
@@ -40,13 +43,23 @@ export class UploadProductFormComponent implements OnInit {
           downloadLink: ['', Validators.minLength(3)],
           sourceRepositoryLink: ['', Validators.minLength(3)],
         });
+        
+        //get product data if in  editting mode 
+        if(this.filled){
+            this.populateValues();
+        }
 
-        this.populateValues();
+        //this.tagService.observableTags.subscribe()
   }
 
     // a getter for easy access to form fields
   get f() { return this.uploadProductForm.controls; }
   
+  receiveNewTag($event){
+    console.log("Tag received: ");
+    console.log($event);
+    this.tags.push($event); 
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -57,48 +70,39 @@ export class UploadProductFormComponent implements OnInit {
       console.log("Invalid product form");
       return;
     }
-    
+
     let name = this.f.name.value;  
     let description = this.f.description.value;  
-    let owner: User ; // //TODO: current user ? 
-    this.filled == false  ?  
-        this.authService.currentUser.subscribe( user => owner = user) : 
-        owner = this.product.owner; 
+    //get the current user : 
+    let owner: User; 
+    this.filled ?  
+        owner = this.product.owner
+        : 
+        this.authService.currentUser.subscribe( user => owner = user) 
     let version = this.f.version.value; 
     let downloadLink = this.f.downloadLink.value; 
     let sourceRepositoryLink = this.f.sourceRepositoryLink.value;
-    //TODO: 
-    let tags = this.product.tags; 
     
-
+    //TODO:  
+    let tags = this.tags; 
     let product: Product = new Product(name, description, version, owner, downloadLink,sourceRepositoryLink, tags);   
     console.log('Product to submit: ');
     console.log(product);
-    
-    
 
-
-
-    //UPDATE PRODUCT TODO:
-   this.productService.update(product); 
-    //CLOSE THE MODAL , check where we are
-    this.onFormSubmitted.emit(true); 
+    //SAVE OR UPDATE PRODUCT TODO:
+    if ( this.filled){
+        //UPDATE
+        this.productService.update(product)
+            .subscribe(); 
+        //CLOSE THE MODAL, 
+        this.onFormSubmitted.emit(true); 
+    }else{
+        //SAVE
+        this.productService.save(product)
+            .subscribe(); 
+    } 
 
   }
-
-  create(product: Product) {
-    //TODO:  
-    //this.productService 
-
-    // this.accountService.createAccount(user).subscribe(data => {
-      //     this.router.navigate(['/login']);
-      //     console.log("Account created successfully");
-      //   }, err => {
-      //     console.log(err);
-      //     this.errorMessage = "username already exist";
-      //   }
-      // )
-    }
 
     populateValues(){
         if(this.filled){
@@ -113,6 +117,11 @@ export class UploadProductFormComponent implements OnInit {
 
   movetToLogin(){
       this.router.navigate(['../login'], {relativeTo: this.activatedRoute}); 
+  }
+
+  onTagDeleted($event){
+    let tag = $event; 
+    this.tags = this.tags.filter(el => tag.tagName !== el.tagName); 
   }
 
 }
