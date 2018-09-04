@@ -14,13 +14,12 @@ export class TagSectionComponent implements OnInit {
   newTag : Tag ; 
   @Output() tagAddedEvent = new EventEmitter<Tag>();
   @Output() tagDeletedEvent = new EventEmitter<Tag>(); 
-  
+  addTagValue; 
+
   constructor(
     private tagService: TagService, 
     private formBuilder: FormBuilder 
-  ) {
-    // this.tags = []; 
-   }
+  ) { }
 
   ngOnInit() {
     this.tagAddForm = this.formBuilder.group({
@@ -31,7 +30,8 @@ export class TagSectionComponent implements OnInit {
   onTagAdd($event){
     let tag: Tag = new Tag($event.target.value);  
     console.log(tag);
-    this.tags.push(tag); 
+    this.tags.push(tag);
+    this.addTagValue ="";  
     // this.tagService.updateTag(tag); 
     this.tagAddedEvent.emit(tag);
   }
@@ -41,7 +41,6 @@ export class TagSectionComponent implements OnInit {
     console.log(tag);
     this.tagDeletedEvent.emit(tag);
     this.tags = this.tags.filter(e => tag.tagName !== e.tagName);
-     
   }
 
 

@@ -105,16 +105,14 @@ export class ProductService {
   public save(product: Product){
     console.log("From save product input");
     console.log(product);
-    return this.http.post<Product>(AppComponent.API_URL + "/products/add", product);
+    return this.http.post(AppComponent.API_URL + "/products/add",  product);
   }
 
   //TODO: 
   public getProductsByUser(userID: number): Observable<Product[]>{
+    // let params = new HttpParams().set('id', userID.toString());
     
-    let params = new HttpParams().set('id', userID.toString());
-    return this.http.get<Product[]>(AppComponent.API_URL + "/users/products", {params}  )
-    
-    // return from(this.products); 
+    return this.http.get<Product[]>(` ${userID}`); 
   }
 
 
@@ -122,7 +120,7 @@ export class ProductService {
   public update(product: Product){
     console.log("product updated: ");
     console.log(product);
-    return this.http.post<Product>(AppComponent.API_URL + "/productsOld/add", product); 
+    return this.http.post<Product>(AppComponent.API_URL + "/products/add", product); 
     
   }
 

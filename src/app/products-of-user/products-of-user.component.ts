@@ -19,8 +19,8 @@ export class ProductsOfUserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //TODO:
-    this.productService.getProductsByUser(this.user.id)
+    //TODO:  get user data from auth service 
+    this.productService.getProductsByUser(3)
       .subscribe(
         data => this.products = data
       ) 

@@ -80,8 +80,10 @@ export class UploadProductFormComponent implements OnInit {
     let sourceRepositoryLink = this.f.sourceRepositoryLink.value;
     
     //TODO:  
-    let tags = this.tags; 
-    let product: Product = new Product(name, description, version, owner, downloadLink,sourceRepositoryLink, tags);   
+    let newTags = this.tags; 
+    console.log("All Tags");
+    console.log(newTags);
+    let product: Product = new Product(name, description, version, owner, downloadLink,sourceRepositoryLink, newTags);   
     console.log('Product to submit: ');
     console.log(product);
 
@@ -95,7 +97,9 @@ export class UploadProductFormComponent implements OnInit {
     }else{
         //SAVE
         this.productService.save(product)
-            .subscribe(); 
+            .subscribe();
+        this.redirectToProductsOfUser(); 
+
     } 
 
   }
@@ -114,6 +118,7 @@ export class UploadProductFormComponent implements OnInit {
   receiveNewTag($event){
       console.log("Tag received: ");
       console.log($event);
+      console.log(this.tags);
       this.tags.push($event); 
     }  
 
@@ -124,8 +129,8 @@ export class UploadProductFormComponent implements OnInit {
       this.tags = this.tags.filter(e => tag.tagName !== e.tagName); 
     }
 
-  movetToLogin(){
-      this.router.navigate(['../login'], {relativeTo: this.activatedRoute}); 
+  redirectToProductsOfUser(){
+      this.router.navigate(['../profile/(profileDetails:profileProducts)'], {relativeTo: this.activatedRoute}); 
   }
 
   onTagDeleted($event){
