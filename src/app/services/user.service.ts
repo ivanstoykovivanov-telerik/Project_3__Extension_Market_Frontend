@@ -12,11 +12,15 @@ export class UserService {
     public http: HttpClient
   ) { }
 
+  isAdminUser(){
+    
+  }
 
   public getAllUsers(){
       return this.http.get<User[]>(AppComponent.API_URL + '/users' ); 
   }
 
+  //TODO:
   public save(user: User){
     return this.http.post<User>(AppComponent.API_URL + '/account/save', user ); 
   } 
