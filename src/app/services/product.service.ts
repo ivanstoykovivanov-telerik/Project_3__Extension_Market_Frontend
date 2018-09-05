@@ -116,12 +116,12 @@ export class ProductService {
   }
 
 
-  //TODO
-  public update(product: Product){
-    console.log("product updated: ");
-    console.log(product);
-    return this.http.post<Product>(AppComponent.API_URL + "/products/add", product); 
-    
+  //TODO:
+  public update(product: Product, id: number){
+    console.log("product updating: ");
+    console.log(product.id);
+    console.log(id);
+    return this.http.post<Product>(`${AppComponent.API_URL}/products/update/${id}`, product); 
   }
 
 }

@@ -90,7 +90,7 @@ export class UploadProductFormComponent implements OnInit {
     //SAVE OR UPDATE PRODUCT TODO:
     if ( this.filled){
         //UPDATE
-        this.productService.update(product)
+        this.productService.update(product, this.product.id)
             .subscribe(); 
         //CLOSE THE MODAL, 
         this.onFormSubmitted.emit(true); 
