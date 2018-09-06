@@ -1,4 +1,3 @@
-import { User } from "./user.model";
 import { Tag } from "./tag.model";
 
 export class Product{
@@ -8,8 +7,6 @@ export class Product{
         public description: string,         // 
         public version: string,             //
         public ownerId: number, 
-        // public owner: User, 
-        // public downloadLink: string,        // 
         public sourceRepositoryLink: string,// 
         public fileId: number, 
         public tags: Tag[], 
@@ -20,6 +17,5 @@ export class Product{
         public productState?: string,     //TODO: type? 
         public id? : number, 
         public active? : boolean, 
-    ){
-    }
+    ){ }
 }

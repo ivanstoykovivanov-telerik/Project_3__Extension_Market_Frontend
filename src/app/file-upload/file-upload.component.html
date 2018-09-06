@@ -1,0 +1,12 @@
+<form enctype="multipart/form-data">
+<div class="row justify-content-center my-4">
+    <div class="form-group offset-1 col-5 col-md-5">
+        <div class="file text-center">
+            <input type="file" name="file" (change)="onFileSelected($event)"  />
+        </div>      
+    </div>
+    <div class="form-group col-4 col-md-4">
+        <button class="btn btn-primary" (click)="onUpload($event)">Upload File</button>
+    </div>
+  </div>
+</form>

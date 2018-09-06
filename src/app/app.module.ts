@@ -43,6 +43,8 @@ import { UploadProductComponent } from './upload-product/upload-product.componen
 import { UploadProductFormComponent } from './upload-product-form/upload-product-form.component';
 import { MarketShowSectionComponent } from './market-show-section/market-show-section.component';
 import { TagSectionComponent } from './tag-section/tag-section.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -70,6 +72,8 @@ export function tokenGetter() {
     UploadProductFormComponent,
     MarketShowSectionComponent,
     TagSectionComponent,
+    FileUploadComponent,
+    ImageUploadComponent,
   ],
   imports: [
     BrowserModule, 

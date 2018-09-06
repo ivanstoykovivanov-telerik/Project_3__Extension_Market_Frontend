@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
     //get the current user reactively
     this.authService.currentUser.subscribe(data => this.currentUser = data);
     // localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-    console.log(this.currentUser);
+    // console.log(this.currentUser);
   }
 
 

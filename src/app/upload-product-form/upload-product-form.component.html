@@ -78,12 +78,22 @@
       </span>
       <!-- //  validation icon -->
     </div>
-    <!--// version    -->
+    <!--// version    --> 
     
-
-    //TODO: File Input here 
     <!-- fileId    -->
-    <div class="row justify-content-center">
+    <!-- //TODO:  code file -->
+    <div class="row justify-content-center my-4">
+      <div class="form-group col-12 col-md-12">
+        <h4 class="text-center">Upload binary file: </h4>  
+      </div>
+    </div>
+      
+        
+      
+      
+    <!-- // code file -->
+
+    <!-- <div class="row justify-content-center">
         <div class="form-group offset-1 col-10 col-md-8">
           <input 
             class="form-control" 
@@ -92,20 +102,20 @@
             formControlName="fileId"
             required 
             [ngClass]="{ 'is-invalid': submitted && f.fileId.errors }">
-            <!-- error message -->
+            error message
             <div *ngIf="submitted && f.fileId.errors" class="invalid-feedback">
               <div *ngIf="f.fileId.errors.required">Download Link is required</div>
               <div *ngIf="f.fileId.errors.minlength">Download Link must be at least 3 characters long</div>
             </div>  
-            <!-- // error message -->
+            // error message
         </div>
-        <!-- validation icon -->
+        validation icon
         <span class="col-1">
           <i *ngIf="f.fileId.valid" style="color: green" class="fa fa-check"></i>
           <i *ngIf="submitted && f.fileId.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
         </span>
-        <!-- //  validation icon -->
-      </div>
+        //  validation icon
+    </div> -->
       <!--// fileId    -->
       
       <!-- sourceRepositoryLink    -->
@@ -135,6 +145,11 @@
       </div>
       <!--// sourceRepositoryLink    -->
 
+      <!-- image upload   -->
+      //TODO: Image Upload here 
+      <app-image-upload></app-image-upload>
+      <!--//  image upload  -->
+
       <!-- tags -->
       <div class="row justify-content-center">
         <div class="col-6">
@@ -161,3 +176,5 @@
           </button>
       </div>
   </form>
+
+  <app-file-upload></app-file-upload>
