@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+:host>>>.tooltip-inner {
+  background-color: #009688;
+  color: #fff;
+}
+
+:host>>>.tooltip.top .tooltip-arrow:before,
+:host>>>.tooltip.top .tooltip-arrow {
+  border-top-color: #009688;
+}

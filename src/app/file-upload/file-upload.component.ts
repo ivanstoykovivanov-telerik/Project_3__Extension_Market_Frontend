@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FileModel } from '../models/file.model';
 import { FileService } from '../services/file.service';
@@ -13,6 +13,7 @@ import { User } from '../models/user.model';
 export class FileUploadComponent implements OnInit {
   currentFile: File = null; 
   currentUser: User ; 
+  @Input() buttonLabel; 
 
   constructor(
      private fileService: FileService, 
@@ -26,20 +27,11 @@ export class FileUploadComponent implements OnInit {
 
   onFileSelected($event){
     this.currentFile = $event.target.files[0]; 
-    // this.currentFile = new FileModel(file.name, )
-    // this.currentFile = new FileModel(file.fileName, file.type, file.size. file.)
-    //  file.type
-    //  file.fileName
-    //  file.size
-    //  file.type
   }
 
   onUpload(event){
-    event.stopPropagation();
-    console.log("Uploading file");
-    console.log(this.currentUser);
-    console.log(this.currentFile);
-    
+    event.stopPropagation()
+       
     this.fileService.upload(this.currentFile, this.currentUser.id)
       .subscribe(
         data => console.log(data)
