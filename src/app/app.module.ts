@@ -30,7 +30,6 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { AuthService } from './services/auth.service';
 import { AccountService } from './services/account.service';
 import { ProductService } from './services/product.service';
-import { AuthGuard } from '../guards/auth.guard';
 import { CarouselComponent } from './carousel/carousel.component';
 
 //Security
@@ -45,9 +44,9 @@ import { UploadProductFormComponent } from './upload-product-form/upload-product
 import { MarketShowSectionComponent } from './market-show-section/market-show-section.component';
 import { TagSectionComponent } from './tag-section/tag-section.component';
 
-// export function tokenGetter() {
-//   return localStorage.getItem('access_token');
-// }
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -85,20 +84,19 @@ import { TagSectionComponent } from './tag-section/tag-section.component';
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
     NgxClickToEditModule.forRoot(), 
-    TooltipModule.forRoot()
-    // JwtModule.forRoot({
-    //   config: {
-    //     tokenGetter: tokenGetter,
-    //     whitelistedDomains: ['localhost:8080'],
-    //     blacklistedRoutes: ['localhost:3001/auth/'] //example
-    //   }
-    // }), 
+    TooltipModule.forRoot(), 
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:8080'],
+        blacklistedRoutes: ['localhost:3001/auth/'] //example
+      }
+    }), 
   ],
   providers: [
     AuthService,
     AccountService, 
     ProductService, 
-    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

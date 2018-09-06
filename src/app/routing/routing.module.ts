@@ -5,7 +5,6 @@ import { RegisterComponent } from '../authentication/register/register.component
 import { LoginComponent } from '../authentication/login/login.component';
 import { HomeComponent } from '../home/home.component';
 import { ProfileComponent } from '../profile/profile.component';
-import { AuthGuard } from '../../guards/auth.guard';
 import { AdminComponent } from '../admin/admin.component';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { ProductsOfUserComponent } from '../products-of-user/products-of-user.component';

@@ -13,21 +13,20 @@ export class UserService {
   ) { }
 
   isAdminUser(){
-    
+
   }
 
   public getAllUsers(){
-      return this.http.get<User[]>(AppComponent.API_URL + '/users' ); 
+      return this.http.get<User[]>(AppComponent.API_URL + '/users' );
   }
 
   //TODO:
   public save(user: User){
-    return this.http.post<User>(AppComponent.API_URL + '/account/save', user ); 
-  } 
+    return this.http.post<User>(AppComponent.API_URL + '/account/save', user );
+  }
 
   public getProductsByUser(user: User){
-    //TODO: 
+    //TODO:
   }
 
 }
-

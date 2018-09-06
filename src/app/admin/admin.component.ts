@@ -10,33 +10,33 @@ import { AdminExtensionsPerUserComponent } from '../admin-extensions-per-user/ad
 })
 export class AdminComponent implements OnInit {
   users: User[];
-  currentUser : User; 
+  currentUser : User;
   @ViewChild(AdminExtensionsPerUserComponent) child;
   constructor(
-    private userService: UserService 
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    
+
     //GET ALL USERS 
     this.userService.getAllUsers()
       .subscribe( data => {
-        this.users = data; 
-      }); 
+        this.users = data;
+      });
   }
 
   deActivateUser(event, user: User){
-    user.active = !user.active; 
+    user.active = !user.active;
     console.log(user);
-   
-    this.userService.save(user).subscribe(); 
+
+    this.userService.save(user).subscribe();
   }
-  
-  
+
+
   findProductsOf(user: User){
-    // this.currentUser = user; 
+    // this.currentUser = user;
     // console.log(this.currentUser);
-    this.child.getUser(user); 
+    this.child.getUser(user);
   }
 
 

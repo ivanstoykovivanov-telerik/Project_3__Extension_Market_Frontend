@@ -80,33 +80,36 @@
     </div>
     <!--// version    -->
     
-    <!-- downloadLink    -->
+
+    //TODO: File Input here 
+    <!-- fileId    -->
     <div class="row justify-content-center">
         <div class="form-group offset-1 col-10 col-md-8">
           <input 
             class="form-control" 
             type="text" 
             placeholder="Download Link"  
-            formControlName="downloadLink"
+            formControlName="fileId"
             required 
-            [ngClass]="{ 'is-invalid': submitted && f.downloadLink.errors }">
+            [ngClass]="{ 'is-invalid': submitted && f.fileId.errors }">
             <!-- error message -->
-            <div *ngIf="submitted && f.downloadLink.errors" class="invalid-feedback">
-              <div *ngIf="f.downloadLink.errors.required">Download Link is required</div>
-              <div *ngIf="f.downloadLink.errors.minlength">Download Link must be at least 3 characters long</div>
+            <div *ngIf="submitted && f.fileId.errors" class="invalid-feedback">
+              <div *ngIf="f.fileId.errors.required">Download Link is required</div>
+              <div *ngIf="f.fileId.errors.minlength">Download Link must be at least 3 characters long</div>
             </div>  
             <!-- // error message -->
         </div>
         <!-- validation icon -->
         <span class="col-1">
-          <i *ngIf="f.downloadLink.valid" style="color: green" class="fa fa-check"></i>
-          <i *ngIf="submitted && f.downloadLink.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
+          <i *ngIf="f.fileId.valid" style="color: green" class="fa fa-check"></i>
+          <i *ngIf="submitted && f.fileId.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
         </span>
         <!-- //  validation icon -->
       </div>
-      <!--// downloadLink    -->
+      <!--// fileId    -->
       
       <!-- sourceRepositoryLink    -->
+     <p> https://github.com/madskristensen/MarkdownEditor  </p> 
     <div class="row justify-content-center">
         <div class="form-group offset-1 col-10 col-md-8">
           <input 

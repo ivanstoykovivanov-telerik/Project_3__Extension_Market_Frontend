@@ -40,7 +40,7 @@ export class UploadProductFormComponent implements OnInit {
           name: ['', Validators.required],
           description: ['', Validators.required],
           version: ['', Validators.minLength(3)],
-          downloadLink: ['', Validators.minLength(3)],
+          fileId: ['', Validators.required],
           sourceRepositoryLink: ['', Validators.minLength(3)],
         });
         
@@ -69,21 +69,22 @@ export class UploadProductFormComponent implements OnInit {
 
     let name = this.f.name.value;  
     let description = this.f.description.value;  
-    //get the current user : 
-    let owner: User; 
-    this.filled ?  
-        owner = this.product.owner
-        : 
-        this.authService.currentUser.subscribe( user => owner = user) 
     let version = this.f.version.value; 
-    let downloadLink = this.f.downloadLink.value; 
+    //get the current user id : 
+    let ownerId: number; 
+    this.filled ? 
+        ownerId = this.product.ownerId : 
+        this.authService.currentUser.subscribe( user => ownerId = user.id) 
     let sourceRepositoryLink = this.f.sourceRepositoryLink.value;
+    let fileId = this.f.fileId.value; 
     
     //TODO:  
     let newTags = this.tags; 
     console.log("All Tags");
     console.log(newTags);
-    let product: Product = new Product(name, description, version, owner, downloadLink,sourceRepositoryLink, newTags);   
+    //TODO: upload the file first 
+    fileId = 1 ; 
+    let product: Product = new Product(name, description, version, ownerId, sourceRepositoryLink, fileId, newTags);   
     console.log('Product to submit: ');
     console.log(product);
 
@@ -96,12 +97,11 @@ export class UploadProductFormComponent implements OnInit {
         this.onFormSubmitted.emit(true); 
     }else{
         //SAVE
+        console.log(product);
         this.productService.save(product)
             .subscribe();
         this.redirectToProductsOfUser(); 
-
     } 
-
   }
 
     populateValues(){
@@ -109,7 +109,7 @@ export class UploadProductFormComponent implements OnInit {
             this.f.name.setValue(this.product.name);
             this.f.description.setValue(this.product.description);
             this.f.version.setValue(this.product.version);
-            this.f.downloadLink.setValue(this.product.downloadLink);
+            this.f.fileId.setValue(this.product.fileId);
             this.f.sourceRepositoryLink.setValue(this.product.sourceRepositoryLink);
              //TODO: 
         }

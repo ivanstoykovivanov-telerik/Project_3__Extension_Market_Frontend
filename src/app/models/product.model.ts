@@ -7,9 +7,11 @@ export class Product{
         public name : string,               //
         public description: string,         // 
         public version: string,             //
-        public owner: User, 
-        public downloadLink: string,        // 
+        public ownerId: number, 
+        // public owner: User, 
+        // public downloadLink: string,        // 
         public sourceRepositoryLink: string,// 
+        public fileId: number, 
         public tags: Tag[], 
         public numberOfDownloads?: number, 
         public openIssues?: number, 

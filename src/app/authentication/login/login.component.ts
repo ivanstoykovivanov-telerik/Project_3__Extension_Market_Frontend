@@ -4,6 +4,7 @@ import { User } from '../../models/user.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import {Router} from "@angular/router";
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor( 
     private formBuilder: FormBuilder, 
     private authService : AuthService, 
-    private router: Router
+    private router: Router, 
+    private authenticationService: AuthenticationService,
   ) { }
 
   ngOnInit() {
@@ -49,20 +51,28 @@ export class LoginComponent implements OnInit {
   }
 
   login(user: User){
-    
-   // TODO: Check if user is not deactivated by admin
-    
-    this.authService.logIn(user)
+    this.authenticationService.login(user.username, user.password)
       .subscribe(
-        data => {
-          if (data) {
-            console.log("Successfully LOGGED IN ");
-            this.router.navigate(['/home']);
-          }
-      }, 
-        err => {
-          this.errorMesssage = "Incorrect username or password";
-        });
+        data => console.log(data)
+      )
   }
+
+
+  // __login(user: User){
+    
+  //  // TODO: Check if user is not deactivated by admin
+    
+  //   this.authService.logIn(user)
+  //     .subscribe(
+  //       data => {
+  //         if (data) {
+  //           console.log("Successfully LOGGED IN ");
+  //           this.router.navigate(['/home']);
+  //         }
+  //     }, 
+  //       err => {
+  //         this.errorMesssage = "Incorrect username or password";
+  //       });
+  // }
 
 }

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  currentUser: User; 
+  currentUser: User;
 
   constructor(
     private router: Router,
@@ -25,6 +25,6 @@ export class ProfileComponent implements OnInit {
 
   goToUserData(){
     console.log("Clicked...");
-    this.router.navigate([{ outlets: { profileDetails: [ 'profileData'] }}]); 
+    this.router.navigate([{ outlets: { profileDetails: [ 'profileData'] }}]);
   }
 }
