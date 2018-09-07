@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FileModel } from '../models/file.model';
 import { FileService } from '../services/file.service';
@@ -19,9 +19,12 @@ Used for FIILE and IMAGE Upload
 export class FileUploadComponent implements OnInit {
   currentFile: File = null; 
   currentUser: User ; 
+  disabled = true; 
   @Input() buttonLabel; 
   @Input() uploadType: string; 
-  disabled = true; 
+  @Output() onFileSaved = new EventEmitter(); 
+  // @Output() messageEvent = new EventEmitter<string>();
+
 
   constructor(
      private fileService: FileService, 
@@ -40,7 +43,7 @@ export class FileUploadComponent implements OnInit {
   }
 
   onUpload(event){
-    event.stopPropagation()
+    event.stopPropagation(); 
     if(this.uploadType === "image"){
       console.log("In");
       this.uploadIMAGE(this.currentFile, this.currentUser.id)  
@@ -55,6 +58,8 @@ export class FileUploadComponent implements OnInit {
         (data: any ) => {
           if(data){
             console.log(data);
+            console.log(data.id);
+            this.onFileSaved.emit(data.id); 
             this.showSuccess( "uploaded successfully", data.fileName); 
           } 
         }
@@ -67,6 +72,7 @@ export class FileUploadComponent implements OnInit {
         (data: any ) => {
           if(data){
             console.log(data);
+            this.onFileSaved.emit(data.id); 
             this.showSuccess( "uploaded successfully", data.fileName); 
           } 
         }

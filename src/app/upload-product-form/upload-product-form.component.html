@@ -135,7 +135,9 @@
        <!-- file upload   -->
         <app-file-upload
           [uploadType] = "'binary'"
-          [buttonLabel]="'Uppload Binary'">
+          [buttonLabel]="'Uppload Binary'"
+          (onFileSaved) ="receiveFileIdFromDB($event)"
+          >
         </app-file-upload>
       <!--// file upload   -->
 
