@@ -23,6 +23,7 @@ export class FileUploadComponent implements OnInit {
   @Input() buttonLabel; 
   @Input() uploadType: string; 
   @Output() onFileSaved = new EventEmitter(); 
+  @Output() onProductPictureSaved = new EventEmitter(); 
   // @Output() messageEvent = new EventEmitter<string>();
 
 
@@ -74,7 +75,7 @@ export class FileUploadComponent implements OnInit {
           if(data){
             console.log(data);
             console.log(data.id);
-            this.onFileSaved.emit(data.id); 
+            this.onProductPictureSaved.emit(data.id); 
             this.showSuccess( "uploaded successfully", data.fileName); 
           } 
         }

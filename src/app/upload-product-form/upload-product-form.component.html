@@ -151,7 +151,9 @@
       <!-- image upload   -->
           <app-file-upload
             [uploadType] = "'image'"
-            [buttonLabel]="'Upload Image'">
+            [buttonLabel]="'Upload Image'"
+            (onProductPictureSaved) ="receiveProductPictureId($event)"
+            >
           </app-file-upload>
       <!--//  image upload  -->
 

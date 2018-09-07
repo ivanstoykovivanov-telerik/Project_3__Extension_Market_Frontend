@@ -26,6 +26,7 @@ export class UploadProductFormComponent implements OnInit {
     //  currentUser: User ; 
     errorMessage: string; 
     binaryFileId: number;
+    productPictureId: number; 
     tagsToSendToDB: string[];  
 
   constructor(
@@ -75,19 +76,19 @@ export class UploadProductFormComponent implements OnInit {
     let sourceRepositoryLink = this.f.sourceRepositoryLink.value;
     let fileId = this.binaryFileId ; 
     
-    //TODO:  add 
     let newTags = this.tags;
     let tagsToSend: string[] = this.tags.map(tag => tag.tagName); 
     // let tagsToSend: string[] = this.stringifyTagsHelper(newTags); 
     console.log(tagsToSend);
-    
+    let productPictureId = this.productPictureId; 
     // let Dummy_tags = ["css", "html"]; 
     console.log("All Tags");
     console.log(newTags);
-   let product: Product = new Product(
+    
+    //TODO: 
+    let product: Product = new Product(
        name, description, 
-        version, ownerId, sourceRepositoryLink, fileId, tagsToSend);   
-   
+        version, ownerId, sourceRepositoryLink, fileId, tagsToSend, productPictureId );   
     
     console.log('Product to submit: ');
     console.log(product);
@@ -127,6 +128,13 @@ export class UploadProductFormComponent implements OnInit {
     console.log(event);
       this.binaryFileId = event; 
   }  
+
+
+  receiveProductPictureId(event){
+    console.log("ProductPictureID: ");
+    console.log(event);
+    this.productPictureId = event; 
+  }
   
 
 
