@@ -40,7 +40,6 @@ export class UploadProductFormComponent implements OnInit {
           name: ['', Validators.required],
           description: ['', Validators.required],
           version: ['', Validators.minLength(3)],
-        //   fileId: ['', Validators.required],
           sourceRepositoryLink: ['', Validators.minLength(3)],
         });
         
@@ -52,10 +51,7 @@ export class UploadProductFormComponent implements OnInit {
         //this.tagService.observableTags.subscribe()
   }
 
-    // a getter for easy access to form fields
   get f() { return this.uploadProductForm.controls; }
-  
-  
 
   onSubmit() {
     this.submitted = true;
@@ -76,14 +72,13 @@ export class UploadProductFormComponent implements OnInit {
         ownerId = this.product.ownerId : 
         this.authService.currentUser.subscribe( user => ownerId = user.id) 
     let sourceRepositoryLink = this.f.sourceRepositoryLink.value;
-    let fileId = this.f.fileId.value; 
     
     //TODO:  
     let newTags = this.tags; 
     console.log("All Tags");
     console.log(newTags);
-    //TODO: upload the file first  then get the id of the file 
-    fileId = 1 ; 
+    //TODO: upload the file first then get the id of the file 
+    let fileId = 1 ; 
     let product: Product = new Product(name, description, version, ownerId, sourceRepositoryLink, fileId, newTags);   
     console.log('Product to submit: ');
     console.log(product);
@@ -98,6 +93,8 @@ export class UploadProductFormComponent implements OnInit {
     }else{
         //SAVE
         console.log(product);
+        console.log("In..");
+        
         this.productService.save(product)
             .subscribe();
         this.redirectToProductsOfUser(); 
