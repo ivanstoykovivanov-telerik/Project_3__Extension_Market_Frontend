@@ -25,6 +25,7 @@ export class UploadProductFormComponent implements OnInit {
     tags: Tag[] = []; 
     //  currentUser: User ; 
     errorMessage: string; 
+    binaryFileId: number; 
 
   constructor(
       private formBuilder: FormBuilder, 
@@ -73,12 +74,12 @@ export class UploadProductFormComponent implements OnInit {
         this.authService.currentUser.subscribe( user => ownerId = user.id) 
     let sourceRepositoryLink = this.f.sourceRepositoryLink.value;
     
-    //TODO:  
+    //TODO:  add 
     let newTags = this.tags; 
     console.log("All Tags");
     console.log(newTags);
     //TODO: upload the file first then get the id of the file 
-    let fileId = 1 ; 
+    let fileId = this.binaryFileId ; 
     let product: Product = new Product(name, description, version, ownerId, sourceRepositoryLink, fileId, newTags);   
     console.log('Product to submit: ');
     console.log(product);
@@ -108,9 +109,15 @@ export class UploadProductFormComponent implements OnInit {
             this.f.version.setValue(this.product.version);
             this.f.fileId.setValue(this.product.fileId);
             this.f.sourceRepositoryLink.setValue(this.product.sourceRepositoryLink);
-             //TODO: 
         }
     }
+    
+   //TODO:  
+  receiveFileIdFromDB(event){
+    console.log("FileID: ");
+    console.log(event);
+      this.binaryFileId = event; 
+  }  
   
   receiveNewTag($event){
       console.log("Tag received: ");
