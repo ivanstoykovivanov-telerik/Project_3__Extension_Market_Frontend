@@ -1,3 +1,4 @@
+<!-- <form [formGroup]="uploadProductForm" (ngSubmit)="onSubmit()" > old version--> 
 <form [formGroup]="uploadProductForm" (ngSubmit)="onSubmit()" >
     <!-- name    --> 
     <div class="row justify-content-center">
@@ -94,7 +95,7 @@
     
     
       <!-- sourceRepositoryLink    -->
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-3">
       <div class="col-1">
         <i class="fa fa-github fa-2x" aria-hidden="true"></i>
       </div>  
@@ -127,18 +128,26 @@
 
       <div class="row justify-content-center mt-5">
         <div class="form-group col-12 col-md-12">
-          <h4 class="text-center">Upload Extension File: </h4>  
+          <h5 class="text-center text-secondary">Upload Extension File: </h5>  
         </div>
       </div>
 
        <!-- file upload   -->
        <app-file-upload
-       [buttonLabel]="'Uppload File'">
+       [uploadType] = "'binary'"
+       [buttonLabel]="'Uppload Binary'">
       </app-file-upload>
       <!--// file upload   -->
 
+      <div class="row justify-content-center mt-1">
+        <div class="form-group col-12 col-md-12">
+          <h5 class="text-center text-secondary">Upload Image of Extension: </h5>  
+        </div>
+      </div>
+
       <!-- image upload   -->
       <app-file-upload
+        [uploadType] = "'image'"
         [buttonLabel]="'Upload Image'"
       ></app-file-upload>
       <!--//  image upload  -->
@@ -158,12 +167,13 @@
       <!--//  tags -->
       <div class="row justify-content-center my-5">
           <button 
-            class="btn btn-outline-primary btn-lg mt-5"  
+            class="btn btn-outline-primary btn-lg mt-4"  
             [disabled]="loading"
             tooltip="Submit Extension"
             [delay]="500"
-            type="submit">
-                  <i class="fa fa-cloud-upload mr-2"></i>Submit
+            type="submit"
+            >
+                  <i class="fa fa-cloud-upload mr-2"></i>Submit Extension
           </button>
       </div>
   </form>

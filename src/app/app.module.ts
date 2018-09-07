@@ -25,6 +25,8 @@ import { NgxCarouselModule } from 'ngx-carousel';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxClickToEditModule } from 'ngx-click-to-edit';
 import { TooltipModule } from 'ngx-bootstrap';  
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 //Services: 
 import { AuthService } from './services/auth.service';
@@ -89,6 +91,8 @@ export function tokenGetter() {
     ModalModule.forRoot(),
     NgxClickToEditModule.forRoot(), 
     TooltipModule.forRoot(), 
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot(),  
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

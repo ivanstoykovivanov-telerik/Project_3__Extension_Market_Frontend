@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AppComponent } from '../app.component';
-import { RequestOptions } from '@angular/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +9,29 @@ import { RequestOptions } from '@angular/http';
 export class FileService {
 
   constructor(
-    public http: HttpClient
+    public http: HttpClient 
   ) { }
 
-  upload(file: File, id: number){
+
+  uploadBinary(file: File, id: number){
     console.log("In");
     console.log(file);
     
     const formData = new FormData();
     formData.append('file', file); 
 
-    return this.http.post(`${AppComponent.API_URL}/files/upload/file/${id}`, formData );
+    return this.http.post(`${AppComponent.API_URL}/files/upload/file/${id}`, formData);
+  }
+
+
+  uploadImage(file: File, id: number){
+    console.log("In");
+    console.log(file);
+    
+    const formData = new FormData();
+    formData.append('file', file); 
+
+    return this.http.post(`${AppComponent.API_URL}/files/upload/image/${id}`, formData);
   }
 
 }
