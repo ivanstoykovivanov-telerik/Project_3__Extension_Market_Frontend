@@ -34,4 +34,8 @@ export class FileService {
     return this.http.post(`${AppComponent.API_URL}/files/upload/image/${id}`, formData);
   }
 
+  getFile(id : number){
+    return this.http.get(`${AppComponent.API_URL}/files/file/get/${id}`);
+  }
+
 }

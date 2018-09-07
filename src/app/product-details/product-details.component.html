@@ -5,6 +5,13 @@
         <span>{{product.name}}</span>
       </div>
     </div>
+
+
+    <div class="row">
+      <div class="col-6 product_image">
+        <span><img src="#{{product.sourceRepositoryLink}}" alt=""></span>
+      </div>
+    </div>
     <div class="row">
       <div class="col-6">
         <span class="product_description">{{product.description}}</span>
@@ -45,15 +52,14 @@
       </div>
     </div>
     <div class="row download_link">
-      <div class="col-4">
-        <h5 class="link">
-          <i class="fa fa-link"></i>{{product.downloadLink}}
-        </h5>
-        <h5 class="link">
-          <i class="fa fa-github" aria-hidden="true"></i>{{product.sourceRepositoryLink}}
-        </h5>
-      </div>
       <div class="col-6">
+        <h6>
+          <a href="#{{product.sourceRepositoryLink}}" class="link">
+            <i class="fa fa-github fa-2x" aria-hidden="true" ></i>{{product.sourceRepositoryLink}}
+          </a>
+        </h6>
+      </div>  
+      <div class="col-4">
           <button class="btn btn-outline-success btn-lg" (click)="downloadProduct()">
               <i class="fa fa-download">Download</i>
           </button>
