@@ -37,7 +37,20 @@ export class FileUploadComponent implements OnInit {
   onFileSelected($event){
     this.currentFile = $event.target.files[0]; 
     this.disabled = false; 
+    //Upload 
+    this.upload(); 
   }
+
+  upload(){
+    // event.stopPropagation()
+    if(this.uploadType === "image"){
+      console.log("In");
+      this.uploadIMAGE(this.currentFile, this.currentUser.id)  
+    }else{
+      this.uploadBINARY(this.currentFile, this.currentUser.id)  
+    }   
+  }
+
 
   onUpload(event){
     event.stopPropagation()
