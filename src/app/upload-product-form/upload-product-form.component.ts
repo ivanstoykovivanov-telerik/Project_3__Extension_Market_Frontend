@@ -25,7 +25,8 @@ export class UploadProductFormComponent implements OnInit {
     tags: Tag[] = []; 
     //  currentUser: User ; 
     errorMessage: string; 
-    binaryFileId: number; 
+    binaryFileId: number;
+    tagsToSendToDB: string[];  
 
   constructor(
       private formBuilder: FormBuilder, 
@@ -67,24 +68,30 @@ export class UploadProductFormComponent implements OnInit {
     let name = this.f.name.value;  
     let description = this.f.description.value;  
     let version = this.f.version.value; 
-    //get the current user id : 
     let ownerId: number; 
     this.filled ? 
         ownerId = this.product.ownerId : 
         this.authService.currentUser.subscribe( user => ownerId = user.id) 
     let sourceRepositoryLink = this.f.sourceRepositoryLink.value;
+    let fileId = this.binaryFileId ; 
     
     //TODO:  add 
-    let newTags = this.tags; 
+    let newTags = this.tags;
+    let tagsToSend: string[] = this.tags.map(tag => tag.tagName); 
+    // let tagsToSend: string[] = this.stringifyTagsHelper(newTags); 
+    console.log(tagsToSend);
+    
+    // let Dummy_tags = ["css", "html"]; 
     console.log("All Tags");
     console.log(newTags);
-    //TODO: upload the file first then get the id of the file 
-    let fileId = this.binaryFileId ; 
-    let product: Product = new Product(name, description, version, ownerId, sourceRepositoryLink, fileId, newTags);   
+   let product: Product = new Product(
+       name, description, 
+        version, ownerId, sourceRepositoryLink, fileId, tagsToSend);   
+   
+    
     console.log('Product to submit: ');
     console.log(product);
 
-    //SAVE OR UPDATE PRODUCT TODO:
     if ( this.filled){
         //UPDATE
         this.productService.update(product, this.product.id)
@@ -94,11 +101,13 @@ export class UploadProductFormComponent implements OnInit {
     }else{
         //SAVE
         console.log(product);
-        console.log("In..");
+        console.log("In Saving..");
         
         this.productService.save(product)
-            .subscribe();
-        this.redirectToProductsOfUser(); 
+            .subscribe(
+                data => console.log(data)
+            );
+       // this.redirectToProductsOfUser(); 
     } 
   }
 
@@ -119,6 +128,12 @@ export class UploadProductFormComponent implements OnInit {
       this.binaryFileId = event; 
   }  
   
+
+
+  stringifyTagsHelper(tags: Tag[]){
+    return  tags.map( tag => tag.tagName); 
+  }
+
   receiveNewTag($event){
       console.log("Tag received: ");
       console.log($event);

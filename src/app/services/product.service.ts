@@ -103,7 +103,7 @@ export class ProductService {
 
   //TODO:
   public save(product: Product){
-    console.log("From save product input");
+    console.log("Save product service");
     console.log(product);
     return this.http.post(AppComponent.API_URL + "/products/add",  product);
   }

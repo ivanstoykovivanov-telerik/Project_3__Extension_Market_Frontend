@@ -55,15 +55,17 @@ export class FileUploadComponent implements OnInit {
   }
 
 
-  onUpload(event){
-    event.stopPropagation(); 
-    if(this.uploadType === "image"){
-      console.log("In");
-      this.uploadIMAGE(this.currentFile, this.currentUser.id)  
-    }else{
-      this.uploadBINARY(this.currentFile, this.currentUser.id)  
-    }   
-  }
+  // onUpload(event){
+  //   event.stopPropagation(); 
+  //   if(this.uploadType === "image"){
+  //     console.log("In");
+  //     this.uploadIMAGE(this.currentFile, this.currentUser.id)  
+  //   }else{
+  //     this.uploadBINARY(this.currentFile, this.currentUser.id)  
+  //   }   
+  // }
+
+  
   //TODO: 
   uploadIMAGE(file, id){
     this.fileService.uploadImage(this.currentFile, this.currentUser.id)

@@ -9,7 +9,8 @@ export class Product{
         public ownerId: number, 
         public sourceRepositoryLink: string,// 
         public fileId: number, 
-        public tags: Tag[], 
+        public tags: string[], 
+        public productPictureId?: number, 
         public numberOfDownloads?: number, 
         public openIssues?: number, 
         public pullRequests?: number, 
