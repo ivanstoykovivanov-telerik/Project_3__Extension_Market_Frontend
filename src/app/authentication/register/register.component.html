@@ -58,13 +58,14 @@
             type="text" 
             placeholder="Username"  
             formControlName="username"
-            (keyup.enter)="onUsernameAdd($event)"
+            (blur)="onUsernameAdd($event)"
             required 
             [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
             <!-- error message -->
             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
               <div *ngIf="f.username.errors.required">Username is required</div>
               <div *ngIf="f.username.errors.minlength">Username must be at least 3 characters long</div>
+              <div *ngIf="!isUsernameUnique">This Username is already taken</div>
             </div>  
             <!-- // error message -->
         </div>
@@ -84,12 +85,13 @@
               placeholder="Email"  
               formControlName="email"
               required 
-              (keyup.enter)="onEmailAdd($event)"
+              (blur)="onUsernameAdd($event)"
               [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
               <!-- error message -->
               <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                 <div *ngIf="f.email.errors.required">Email is required</div>
                 <div *ngIf="f.email.errors.email">Valid email is required</div>
+                <div *ngIf="!isUsernameUnique">This Email is already taken</div>
               </div>      
               <!-- // error message -->
           </div>

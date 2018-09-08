@@ -14,7 +14,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class LoginComponent implements OnInit {
   loginForm : FormGroup; 
   submitted = false; 
-  errorMesssage : string;  
+  errorMessage : string;  
 
   constructor( 
     private formBuilder: FormBuilder, 
@@ -50,12 +50,16 @@ export class LoginComponent implements OnInit {
     this.login(user); 
   }
 
+
   login(user: User){
-    this.authenticationService.login(user.username, user.password)
-      .subscribe(
-        data => console.log(data)
-      )
+     let statusLogIn = this.authService.login(user.username, user.password); 
+      if(statusLogIn){
+        this.router.navigate(['/home']);
+      }else{
+        this.errorMessage = "Incorrect username or password"; 
+      }
   }
+}
 
 
   // __login(user: User){
@@ -75,4 +79,3 @@ export class LoginComponent implements OnInit {
   //       });
   // }
 
-}

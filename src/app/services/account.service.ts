@@ -24,8 +24,8 @@ export class AccountService {
   }
 
 
-  checkIfUsernameIsUnique(username: string){
-    return this.http.post(`${AppComponent.API_URL}/users/user/email`, username); 
+  checkIfUsernameIsUnique<Boolean>(username: string){
+    return this.http.post(`${AppComponent.API_URL}/users/user/username`, username); 
   }
 }
 

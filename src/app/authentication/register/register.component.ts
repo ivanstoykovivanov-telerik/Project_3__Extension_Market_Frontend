@@ -18,6 +18,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
     
+    readonly  PASSWORD_PATTERN = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$"; 
     currentUser: User; 
     registerForm: FormGroup;
     submitted = false;
@@ -26,9 +27,11 @@ export class RegisterComponent implements OnInit {
     errorMessage: string; 
     @Input() filled: boolean; 
     @Input() action: string;
-    readonly  PASSWORD_PATTERN = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$"; 
     usernameAlreadyExists: boolean ; 
     emailAlreadyExists: boolean ; 
+    isUsernameUnique: boolean; 
+    isEmailUnique: boolean; 
+
 
     constructor(
         private formBuilder: FormBuilder, 
@@ -37,16 +40,16 @@ export class RegisterComponent implements OnInit {
         private accountService: AccountService,
         private authService: AuthService
     ) { }
- 
+    
 
     ngOnInit() {
+        
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             username: ['', Validators.minLength(3)],
             email: ['', [ Validators.email] ],
             password: ['', [ Validators.minLength(3), Validators.pattern(this.PASSWORD_PATTERN)]],
-           // sourceRepositoryLink: ['',[ Validators.required, Validators.pattern(this.githubPattern)]], //TODO: github regex 
             confirm_password: ['', [ Validators.minLength(3), this.passwordValidator]]
         });
             //update form ****
@@ -171,7 +174,10 @@ export class RegisterComponent implements OnInit {
         console.log($event.target.value);
         let userName = $event.target.value; 
         this.accountService.checkIfUsernameIsUnique(userName)
-            .subscribe(data =>console.log(data))
+            .subscribe((data :any) => {
+                console.log(data); 
+                this.isUsernameUnique = data; 
+            })
     }
     
     
@@ -179,7 +185,10 @@ export class RegisterComponent implements OnInit {
         console.log($event.target.value);
         let email = $event.target.value; 
         this.accountService.checkIfEmailIsUnique(email)
-            .subscribe(data =>console.log(data))
+            .subscribe((data :any) => {
+                console.log(data); 
+                this.isEmailUnique = data; 
+        })
     }
 
 }

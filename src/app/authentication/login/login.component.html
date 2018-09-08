@@ -22,7 +22,7 @@
               </div>
               <!-- validation icon -->
               <span class="col-1">
-                <i *ngIf="f.username.valid" style="color: green" class="fa fa-check"></i>
+                <!-- <i *ngIf="f.username.valid" style="color: green" class="fa fa-check"></i> -->
                 <i *ngIf="submitted && f.username.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
               </span>
               <!-- //  validation icon -->
@@ -46,14 +46,14 @@
               </div>
               <!-- validation icon -->
               <span class="col-1">
-                <i *ngIf="f.password.valid" style="color: green" class="fa fa-check"></i>
+                <!-- <i *ngIf="f.password.valid" style="color: green" class="fa fa-check"></i> -->
                 <i *ngIf="submitted && f.password.invalid" style="color: firebrick" class="fa fa-times-circle"></i>  
               </span>
               <!-- //  validation icon -->
             </div>
              <!--  error message  after server check for credentials-->
             <div class="row justify-content-center">
-              <div *ngIf="errorMesssage" style="color: firebrick">{{errorMesssage}}</div> 
+              <div *ngIf="errorMessage" style="color: firebrick">{{errorMessage}}</div> 
             </div>
             <!-- //  error message  after server check for credentials-->
             <div class="row justify-content-center">
