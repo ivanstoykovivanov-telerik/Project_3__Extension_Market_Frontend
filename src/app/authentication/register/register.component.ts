@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
     errorMessage: string; 
     @Input() filled: boolean; 
     @Input() action: string;
+    readonly  PASSWORD_PATTERN = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$"; 
 
 
     constructor(
@@ -36,10 +37,11 @@ export class RegisterComponent implements OnInit {
             lastName: ['', Validators.required],
             username: ['', Validators.minLength(3)],
             email: ['', [ Validators.email] ],
-            password: ['', [ Validators.minLength(3)]],
+            password: ['', [ Validators.minLength(3), Validators.pattern(this.PASSWORD_PATTERN)]],
+           // sourceRepositoryLink: ['',[ Validators.required, Validators.pattern(this.githubPattern)]], //TODO: github regex 
             confirm_password: ['', [ Validators.minLength(3), this.passwordValidator]]
         });
-
+            //update form ****
         if(this.filled){
             this.authService.currentUser
                 .subscribe(
@@ -47,6 +49,11 @@ export class RegisterComponent implements OnInit {
                 );
             
             this.populateValues();     
+        }
+
+            //register form ***
+        if(!this.filled){
+            this.action = "Register"; 
         }
     }
 
@@ -60,11 +67,11 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-    // a getter for easy access to form fields
+        // a getter for easy access to form fields
     get f() { return this.registerForm.controls; }
 
     
-    //confirm if password and repeated password match 
+        //confirm if password and repeated password match 
     passwordValidator(control: AbstractControl) {
         if (control && (control.value !== null || control.value !== undefined)) {
             const cnfpassValue = control.value;
@@ -83,35 +90,41 @@ export class RegisterComponent implements OnInit {
     }
 
     onSubmit() {
-      this.submitted = true;
+        this.submitted = true;
+        // stop here if form is invalid
       
-      // stop here if form is invalid
-      if (this.registerForm.invalid) {
-        console.log("Invalid registration form");
-        return;
+        if (this.registerForm.invalid) {
+            console.log("Invalid registration form");
+            return;
+        }
+      
+        console.log('REGISTERED FORM SUBMITTED: ');
+        console.log(this.f.username.value);
+        console.log(this.f.email.value);
+
+        let firstName = this.f.firstName.value;  
+        let lastName = this.f.lastName.value;  
+        let username = this.f.username.value; 
+        let email = this.f.email.value; 
+        let password = this.f.password.value;
+        let active = true; 
+      
+        if(this.filled){
+
+            //UPDATE EXISTING USER 
+            console.log(this.currentUser.id);
+            let user: User = new User(username, password, firstName, lastName, email, active, this.currentUser.id);  
+            this.update(user); 
+     
+        }else{
+        
+            //SAVE NEW USER 
+            let user: User = new User(username, password, firstName, lastName, email, active);  
+            console.log(user);    
+            this.register(user);   
       }
-      
-      console.log('REGISTERED FORM SUBMITTED: ');
-      console.log(this.f.username.value);
-      console.log(this.f.email.value);
-
-      let firstName = this.f.firstName.value;  
-      let lastName = this.f.lastName.value;  
-      let username = this.f.username.value; 
-      let email = this.f.email.value; 
-      let password = this.f.password.value;
-      let active = true; 
-
-      let user: User = new User(username, password, firstName, lastName, email, active);  
-      console.log(user);
-      
-      if(this.filled){
-        this.update(user)
-      }else{
-          this.register(user);   
-      }
-
     }
+
 
     register(user: User) {
         this.accountService.createAccount(user)
