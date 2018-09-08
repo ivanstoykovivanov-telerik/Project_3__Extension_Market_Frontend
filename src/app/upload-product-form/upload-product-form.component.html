@@ -1,4 +1,3 @@
-<!-- <form [formGroup]="uploadProductForm" (ngSubmit)="onSubmit()" > old version--> 
 <form [formGroup]="uploadProductForm" (ngSubmit)="onSubmit()" >
     <!-- name    --> 
     <div class="row justify-content-center">
@@ -128,8 +127,9 @@
       <!--// sourceRepositoryLink    -->
 
       <div class="row justify-content-center mt-5">
-        <div class="form-group col-12 col-md-12">
-          <h5 class="text-center text-secondary">Upload Extension File: </h5>  
+        <div class="form-group col-6 col-md-6">
+          <h5 class="text-center text-secondary">
+            Upload Extension File (.zip, .rar) </h5>  
         </div>
       </div>
 
@@ -142,9 +142,9 @@
         </app-file-upload>
       <!--// file upload   -->
 
-      <div class="row justify-content-center mt-1">
+      <div class="row justify-content-center mt-5">
         <div class="form-group col-12 col-md-12">
-          <h5 class="text-center text-secondary">Upload Image of Extension: </h5>  
+          <h5 class="text-center text-secondary">Upload Image of Extension (.png, .jpg) </h5>  
         </div>
       </div>
 
@@ -158,26 +158,24 @@
       <!--//  image upload  -->
 
       <!-- tags -->
-      <div class="row justify-content-center">
+      <div class="row justify-content-center mt-4">
         <div class="col-6">
-          
           <app-tag-section
             (tagAddedEvent) = "receiveNewTag($event)"
             (tagDeletedEvent)="deleteTag($event)"
             >
           </app-tag-section>  
-
         </div>
       </div>
       <!--//  tags -->
+
       <div class="row justify-content-center my-5">
           <button 
             class="btn btn-outline-primary btn-lg mt-4"  
             [disabled]="loading"
             tooltip="Submit Extension"
             [delay]="500"
-            type="submit"
-            >
+            type="submit">
                   <i class="fa fa-cloud-upload mr-2"></i>Submit Extension
           </button>
       </div>

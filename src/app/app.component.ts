@@ -9,22 +9,9 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   title = 'extensionMarket';
   static API_URL="http://localhost:8080";
+  // static FILE_STORAGE="../../../../backend/ExtensionRepository/";
+  // static FILE_STORAGE="../../../../../backend/ExtensionRepository/";
 
-  constructor(
-    // public http: HttpClient
-  ) {}
+  constructor( ) {}
 
-  // ping() {
-  //   this.http
-  //     .get('http://example.com/api/things')
-  //     .subscribe(
-  //       data => {
-  //         console.log("Ping data: ");
-  //         console.log(data)
-  //       }, 
-  //       err => {
-  //         console.log("Error data: ");
-  //         console.log(err)
-  //       });
-  // }
 }
