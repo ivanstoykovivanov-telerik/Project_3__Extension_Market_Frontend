@@ -58,6 +58,7 @@
             type="text" 
             placeholder="Username"  
             formControlName="username"
+            (keyup.enter)="onUsernameAdd($event)"
             required 
             [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
             <!-- error message -->
@@ -83,6 +84,7 @@
               placeholder="Email"  
               formControlName="email"
               required 
+              (keyup.enter)="onEmailAdd($event)"
               [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
               <!-- error message -->
               <div *ngIf="submitted && f.email.errors" class="invalid-feedback">

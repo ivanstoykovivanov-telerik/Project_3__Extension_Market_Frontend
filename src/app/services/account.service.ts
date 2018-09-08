@@ -12,10 +12,22 @@ export class AccountService {
   }
 
   update(user : User){
-    console.log("In ");
-    console.log(user);
+    //TODO:  Lucia 
+    // console.log("In ");
+    // console.log(user);
     return this.http.post(`${AppComponent.API_URL}/users/update`, user); //TODO: check backend 
   }
-  
+
+
+  checkIfEmailIsUnique(email: string){
+    return this.http.post(`${AppComponent.API_URL}/users/user/email`, email); 
+  }
+
+
+  checkIfUsernameIsUnique(username: string){
+    return this.http.post(`${AppComponent.API_URL}/users/user/email`, username); 
+  }
 }
+
+
 

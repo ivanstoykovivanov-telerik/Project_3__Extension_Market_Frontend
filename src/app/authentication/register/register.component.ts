@@ -6,12 +6,18 @@ import { AccountService } from '../../services/account.service';
 import { AuthService } from '../../services/auth.service';
 
 
+/*
+*   Responsible for both Register and Update User 
+*/ 
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+    
     currentUser: User; 
     registerForm: FormGroup;
     submitted = false;
@@ -21,7 +27,8 @@ export class RegisterComponent implements OnInit {
     @Input() filled: boolean; 
     @Input() action: string;
     readonly  PASSWORD_PATTERN = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$"; 
-
+    usernameAlreadyExists: boolean ; 
+    emailAlreadyExists: boolean ; 
 
     constructor(
         private formBuilder: FormBuilder, 
@@ -31,6 +38,7 @@ export class RegisterComponent implements OnInit {
         private authService: AuthService
     ) { }
  
+
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
@@ -57,6 +65,7 @@ export class RegisterComponent implements OnInit {
         }
     }
 
+
     populateValues(){
         if(this.filled){
             this.f.firstName.setValue(this.currentUser.firstName);
@@ -67,11 +76,15 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-        // a getter for easy access to form fields
+    /*
+    * a getter for easy access to form fields
+    */
     get f() { return this.registerForm.controls; }
 
     
-        //confirm if password and repeated password match 
+    /*
+    * confirm if password and repeated password match 
+    */
     passwordValidator(control: AbstractControl) {
         if (control && (control.value !== null || control.value !== undefined)) {
             const cnfpassValue = control.value;
@@ -88,6 +101,7 @@ export class RegisterComponent implements OnInit {
         }
         return null;
     }
+
 
     onSubmit() {
         this.submitted = true;
@@ -147,8 +161,25 @@ export class RegisterComponent implements OnInit {
             })
     }  
 
+
     movetToLogin(){
         this.router.navigate(['../login'], {relativeTo: this.activatedRoute}); 
+    }
+
+
+    onUsernameAdd($event){
+        console.log($event.target.value);
+        let userName = $event.target.value; 
+        this.accountService.checkIfUsernameIsUnique(userName)
+            .subscribe(data =>console.log(data))
+    }
+    
+    
+    onEmailAdd($event){
+        console.log($event.target.value);
+        let email = $event.target.value; 
+        this.accountService.checkIfEmailIsUnique(email)
+            .subscribe(data =>console.log(data))
     }
 
 }

@@ -32,7 +32,6 @@ export class TagSectionComponent implements OnInit {
     console.log(tag);
     this.tags.push(tag);
     this.addTagValue ="";  
-    // this.tagService.updateTag(tag); 
     this.tagAddedEvent.emit(tag);
   }
 
