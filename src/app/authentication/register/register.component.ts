@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../models/user.model';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from '../../services/account.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -11,17 +12,22 @@ import { AccountService } from '../../services/account.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+    currentUser: User; 
     registerForm: FormGroup;
     submitted = false;
     loading = false;  //making the submit button of the form active
     user: User ; 
     errorMessage: string; 
- 
+    @Input() filled: boolean; 
+    @Input() action: string;
+
+
     constructor(
         private formBuilder: FormBuilder, 
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private accountService: AccountService,
+        private authService: AuthService
     ) { }
  
     ngOnInit() {
@@ -33,6 +39,11 @@ export class RegisterComponent implements OnInit {
             password: ['', [ Validators.minLength(3)]],
             confirm_password: ['', [ Validators.minLength(3), this.passwordValidator]]
         });
+
+        if(this.filled){
+            this.authService.currentUser
+                .subscribe(data => this.currentUser = data)
+        }
     }
  
     // a getter for easy access to form fields
