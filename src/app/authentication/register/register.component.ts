@@ -47,7 +47,6 @@ export class RegisterComponent implements OnInit {
             this.populateValues();     
         }
     }
- 
 
     populateValues(){
         if(this.filled){
@@ -59,12 +58,10 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-
     // a getter for easy access to form fields
     get f() { return this.registerForm.controls; }
+
     
-
-
     //confirm if password and repeated password match 
     passwordValidator(control: AbstractControl) {
         if (control && (control.value !== null || control.value !== undefined)) {
@@ -106,20 +103,34 @@ export class RegisterComponent implements OnInit {
       let user: User = new User(username, password, firstName, lastName, email, active);  
       console.log(user);
       
-      this.register(user);   
-    }
-
-    register(user) {
-        this.accountService.createAccount(user).subscribe(data => {
-            this.router.navigate(['/login']);
-            console.log("Account created successfully");
-          }, err => {
-            console.log(err);
-            this.errorMessage = "username already exist";
-          }
-        )
+      if(this.filled){
+        this.update(user)
+      }else{
+          this.register(user);   
       }
 
+    }
+
+    register(user: User) {
+        this.accountService.createAccount(user)
+            .subscribe(data => {
+                if(data){
+                    this.router.navigate(['/login']);
+                    console.log("Account created successfully");
+                    //TODO: Show Toast
+                }
+            }
+        )
+    }
+
+    
+    update(user: User){
+        this.accountService.update(user)
+            .subscribe(data => {
+               console.log(data);
+               //TODO: show Toast
+            })
+    }  
 
     movetToLogin(){
         this.router.navigate(['../login'], {relativeTo: this.activatedRoute}); 
