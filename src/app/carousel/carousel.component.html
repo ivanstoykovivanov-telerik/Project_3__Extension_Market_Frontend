@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>{{title}}</h2>
+    <h2 class="my-5">{{title}}</h2>
     <ngx-carousel [inputs]="carouselTileOne" (carouselLoad)="carouselTileOneLoad()">
         <ngx-tile NgxCarouselItem *ngFor="let product of carouselTileOneItems; let i = index;">
             <div class="wBg">

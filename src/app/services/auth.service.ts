@@ -12,14 +12,18 @@ export class AuthService {
   dummy: User  = new User("ivanov", "bonbon800", "Ivan", "Ivanov", "ivanov@gmail.com", true, 1); 
   emptyUser : User = new User("", "", "", "", "", false, 0); 
 
-  private userSource = new BehaviorSubject<User>(this.emptyUser);
+
+  private userSource = new BehaviorSubject<User>(this.dummy);
   currentUser = this.userSource.asObservable();
 
+
   constructor(public http: HttpClient) { }
+
 
   changeUser(user: User) {
     this.userSource.next(user);
   }
+
 
   login(username: string, password: string){
     this.http.post(username, password)
@@ -38,5 +42,6 @@ export class AuthService {
     // remove user from local storage to log user out
     return this.http.post(AppComponent.API_URL+"/logout", user); 
   }
+
 
 }
