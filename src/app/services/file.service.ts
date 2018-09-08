@@ -35,7 +35,7 @@ export class FileService {
   getFile(id : number){
     // const headers = new HttpHeaders().set('Content-Type', 'application/json');
     // return this.http.get(`${AppComponent.API_URL}/files/file/get/${id}`,   { headers, responseType: 'blob'});
-    return this.http.get(`${AppComponent.API_URL}/files/files/download/product/${id}`);
+    return this.http.get(`${AppComponent.API_URL}/files/download/product/${id}`);
   }
 
 }

@@ -52,17 +52,22 @@ export class ProductComponent implements OnInit {
     this.icon = this.getRandomIcon()
   }
 
-  productClicked(product : Product){
-    this.data = product; 
-    this.router.navigate(['/productDetails']);
-  }
-
   get data(): Product { 
     return this.productService.productDetails; 
-  } 
+  }
+
   set data(value: Product) { 
     this.productService.productDetails = value; 
   }
+
+  productClicked(product : Product){
+    this.data = product; 
+    console.log("In ");
+    console.log(product);
+    
+    this.router.navigate(['/productDetails', {id: product.id} ]);
+  }
+
 
   getRandomIcon(){
     let icon = this.icons[Math.floor(Math.random() * this.icons.length)]; 

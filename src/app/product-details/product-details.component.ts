@@ -4,6 +4,7 @@ import { ProductService } from '../services/product.service';
 import { FileService } from '../services/file.service';
 import { AppComponent } from '../app.component';
 import {saveAs} from 'file-saver';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,32 +16,42 @@ export class ProductDetailsComponent implements OnInit {
   product: Product; 
   productPicture: string; 
   productPictureLocation : string ; 
+  id: number; 
+  tagsCount: number; 
 
   constructor( 
     private productService: ProductService, 
-    private fileService: FileService 
-  ) { }
+    private fileService: FileService, 
+    private route: ActivatedRoute, 
+  ){
+    this.id =  Number(route.snapshot.params.id); 
+   }
 
   ngOnInit() {
-    this.product = this.data; 
-    console.log("Product details: ");
-    console.log(this.product);
+    this.id =  Number(this.route.snapshot.params.id);
     
+    this.productService.getProductById(this.id)
+      .subscribe(data => {
+        this.product = data
+        this.getProductPicture(this.product.id); 
+        this.tagsCount = this.product.tags.length
+      }); 
+
     //get the picture from DB
-    this.getProductPicture(this.product.id); 
   }
 
   //TODO: 
   downloadProduct(){ }
 
   getProductPicture(id: number){
+    
     this.fileService.getFile(id) 
       .subscribe(
        ( data: any) => {
         console.log("Getting File");
         console.log(data);
        // console.log(data.blob);
-        saveAs(data, "Bucky"); 
+        saveAs(data, "File_Name"); 
 
 
         // console.log(data.fileLocation)

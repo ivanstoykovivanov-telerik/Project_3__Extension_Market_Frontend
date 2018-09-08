@@ -16,13 +16,6 @@ export class CarouselComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    //these could be the products: 
-    // this.imgags = [
-    //   'assets/bg.jpg',
-    //   'assets/car.png',
-    //   'assets/canberra.jpg',
-    //   'assets/holi.jpg'
-    // ];
     console.log("Title: " + this.title);
     
     this.imgags = this.carouselTileOneItems; 
@@ -68,9 +61,6 @@ export class CarouselComponent implements OnInit {
     this.carouselTileOneLoad();
   }
 
-  // onmoveFn(data) {
-  //   // console.log(data);
-  // }
 
   public carouselTileOneLoad() {
     const len = this.carouselTileOneItems.length;

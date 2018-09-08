@@ -82,14 +82,14 @@ export class ProductService {
     return this.http.get<Product[]>(AppComponent.API_URL+"/products")
   }
 
-   
+  public getProductById(id : number){
+    return this.http.get<Product>(`${AppComponent.API_URL}/products/${id}`); 
+  }  
+
   public getProductByName(){
     // return this.http.get<Product>(AppComponent.API_URL+"/products")  
   } 
 
-  // get productDetails() : Product{
-  //   return JSON.parse(localStorage.getItem("productDetails"));
-  // }
 
   set productDetails(product : Product){
     // this.productDetails = product;

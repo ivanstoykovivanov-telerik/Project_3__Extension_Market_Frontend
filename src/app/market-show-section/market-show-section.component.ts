@@ -12,35 +12,19 @@ export class MarketShowSectionComponent implements OnInit {
   @Input() carouselTitle: string; 
   @Input() sortedBy: string 
 
-  products: Product[] = []; 
+  products: Product[]; 
 
   constructor(
     private productService : ProductService 
   ) { }
 
   ngOnInit() {
-    
     console.log(this.sortedBy);
-    
-    // GET PRODUCTS 
-    // WORKS -> All Products
-    // this.productService.getAllProducts()
-    //   .subscribe( 
-    //     data => {
-    //       this.products = data; 
-    //       console.log(data); 
-    //     }
-    //   );
-
-     
-    //*
-    //*  Getting sorted products 
-    //*   
+   
     this.productService.getProducts(this.sortedBy)
       .subscribe( 
           data => {
             console.log("products : ");
-            
             console.log(data); 
             this.products = data; 
           }

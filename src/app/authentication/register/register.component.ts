@@ -42,7 +42,9 @@ export class RegisterComponent implements OnInit {
 
         if(this.filled){
             this.authService.currentUser
-                .subscribe(data => this.currentUser = data);
+                .subscribe(
+                    data => this.currentUser = data
+                );
             
             this.populateValues();     
         }
