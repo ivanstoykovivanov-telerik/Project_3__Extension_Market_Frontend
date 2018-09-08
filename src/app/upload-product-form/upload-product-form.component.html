@@ -113,7 +113,8 @@
             <!-- error message -->
             <div *ngIf="submitted && f.sourceRepositoryLink.errors" class="invalid-feedback">
               <div *ngIf="f.sourceRepositoryLink.errors.required">Source Repository is required</div>
-              <div *ngIf="f.sourceRepositoryLink.errors.minlength">Source Repository must be at least 3 characters long</div>
+              <!-- <div *ngIf="f.sourceRepositoryLink.errors.minlength">Source Repository must be at least 3 characters long</div> -->
+              <div *ngIf="f.sourceRepositoryLink.errors.pattern">Source Repository must be in the format "https://github.com/username/repository" </div>
             </div>  
             <!-- // error message -->
         </div>
@@ -172,7 +173,7 @@
       <div class="row justify-content-center my-5">
           <button 
             class="btn btn-outline-primary btn-lg mt-4"  
-            [disabled]="loading"
+            [disabled]="submitButtonDisabled"
             tooltip="Submit Extension"
             [delay]="500"
             type="submit">

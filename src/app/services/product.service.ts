@@ -73,27 +73,23 @@ export class ProductService {
 
 
   public getProducts(sortedBy: string){
-
     //TODO: change to top10
     let params = new HttpParams().set('sortBy', sortedBy);
-
     return this.http.get<Product[]>(AppComponent.API_URL + "/products", { params: params });
-
-
-    // TEST
-    // const productsAsObservable = from(this.products);
-    // return productsAsObservable;
-    //return this.http.get<Product[]>(this.productsURL);
   }
 
   public getAllProducts(){
     return this.http.get<Product[]>(AppComponent.API_URL+"/products")
   }
 
+   
+  public getProductByName(){
+    // return this.http.get<Product>(AppComponent.API_URL+"/products")  
+  } 
 
-  get productDetails() : Product{
-    return JSON.parse(localStorage.getItem("productDetails"));
-  }
+  // get productDetails() : Product{
+  //   return JSON.parse(localStorage.getItem("productDetails"));
+  // }
 
   set productDetails(product : Product){
     // this.productDetails = product;

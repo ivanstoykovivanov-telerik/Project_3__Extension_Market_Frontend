@@ -8,13 +8,18 @@ import { AuthService } from '../services/auth.service';
 import { Tag } from '../models/tag.model';
 import { TagService } from '../services/tag.service';
 
+/* 
+ *   This component is used for both Upload Extension Page and the user's Update Extension  
+*/
+
+
 @Component({
   selector: 'app-upload-product-form',
   templateUrl: './upload-product-form.component.html',
   styleUrls: ['./upload-product-form.component.css']
 })
 export class UploadProductFormComponent implements OnInit {
-    // This component is used for both Upload Extension Page , and the user's extension card 
+    //  currentUser: User ; 
     
     @Input() product: Product; 
     @Input() filled: boolean = false; 
@@ -23,11 +28,13 @@ export class UploadProductFormComponent implements OnInit {
     submitted = false;
     loading = false;  //making the submit button of the form active
     tags: Tag[] = []; 
-    //  currentUser: User ; 
     errorMessage: string; 
     binaryFileId: number;
     productPictureId: number; 
-    tagsToSendToDB: string[];  
+    tagsToSendToDB: string[]; 
+    submitButtonDisabled: boolean = false;   // TODO: 
+    githubPattern : string = "(?<remove>https:\\/\\/github\\.com\\/)(?<name>.*)";
+
 
   constructor(
       private formBuilder: FormBuilder, 
@@ -35,29 +42,39 @@ export class UploadProductFormComponent implements OnInit {
       private router: Router,
       private productService: ProductService, 
       private authService: AuthService,
-      private tagService: TagService
+    //   private tagService: TagService
   ) { }
 
   ngOnInit() {
         this.uploadProductForm = this.formBuilder.group({
-          name: ['', Validators.required],
+          name: ['', Validators.required],          //TODO: Check if name is unique 
           description: ['', Validators.required],
           version: ['', Validators.minLength(3)],
-          sourceRepositoryLink: ['', Validators.minLength(3)],
+          sourceRepositoryLink: ['',[ Validators.required, Validators.pattern(this.githubPattern)]], //TODO: github regex 
         });
         
         //get product data if in  editting mode 
         if(this.filled){
             this.populateValues();
         }
-
         //this.tagService.observableTags.subscribe()
   }
 
   get f() { return this.uploadProductForm.controls; }
 
+  
+  checkIfProductNameIsUnique(name: string){
+    //TODO:  check in DB 
+
+  }
+
+  checkIfGithubAccountExists(){
+      
+  }
+
+
   onSubmit() {
-    this.submitted = true;
+    this.submitted = true; // ??used in the form
     console.log("Product Submitted");
     
     // stop here if form is invalid
@@ -78,10 +95,8 @@ export class UploadProductFormComponent implements OnInit {
     
     let newTags = this.tags;
     let tagsToSend: string[] = this.tags.map(tag => tag.tagName); 
-    // let tagsToSend: string[] = this.stringifyTagsHelper(newTags); 
     console.log(tagsToSend);
     let productPictureId = this.productPictureId; 
-    // let Dummy_tags = ["css", "html"]; 
     console.log("All Tags");
     console.log(newTags);
     
@@ -108,7 +123,7 @@ export class UploadProductFormComponent implements OnInit {
             .subscribe(
                 data => console.log(data)
             );
-       // this.redirectToProductsOfUser(); 
+       // this.redirectToProductsOfUser(); //TODO: 
     } 
   }
 
@@ -122,47 +137,43 @@ export class UploadProductFormComponent implements OnInit {
         }
     }
     
-   //TODO:  
-  receiveFileIdFromDB(event){
-    console.log("FileID: ");
-    console.log(event);
-      this.binaryFileId = event; 
-  }  
+    receiveFileIdFromDB(event){
+        console.log("FileID: ");
+        console.log(event);
+        this.binaryFileId = event; 
+    }  
 
 
-  receiveProductPictureId(event){
-    console.log("ProductPictureID: ");
-    console.log(event);
-    this.productPictureId = event; 
-  }
-  
+    receiveProductPictureId(event){
+        console.log("ProductPictureID: ");
+        console.log(event);
+        this.productPictureId = event; 
+    }
 
-
-  stringifyTagsHelper(tags: Tag[]){
-    return  tags.map( tag => tag.tagName); 
-  }
-
-  receiveNewTag($event){
-      console.log("Tag received: ");
-      console.log($event);
-      console.log(this.tags);
-      this.tags.push($event); 
+    receiveNewTag($event){
+        console.log("Tag received: ");
+        console.log($event);
+        console.log(this.tags);
+        this.tags.push($event); 
     }  
 
     deleteTag($event){
-      console.log("Deleting tag");
-      let tag = $event; 
-      console.log(tag);
-      this.tags = this.tags.filter(e => tag.tagName !== e.tagName); 
+        console.log("Deleting tag");
+        let tag = $event; 
+        console.log(tag);
+        this.tags = this.tags.filter(e => tag.tagName !== e.tagName); 
     }
 
   redirectToProductsOfUser(){
-      this.router.navigate(['../profile/(profileDetails:profileProducts)'], {relativeTo: this.activatedRoute}); 
+        this.router.navigate(['../profile/(profileDetails:profileProducts)'], {relativeTo: this.activatedRoute}); 
   }
 
   onTagDeleted($event){
-    let tag = $event; 
-    this.tags = this.tags.filter(el => tag.tagName !== el.tagName); 
+        let tag = $event; 
+        this.tags = this.tags.filter(el => tag.tagName !== el.tagName); 
   }
+
+
+ 
 
 }
