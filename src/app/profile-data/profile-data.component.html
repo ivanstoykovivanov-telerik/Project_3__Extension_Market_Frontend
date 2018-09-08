@@ -1,20 +1,66 @@
  <!-- <div id="contact" class="collapse"> -->
     <div class="card card-body bg-danger text-white py-5">
-        <h2>Profile Details</h2>
-        <p class="lead">View and edit your personal data</p>
+        <div class="row">
+          <div class="col-6">
+            <h2>Profile Details</h2>
+          </div>
+          <div class="col-5 text-right">
+              <i 
+                class="fa fa-pencil fa-3x btn"
+                (click)="lgModal.show(template)">
+              </i>
+          </div>
+        </div>
+        <div class="row text-dark my-3">
+            <div class="col-6">
+              <h4>
+                <i class="fa fa-user mr-3"></i>
+                <span> {{currentUser.firstName}} </span>
+                <span> {{currentUser.lastName}} </span>
+              </h4>    
+            </div>
+            <div class="col-6">
+                <h4>
+                  <i class="fa fa-user mr-3"></i>
+                  <span> {{currentUser.firstName}} </span>
+                  <span> {{currentUser.lastName}} </span>
+                </h4>    
+            </div>
+        </div>
+        
       </div>
-  
       <div class="card card-body py-5">
         <!-- <h3>Profile Details</h3>
         <p>View and edit profile details</p> -->
-        
-        <app-register
-          [filled]= "true"
-          [action]="'Update'"
-        >
-        </app-register>
-        
       </div>
+
+     <!-- MODAL -->
+<!-- <ng-template #template> -->
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+  role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="text-center">Edit Profile</h4>
+          <!-- <h4 id="dialog-sizes-name1" class="modal-title text-center">Edit Extension</h4> -->
+        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <!-- Profile edit form -->
+          <app-register
+            [filled]= "true"
+            [action]="'Update'"
+            (onFormSubmitted) = "lgModal.hide()">
+          </app-register>
+          <!--// Profile edit form -->
+    </div>
+  </div>
+</div>
+</div>
+<!-- </ng-template> -->
+<!--//  MODAL -->
         <!-- <form>
           
           <div class="form-group">

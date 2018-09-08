@@ -23,7 +23,6 @@ export class FileService {
     return this.http.post(`${AppComponent.API_URL}/files/upload/file/${id}`, formData);
   }
 
-
   uploadImage(file: File, id: number){
     console.log("In");
     console.log(file);
