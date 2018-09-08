@@ -42,13 +42,28 @@ export class RegisterComponent implements OnInit {
 
         if(this.filled){
             this.authService.currentUser
-                .subscribe(data => this.currentUser = data)
+                .subscribe(data => this.currentUser = data);
+            
+            this.populateValues();     
         }
     }
  
+
+    populateValues(){
+        if(this.filled){
+            this.f.firstName.setValue(this.currentUser.firstName);
+            this.f.lastName.setValue(this.currentUser.lastName);
+            this.f.username.setValue(this.currentUser.username);
+            this.f.email.setValue(this.currentUser.email);
+            this.f.password.setValue(this.currentUser.password);
+        }
+    }
+
+
     // a getter for easy access to form fields
     get f() { return this.registerForm.controls; }
     
+
 
     //confirm if password and repeated password match 
     passwordValidator(control: AbstractControl) {
