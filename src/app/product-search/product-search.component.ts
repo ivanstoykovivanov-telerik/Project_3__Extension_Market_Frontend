@@ -12,7 +12,10 @@ export class ProductSearchComponent implements OnInit {
   searchForm : FormGroup; 
   submitted = false; 
   errorMesssage : string;  
-  
+  searchedValue: string ; 
+
+
+
   constructor( 
     private formBuilder: FormBuilder, 
     private searchService : SearchService, 
@@ -29,17 +32,31 @@ export class ProductSearchComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.searchForm.controls; }
   
-  // onSearch(){
-  //   console.log("Searching for : ");
-  // }
   
-  onSubmit(){
-    let searched: string = this.f.searched.value; 
+  //make it like the tags
+  // onSubmit(){
+  //   let searched: string = this.f.searched.value; 
+  //   console.log("Searching for : ");
+  //   console.log(searched);
+      
+  // }
+
+
+  onSearch($event){
+    let searched: string = $event.target.value; 
     console.log("Searching for : ");
     console.log(searched);
     
-    //Connect to search service
-    //this.searchService.search(searched)
-      
+    this.searchedValue ="";
+    
+    this.searchService.searchProducts(searched)
+      .subscribe(data => console.log(data)
+      ); 
+
+    // let tag: Tag = new Tag($event.target.value);  
+    // console.log(tag);
+    // this.tags.push(tag);
+    // this.addTagValue ="";  
+    // this.tagAddedEvent.emit(tag);
   }
 }

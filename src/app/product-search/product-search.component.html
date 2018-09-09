@@ -9,6 +9,8 @@
           formControlName="searched"
           id="validationCustomUsername" 
           aria-describedby="inputGroupPrepend"
+          (keyup.enter)="onSearch($event)"
+          [(ngModel)]="searchedValue"
           required
           >
         <button class="input-group-text btn btn-success bg-success" id="inputGroupPrepend">
@@ -21,3 +23,7 @@
     </div>
   </div>
 </form>
+
+
+<!-- MODAL -->
+<!--// MODAL -->

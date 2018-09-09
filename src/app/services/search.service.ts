@@ -9,9 +9,9 @@ export class SearchService {
 
   constructor(public http: HttpClient) { }
 
-  public search(prouctName: string){
-    return "Product Name"; 
-  }
+  // public search(prouctName: string){
+  //   return "Product Name"; 
+  // }
 
   searchProducts(searched: string){
     console.log("searched");
