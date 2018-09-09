@@ -37,7 +37,7 @@ export class ProductSearchComponent implements OnInit {
 
   onSearch($event){
     let searched: string = $event.target.value; 
-    this.searchingFor = searched; 
+    // this.searchingFor = searched; 
     console.log("Searching for : ");
     console.log(searched);
     

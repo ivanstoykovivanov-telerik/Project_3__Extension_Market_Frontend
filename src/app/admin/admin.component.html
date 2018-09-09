@@ -28,7 +28,6 @@
                   type="checkbox" 
                   (change)="changeStatus($event, user)" 
                   [checked]="isActive(user)"
-                  [ngStyle]="{'text-decoration': isActive(user) ? 'none' : 'line-through' }"
                   >
             </td>
             <td>

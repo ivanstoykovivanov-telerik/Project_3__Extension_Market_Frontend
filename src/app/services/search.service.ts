@@ -9,12 +9,9 @@ export class SearchService {
 
   constructor(public http: HttpClient) { }
 
-  // public search(prouctName: string){
-  //   return "Product Name"; 
-  // }
 
   searchProducts(searched: string){
-    console.log("searched");
+    console.log("In");
     return this.http.post(`${AppComponent.API_URL}/search`, searched); 
   }
 

@@ -14,6 +14,7 @@ export class AdminExtensionsPerUserComponent implements OnInit {
   products: Product[]; 
   // @Input() user: User; 
   currentUser: User; 
+  userFromDB; 
   
   constructor(
     private userService: UserService, 
@@ -22,32 +23,22 @@ export class AdminExtensionsPerUserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("USER: ----------- ");
-    // console.log(this.user);
-    // this.productService.getProductsByUser(this.user.id)
-    //   .subscribe(
-    //     data => {
-    //       this.products = data; 
-    //       console.log("DAta from AdminExtensionPerUser");
-    //       console.log(data);
-          
-    //     }
-    //   )
+    console.log(this.currentUser);
+    
   }
 
   getProductsOfUser(id: number ){
     this.productService.getProductsByUser(this.currentUser.id)
     .subscribe(
       data => {
-        //this.products = data; 
-        console.log("DAta from AdminExtensionPerUser");
+        console.log("DATa from AdminExtensionPerUser");
         console.log(data);
         this.products = data; 
       }
     )
   }
 
-
+  //COMES FROM ADMIN COMPONENT
   getUser(user: User){
     this.currentUser = user; 
     console.log("Getting user");
@@ -56,17 +47,28 @@ export class AdminExtensionsPerUserComponent implements OnInit {
     this.getProductsOfUser(this.currentUser.id); 
   }
 
-
-  findProductsPerUser(){
-    // request to get all  products
+  isActive(product: Product): boolean{
+    if(product.productStatus === "DISABLED"){
+      return true ; 
+    }
+    
+    if(product.productStatus === "ENABLED"){
+      return false ; 
+    }
   }
+
 
   deActivateProduct($event, product){
-    //TODO: 
+    
   }
 
+  approveProduct(){
+
+  }
+
+
   showProduct(product){
-    this.router.navigate(['/productDetails']); 
+     this.router.navigate(['/productDetails', {id: product.id} ]);
   }
 
 }

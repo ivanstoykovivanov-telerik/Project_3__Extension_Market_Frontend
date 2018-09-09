@@ -89,9 +89,4 @@ export class ProductComponent implements OnInit {
   //   }
   // }
 
-  // closeModal(template: TemplateRef<any>) {
-  //   this.modalRef = this.modalService.hide(template);
-  //   this.modalRef = this.modalService.hide(template);
-  // }
-  
 }

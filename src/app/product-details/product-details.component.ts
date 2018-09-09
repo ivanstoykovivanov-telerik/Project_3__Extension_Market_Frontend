@@ -28,6 +28,7 @@ export class ProductDetailsComponent implements OnInit {
    }
 
   ngOnInit() {
+    //get the id from the url
     this.id =  Number(this.route.snapshot.params.id);
     
     this.productService.getProductById(this.id)
@@ -41,7 +42,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   
-  //TODO: , saves the file as a json
+  //TODO: , saves the file as a json  . works
   downloadProduct(){
     console.log(this.product.id);
     this.fileService.downloadFileT(this.product.id)
@@ -50,9 +51,7 @@ export class ProductDetailsComponent implements OnInit {
 
 
 
-
   getProductPicture(id: number){
-    
     this.fileService.downloadFile(id) 
       .subscribe(
        ( data: any) => {

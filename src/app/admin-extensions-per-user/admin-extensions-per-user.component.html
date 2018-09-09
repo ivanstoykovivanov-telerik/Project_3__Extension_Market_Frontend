@@ -1,29 +1,32 @@
 <div class="container users">
-      <h4> <i class="fa fa-user"></i><span class="ml-2">{{user.username}}</span></h4>
+      <h4> <i class="fa fa-user"></i><span class="ml-2">{{currentUser.username}}</span></h4>
       <table class="table table-striped">
         <thead>
           <tr>
             <th class="hidden">Id</th>
+            <th class="text-success">Approve</th>
             <th>Product Name</th>
             <th>Version</th>
-            <th>Last Commit Date</th>
-            <th>Open Issues</th>
-            <th class="text-danger">Deactivate</th>
+            <th>Status</th>
+            <th class="text-danger">Suspend</th>
             <th>Extensions Page</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products">
+          <tr *ngFor="let product of products" 
+            [ngStyle]="{'background-color': featuredProduct ? 'LightGreen': '#cccccc' }">
             <td class="hidden">{{product.id}}</td>
+            <td>
+              <input type="checkbox" (change)="approve($event, product)" [checked]="isActive(product)">
+            </td>
             <td>{{product.name}}</td>
             <td>{{product.version}}</td>
-            <td>{{product.lastCommitDate}}</td>
-            <td>{{product.openIssues}}</td>
+            <td>{{product.productStatus}}</td>
             <td>
-                <input type="checkbox" (change)="deActivateProduct($event, product)" [checked]="product.active">
+                <input type="checkbox" (change)="deActivateProduct($event, product)" [checked]="isActive(product)">
             </td>
             <td>
-              <button class="btn btn-primary"  (click)="showProduct(product)">Product Page</button>
+              <button class="btn btn-secondary"  (click)="showProduct(product)">Product Page</button>
             </td>
           </tr>
         </tbody>

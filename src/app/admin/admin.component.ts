@@ -60,12 +60,10 @@ export class AdminComponent implements OnInit {
 
     isActive(user: User): boolean{
       if(user.userStatus === "DISABLED"){
-        console.log("In");
         return true ; 
       }
       
       if(user.userStatus === "ENABLED"){
-        console.log("In");
         return false ; 
       }
     }
