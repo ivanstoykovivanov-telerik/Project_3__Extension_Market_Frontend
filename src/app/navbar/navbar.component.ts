@@ -39,11 +39,6 @@ export class NavbarComponent implements OnInit {
           console.log("successfully logged out");
           // console.log(data);
         }
-        // ,
-        // error => {
-        //   console.log("Error logging out: ");
-        //   console.log(error);
-        // }
       );
   }
 

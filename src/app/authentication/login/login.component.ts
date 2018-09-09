@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import {Router} from "@angular/router";
 import { AuthenticationService } from '../../services/authentication.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,23 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+  currentUser: User; 
   loginForm : FormGroup; 
   submitted = false; 
   errorMessage : string;  
-  currentUser: User; 
+  isLoggedIn: boolean = false; 
+  isAdmin : boolean = false; 
+  isUser: boolean =  false; 
+
+  // emptyUser : User = new User("", "", "", "", "", "ENABLED", 0); 
+
+  // private userSource = new BehaviorSubject<User>(this.emptyUser);
+  // loggedInUser = this.userSource.asObservable();
+
+  // changeUser(user: User) {
+  //   this.userSource.next(user);
+  // }
+
 
 
   constructor( 
@@ -33,6 +46,7 @@ export class LoginComponent implements OnInit {
       password: ['', [ Validators.minLength(3) ]] //TODO: password regex
     })
 
+    //TODO: Remove 
     this.authService.currentUser
       .subscribe(data => this.currentUser = data)
   }
@@ -54,30 +68,38 @@ export class LoginComponent implements OnInit {
     let username: string = this.f.username.value; 
     let password: string = this.f.password.value; 
     let user = new User(username, password); 
+    
     this.login(user); 
   }
 
 
-  //TODO: 
   login(user: User){
-      this.authService.login(user)
-        .subscribe(data => console.log(data)); 
+    this.authService.login(user)
+      .subscribe(
+        data => {
+          console.log(data); 
+          
+          if(!data){
+            this.errorMessage = "Incorrect username or password"; 
+          }
+
+          if(data.userStatus === "ENABLED"){
+            this.currentUser = data; 
+            this.authService.loggedIn = true; 
+            this.authService.changeUser(data); 
+            this.router.navigate(['/home']);
+          }
+
+          if(data.userStatus === "SUSPENDED"){
+            this.router.navigate(['/login']);
+            this.errorMessage = "Your account has been suspended"; 
+          }
+        })
+}
 
 
-      // let statusLogIn = this.authService.login(username, password); 
-      
-      // if(statusLogIn && this.currentUser.userStatus == "ENABLED"){
-      //   this.router.navigate(['/home']);
-      // }
-      
-      // if(!statusLogIn){
-      //   this.errorMessage = "Incorrect username or password"; 
-      // }
-      
-      // if(statusLogIn && this.currentUser.userStatus === "SUSPENDED")
-      //   this.errorMessage = "Your account has been suspended"; 
-      // }
-  }
+  
+
 }
 
 

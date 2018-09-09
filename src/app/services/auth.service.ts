@@ -9,11 +9,11 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   
   loggedIn: boolean = false; 
-  dummy: User  = new User("ivanov", "bonbon800", "Ivan", "Ivanov", "ivanov@gmail.com", "ENABLED", 1); 
+  // dummy: User  = new User("ivanov", "bonbon800", "Ivan", "Ivanov", "ivanov@gmail.com", "ENABLED", 1); 
   emptyUser : User = new User("", "", "", "", "", "ENABLED", 0); 
 
 
-  private userSource = new BehaviorSubject<User>(this.dummy);
+  private userSource = new BehaviorSubject<User>(this.emptyUser);
   currentUser = this.userSource.asObservable();
 
 
@@ -24,32 +24,16 @@ export class AuthService {
     this.userSource.next(user);
   }
 
-  // OLD //TODO: 
-  // login(username: string, password: string){
-  //   this.http.post(`${AppComponent.API_URL}/login`,  {
-  //       username: username, 
-  //       password: password
-  //     })
-  //     .subscribe( (data: any) => {
-  //       if(data){
-  //         this.changeUser(data); 
-  //         this.loggedIn = true; 
-  //         return true;  
-  //       } 
-  //       return false ; 
-  //     });
-  // }
-  
-
   login(user: User){
-    //let user = new User(username, password); 
-      
-    return this.http.post(`${AppComponent.API_URL}/login`, user ); 
-  }      
+    return this.http.post<User>(`${AppComponent.API_URL}/login`, user )
+  } 
 
+  
+  
+  //TODO: 
   public logOut(user: User) {
     // remove user from local storage to log user out
-    // return this.http.post(AppComponent.API_URL+"/logout", user); 
+     return this.http.post(AppComponent.API_URL+"/logout", user); 
   }
 
 
