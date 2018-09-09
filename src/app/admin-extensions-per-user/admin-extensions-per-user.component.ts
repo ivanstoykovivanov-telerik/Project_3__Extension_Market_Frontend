@@ -4,6 +4,7 @@ import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-admin-extensions-per-user',
@@ -19,12 +20,12 @@ export class AdminExtensionsPerUserComponent implements OnInit {
   constructor(
     private userService: UserService, 
     private productService: ProductService,
-    private router: Router   
+    private router: Router, 
+    private adminService: AdminService   
   ) { }
 
   ngOnInit() {
     console.log(this.currentUser);
-    
   }
 
   getProductsOfUser(id: number ){
@@ -47,12 +48,23 @@ export class AdminExtensionsPerUserComponent implements OnInit {
     this.getProductsOfUser(this.currentUser.id); 
   }
 
-  isActive(product: Product): boolean{
-    if(product.productStatus === "DISABLED"){
+
+  isApproved(product: Product): boolean{
+    if(product.productStatus === "ENABLED"){
       return true ; 
     }
     
+    if(product.productStatus === "PENDING"){
+      return false; 
+    }
+  }
+
+  isActive(product: Product): boolean{
     if(product.productStatus === "ENABLED"){
+      return true ; 
+    }
+    
+    if(product.productStatus === "DISABLED"){
       return false ; 
     }
   }
@@ -62,8 +74,14 @@ export class AdminExtensionsPerUserComponent implements OnInit {
     
   }
 
-  approveProduct(){
 
+  onApproveProduct($event, product){
+    console.log("In");
+    if(product.userStatus === "PENDING"){
+      product.userStatus = "ENABLED"; 
+      this.adminService.approveProduct(product)
+        .subscribe();
+    } 
   }
 
 

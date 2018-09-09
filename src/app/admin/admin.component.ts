@@ -23,14 +23,15 @@ export class AdminComponent implements OnInit {
       private toastr: ToastrService
     ) { }
 
-    ngOnInit() {
 
+    ngOnInit() {
       this.adminService.getAllUsers()
         .subscribe( data => {
           this.users = data;
         });
     }
 
+    
     changeStatus(event, user: User){
       if(user.userStatus === "DISABLED"){
         user.userStatus = "ENABLED"; 

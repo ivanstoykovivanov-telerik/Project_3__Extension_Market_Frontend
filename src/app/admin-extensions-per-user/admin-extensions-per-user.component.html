@@ -4,20 +4,23 @@
         <thead>
           <tr>
             <th class="hidden">Id</th>
-            <th class="text-success">Approve</th>
+            <th class="text-success">Approved</th>
             <th>Product Name</th>
             <th>Version</th>
             <th>Status</th>
-            <th class="text-danger">Suspend</th>
+            <th class="text-danger">Suspended</th>
             <th>Extensions Page</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let product of products" 
-            [ngStyle]="{'background-color': featuredProduct ? 'LightGreen': '#cccccc' }">
+            [ngStyle]="{'background-color': isApproved(product) ? 'LightGreen': ' #e6e6e6' }">
             <td class="hidden">{{product.id}}</td>
             <td>
-              <input type="checkbox" (change)="approve($event, product)" [checked]="isActive(product)">
+              <input 
+                type="checkbox" 
+                (change)="onApproveProduct($event, product)" 
+                [checked]="isActive(product)">
             </td>
             <td>{{product.name}}</td>
             <td>{{product.version}}</td>

@@ -47,6 +47,7 @@ import { MarketShowSectionComponent } from './market-show-section/market-show-se
 import { TagSectionComponent } from './tag-section/tag-section.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -76,6 +77,7 @@ export function tokenGetter() {
     TagSectionComponent,
     FileUploadComponent,
     ImageUploadComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule, 
