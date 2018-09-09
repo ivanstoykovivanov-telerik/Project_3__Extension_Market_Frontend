@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
         });
     }
 
-    
+
     changeStatus(event, user: User){
       if(user.userStatus === "DISABLED"){
         user.userStatus = "ENABLED"; 
@@ -45,7 +45,6 @@ export class AdminComponent implements OnInit {
       if(user.userStatus === "ENABLED"){
         user.userStatus = "DISABLED"; 
         console.log(user);
-        this.showSuccess(user.username, "Disabled"); 
         this.toastr.success(user.username, "Disabled");
         this.adminService.disableUser(user)
           .subscribe();

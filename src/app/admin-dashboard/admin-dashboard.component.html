@@ -1,3 +1,28 @@
-<p>
-  admin-dashboard works!
-</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand btn" routerLink="/admin">Admin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a  class="nav-link btn"  
+            [routerLink]="['/admin', {outlets: {'adminSection': ['adminUsers']}}]">
+            <i class="fa fa-user"></i><span class="ml-2">Users</span>  
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a  class="nav-link btn"  
+            [routerLink]="['/admin', {outlets: {'adminSection': ['adminProducts']}}]">
+            <i class="fa fa-cubes"></i><span class="ml-2">Extensions</span>  
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+<!-- ROUTING -->
+<router-outlet name="adminSection"></router-outlet>
+<!--// ROUTING -->  

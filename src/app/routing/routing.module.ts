@@ -10,6 +10,8 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
 import { ProductsOfUserComponent } from '../products-of-user/products-of-user.component';
 import { ProfileDataComponent } from '../profile-data/profile-data.component';
 import { UploadProductComponent } from '../upload-product/upload-product.component';
+import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
+import { AdminProductsComponent } from '../admin-products/admin-products.component';
 
 const routes: Routes = [
   {
@@ -52,9 +54,26 @@ const routes: Routes = [
     path  : "productDetails", 
     component : ProductDetailsComponent,
   },
+  
+  //ADMIN 
   {
     path  : "admin", 
-    component : AdminComponent,
+    component : AdminDashboardComponent,
+    children: [
+      {
+        path  : "adminUsers", 
+        component : AdminComponent,
+        outlet: "adminSection"
+      },
+      {
+        path  : "adminProducts", 
+        component : AdminProductsComponent,
+        outlet: "adminSection"
+      },
+
+    ]
+
+    // component : AdminComponent,
     // canActivate: [AuthGuard]
   }, 
   // otherwise redirect to home

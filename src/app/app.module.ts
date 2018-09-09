@@ -48,6 +48,7 @@ import { TagSectionComponent } from './tag-section/tag-section.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminProductsComponent } from './admin-products/admin-products.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -78,6 +79,7 @@ export function tokenGetter() {
     FileUploadComponent,
     ImageUploadComponent,
     AdminDashboardComponent,
+    AdminProductsComponent,
   ],
   imports: [
     BrowserModule, 

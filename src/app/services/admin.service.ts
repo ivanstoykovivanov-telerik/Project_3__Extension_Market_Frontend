@@ -14,11 +14,9 @@ export class AdminService {
   ) { }
 
 
-
   public getAllUsers(){
     return this.http.get<User[]>(AppComponent.API_URL + '/admin/users/listAll' );
   }
-
 
   public disableUser(user: User){
     return this.http.post(`${AppComponent.API_URL}/admin/users/disableUser/${user.id}`, {}); 
@@ -30,8 +28,16 @@ export class AdminService {
 
   public approveProduct(product: Product){
     console.log("In");
-    
     return this.http.post(`${AppComponent.API_URL}/admin/products/approve/${product.id}`, {}); 
+  }
+
+  public getAllProducts(){
+    return this.http.get<Product[]>(`${AppComponent.API_URL}/admin/products/listAll`); 
+  }
+
+  public deactivateProduct(product: Product){
+    console.log("In");
+    return this.http.post(`${AppComponent.API_URL}/admin/products/disable/${product.id}`, {}); 
   }
 
 }
