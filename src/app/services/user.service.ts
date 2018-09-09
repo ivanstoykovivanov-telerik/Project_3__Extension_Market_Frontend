@@ -17,7 +17,7 @@ export class UserService {
   }
 
   public getAllUsers(){
-      return this.http.get<User[]>(AppComponent.API_URL + '/users' );
+      return this.http.get<User[]>(AppComponent.API_URL + '/admin/users/listAll' );
   }
 
   //TODO:
