@@ -9,8 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   
   loggedIn: boolean = false; 
-  dummy: User  = new User("ivanov", "bonbon800", "Ivan", "Ivanov", "ivanov@gmail.com", true, 1); 
-  emptyUser : User = new User("", "", "", "", "", false, 0); 
+  dummy: User  = new User("ivanov", "bonbon800", "Ivan", "Ivanov", "ivanov@gmail.com", "ENABLED", 1); 
+  emptyUser : User = new User("", "", "", "", "", "ENABLED", 0); 
 
 
   private userSource = new BehaviorSubject<User>(this.dummy);

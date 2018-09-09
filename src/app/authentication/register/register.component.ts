@@ -124,19 +124,19 @@ export class RegisterComponent implements OnInit {
         let username = this.f.username.value; 
         let email = this.f.email.value; 
         let password = this.f.password.value;
-        let active = true; 
+        let userStatus = "ENABLED"; 
       
         if(this.filled){
 
             //UPDATE EXISTING USER 
             console.log(this.currentUser.id);
-            let user: User = new User(username, password, firstName, lastName, email, active, this.currentUser.id);  
+            let user: User = new User(username, password, firstName, lastName, email, userStatus,  this.currentUser.id);  
             this.update(user); 
      
         }else{
         
             //SAVE NEW USER 
-            let user: User = new User(username, password, firstName, lastName, email, active);  
+            let user: User = new User(username, password, firstName, lastName, email, userStatus);  
             console.log(user);    
             this.register(user);   
       }

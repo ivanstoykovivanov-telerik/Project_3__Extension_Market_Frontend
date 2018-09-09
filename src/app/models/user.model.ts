@@ -6,7 +6,7 @@ export class User{
         public firstName? : string, 
         public lastName? : string, 
         public email? : string, 
-        public active? : boolean, 
+        public userStatus? : string, 
         public id? : number
     ){ }
     

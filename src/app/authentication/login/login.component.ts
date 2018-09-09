@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm : FormGroup; 
   submitted = false; 
   errorMessage : string;  
+  currentUser: User; 
 
   constructor( 
     private formBuilder: FormBuilder, 
@@ -26,8 +27,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', [ Validators.minLength(3) ]],
-      password: ['', [ Validators.minLength(3) ]]
+      password: ['', [ Validators.minLength(3) ]] //TODO: password regex
     })
+
+    this.authService.currentUser
+      .subscribe(data => this.currentUser = data)
   }
 
   // convenience getter for easy access to form fields
@@ -53,12 +57,18 @@ export class LoginComponent implements OnInit {
 
   login(user: User){
      let statusLogIn = this.authService.login(user.username, user.password); 
-      if(statusLogIn){
+      
+      if(statusLogIn && this.currentUser.userStatus == "ENABLED"){
         this.router.navigate(['/home']);
-      }else{
+      }
+      
+      if(!statusLogIn){
         this.errorMessage = "Incorrect username or password"; 
       }
-  }
+      
+      if(statusLogIn && this.currentUser.userStatus === "SUSPENDED")
+        this.errorMessage = "Your account has been suspended"; 
+      }
 }
 
 
