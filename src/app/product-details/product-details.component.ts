@@ -40,12 +40,20 @@ export class ProductDetailsComponent implements OnInit {
     //get the picture from DB
   }
 
-  //TODO: 
-  downloadProduct(){ }
+  
+  //TODO: , saves the file as a json
+  downloadProduct(){
+    console.log(this.product.id);
+    this.fileService.downloadFileT(this.product.id)
+      .subscribe(data => saveAs(data, "Product")); 
+  }
+
+
+
 
   getProductPicture(id: number){
     
-    this.fileService.getFile(id) 
+    this.fileService.downloadFile(id) 
       .subscribe(
        ( data: any) => {
         console.log("Getting File");

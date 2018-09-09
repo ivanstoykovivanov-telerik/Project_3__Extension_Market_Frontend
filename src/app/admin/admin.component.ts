@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
 import { AdminExtensionsPerUserComponent } from '../admin-extensions-per-user/admin-extensions-per-user.component';
 import { AdminService } from '../services/admin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin',
@@ -10,64 +11,69 @@ import { AdminService } from '../services/admin.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  users: User[];
-  currentUser : User;
-  @ViewChild(AdminExtensionsPerUserComponent) child;
-  constructor(
-    private userService: UserService, 
-    private adminService: AdminService
-  ) { }
 
-  ngOnInit() {
+    users: User[];
+    currentUser : User;
+    @ViewChild(AdminExtensionsPerUserComponent) child;
 
-    //GET ALL USERS 
-    this.adminService.getAllUsers()
-      .subscribe( data => {
-        this.users = data;
-      });
-  }
 
-  changeStatus(event, user: User){
-    if(user.userStatus === "DISABLED"){
-      user.userStatus = "ENABLED"; 
-      console.log(user);
-      this.adminService.enableUser(user)
-        .subscribe();
-      return; 
-    } 
+    constructor(
+      private userService: UserService, 
+      private adminService: AdminService, 
+      private toastr: ToastrService
+    ) { }
 
-    if(user.userStatus === "ENABLED"){
-      user.userStatus = "DISABLED"; 
-      console.log(user);
-      this.adminService.disableUser(user)
-        .subscribe();
-      return;
+    ngOnInit() {
+
+      this.adminService.getAllUsers()
+        .subscribe( data => {
+          this.users = data;
+        });
     }
-    
-  }
 
+    changeStatus(event, user: User){
+      if(user.userStatus === "DISABLED"){
+        user.userStatus = "ENABLED"; 
+        console.log(user);
+        this.showSuccess(user.username, "Enabled");   
+        this.adminService.enableUser(user)
+          .subscribe();
+        return; 
+      } 
 
-  findProductsOf(user: User){
-    // this.currentUser = user;
-    // console.log(this.currentUser);
-    this.child.getUser(user);
-  }
-
-
-  isActive(user: User): boolean{
-    if(user.userStatus === "DISABLED"){
-      console.log("In");
-      return true ; 
+      if(user.userStatus === "ENABLED"){
+        user.userStatus = "DISABLED"; 
+        console.log(user);
+        this.showSuccess(user.username, "Disabled"); 
+        this.toastr.success(user.username, "Disabled");
+        this.adminService.disableUser(user)
+          .subscribe();
+        return;
+      }
     }
-    
-    if(user.userStatus === "ENABLED"){
-      console.log("In");
-      return false ; 
-    }
-  }
 
-  // ngAfterViewInit() {
-  //   this.message = this.child.message
-  // }
+
+    findProductsOfUser(user: User){
+      this.child.getUser(user);
+    }
+
+
+    isActive(user: User): boolean{
+      if(user.userStatus === "DISABLED"){
+        console.log("In");
+        return true ; 
+      }
+      
+      if(user.userStatus === "ENABLED"){
+        console.log("In");
+        return false ; 
+      }
+    }
+
+
+    /* TOAST  */ 
+  showSuccess(title: string , content: string) {
+    this.toastr.success(title, content);
+  }
 
 }

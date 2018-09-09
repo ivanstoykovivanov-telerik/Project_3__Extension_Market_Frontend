@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users" [ngStyle]="{'background-color': isActive(user) ? 'Salmon' : 'LightGreen' }" >
+          <tr *ngFor="let user of users" [ngStyle]="{'background-color': isActive(user) ? '#ff9999' : 'LightGreen' }" >
             <td class="hidden">{{user.id}}</td>
             <td>{{user.firstName}}</td>
             <td>{{user.lastName}}</td>
@@ -30,12 +30,9 @@
                   [checked]="isActive(user)"
                   [ngStyle]="{'text-decoration': isActive(user) ? 'none' : 'line-through' }"
                   >
-                  <!-- [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }" -->
-                <!-- <i class="btn fa fa-trash-o text-danger del_btn" aria-hidden="true" (click)="deActivateUser(user)">
-                </i> -->
             </td>
             <td>
-              <button class="btn btn-secondary"  (click)="findProductsOf(user)" (click)="lgModal.show()">View Extensions</button>
+              <button class="btn btn-secondary"  (click)="findProductsOfUser(user)" (click)="lgModal.show()">View Extensions</button>
             </td>
           </tr>
         </tbody>
