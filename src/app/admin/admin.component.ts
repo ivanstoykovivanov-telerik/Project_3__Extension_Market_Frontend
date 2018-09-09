@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
 import { AdminExtensionsPerUserComponent } from '../admin-extensions-per-user/admin-extensions-per-user.component';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,13 +14,14 @@ export class AdminComponent implements OnInit {
   currentUser : User;
   @ViewChild(AdminExtensionsPerUserComponent) child;
   constructor(
-    private userService: UserService
+    private userService: UserService, 
+    private adminService: AdminService
   ) { }
 
   ngOnInit() {
 
     //GET ALL USERS 
-    this.userService.getAllUsers()
+    this.adminService.getAllUsers()
       .subscribe( data => {
         this.users = data;
       });
@@ -29,7 +31,7 @@ export class AdminComponent implements OnInit {
     // user.active = !user.active;
     console.log(user);
 
-    this.userService.save(user).subscribe();
+    this.adminService.disableUser(user).subscribe();
   }
 
 
@@ -39,6 +41,18 @@ export class AdminComponent implements OnInit {
     this.child.getUser(user);
   }
 
+
+  isActive(user: User): boolean{
+    if(user.userStatus === "DISABLED"){
+      console.log("In");
+      return true ; 
+    }
+    
+    if(user.userStatus === "ENABLED"){
+      console.log("In");
+      return false ; 
+    }
+  }
 
   // ngAfterViewInit() {
   //   this.message = this.child.message

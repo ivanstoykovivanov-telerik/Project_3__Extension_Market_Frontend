@@ -24,7 +24,7 @@
             <td>{{user.email}}</td>
             <td>{{user.password}}</td>
             <td>
-                <input type="checkbox" (change)="deActivateUser($event, user)" [checked]="user.active">
+                <input type="checkbox" (change)="deActivateUser($event, user)" [checked]="isActive(user)">
                 <!-- <i class="btn fa fa-trash-o text-danger del_btn" aria-hidden="true" (click)="deActivateUser(user)">
                 </i> -->
             </td>
