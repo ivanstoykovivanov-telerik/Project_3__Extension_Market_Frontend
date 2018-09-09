@@ -19,8 +19,12 @@ export class AdminService {
   }
 
 
- public disableUser(user: User){
-   return this.http.post(`${AppComponent.API_URL}/admin/users/disableUser/${user.id}`, {}); 
- }
+  public disableUser(user: User){
+    return this.http.post(`${AppComponent.API_URL}/admin/users/disableUser/${user.id}`, {}); 
+  }
+
+  public enableUser(user: User){
+    return this.http.post(`${AppComponent.API_URL}/admin/users/enableUser/${user.id}`, {}); 
+  } 
 
 }

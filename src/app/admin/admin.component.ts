@@ -27,11 +27,23 @@ export class AdminComponent implements OnInit {
       });
   }
 
-  deActivateUser(event, user: User){
-    // user.active = !user.active;
-    console.log(user);
+  changeStatus(event, user: User){
+    if(user.userStatus === "DISABLED"){
+      user.userStatus = "ENABLED"; 
+      console.log(user);
+      this.adminService.enableUser(user)
+        .subscribe();
+      return; 
+    } 
 
-    this.adminService.disableUser(user).subscribe();
+    if(user.userStatus === "ENABLED"){
+      user.userStatus = "DISABLED"; 
+      console.log(user);
+      this.adminService.disableUser(user)
+        .subscribe();
+      return;
+    }
+    
   }
 
 

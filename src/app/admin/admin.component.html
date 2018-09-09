@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users">
+          <tr *ngFor="let user of users" [ngStyle]="{'background-color': isActive(user) ? 'FireBrick' : 'LightGreen' }" >
             <td class="hidden">{{user.id}}</td>
             <td>{{user.firstName}}</td>
             <td>{{user.lastName}}</td>
@@ -24,7 +24,13 @@
             <td>{{user.email}}</td>
             <td>{{user.password}}</td>
             <td>
-                <input type="checkbox" (change)="deActivateUser($event, user)" [checked]="isActive(user)">
+                <input 
+                  type="checkbox" 
+                  (change)="changeStatus($event, user)" 
+                  [checked]="isActive(user)"
+                  [ngStyle]="{'text-decoration': isActive(user) ? 'none' : 'line-through' }"
+                  >
+                  <!-- [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }" -->
                 <!-- <i class="btn fa fa-trash-o text-danger del_btn" aria-hidden="true" (click)="deActivateUser(user)">
                 </i> -->
             </td>
