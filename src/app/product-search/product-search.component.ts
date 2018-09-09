@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SearchService } from '../services/search.service';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-product-search',
@@ -13,7 +14,7 @@ export class ProductSearchComponent implements OnInit {
   submitted = false; 
   errorMesssage : string;  
   searchedValue: string ; 
-
+  foundProducts: Product[]; 
 
 
   constructor( 
@@ -33,13 +34,6 @@ export class ProductSearchComponent implements OnInit {
   get f() { return this.searchForm.controls; }
   
   
-  //make it like the tags
-  // onSubmit(){
-  //   let searched: string = this.f.searched.value; 
-  //   console.log("Searching for : ");
-  //   console.log(searched);
-      
-  // }
 
 
   onSearch($event){
@@ -50,8 +44,12 @@ export class ProductSearchComponent implements OnInit {
     this.searchedValue ="";
     
     this.searchService.searchProducts(searched)
-      .subscribe(data => console.log(data)
-      ); 
+      .subscribe((data: any) => {
+        console.log(data); 
+        this.foundProducts = data; 
+        console.log(this.foundProducts);
+      } 
+    ); 
 
     // let tag: Tag = new Tag($event.target.value);  
     // console.log(tag);

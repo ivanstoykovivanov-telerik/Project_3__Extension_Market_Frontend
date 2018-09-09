@@ -26,7 +26,7 @@ export class AdminComponent implements OnInit {
   }
 
   deActivateUser(event, user: User){
-    user.active = !user.active;
+    // user.active = !user.active;
     console.log(user);
 
     this.userService.save(user).subscribe();
