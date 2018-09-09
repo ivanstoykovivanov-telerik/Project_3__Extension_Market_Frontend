@@ -14,8 +14,9 @@ export class ProductSearchComponent implements OnInit {
   submitted = false; 
   errorMesssage : string;  
   searchedValue: string ; 
-  foundProducts: Product[]; 
-
+  foundProducts: Product[] = []; 
+  isSearching: boolean = false; 
+  searchingFor: string; 
 
   constructor( 
     private formBuilder: FormBuilder, 
@@ -33,28 +34,23 @@ export class ProductSearchComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.searchForm.controls; }
   
-  
-
 
   onSearch($event){
     let searched: string = $event.target.value; 
+    this.searchingFor = searched; 
     console.log("Searching for : ");
     console.log(searched);
     
-    this.searchedValue ="";
     
     this.searchService.searchProducts(searched)
       .subscribe((data: any) => {
         console.log(data); 
         this.foundProducts = data; 
+        this.isSearching = true; 
         console.log(this.foundProducts);
-      } 
-    ); 
-
-    // let tag: Tag = new Tag($event.target.value);  
-    // console.log(tag);
-    // this.tags.push(tag);
-    // this.addTagValue ="";  
-    // this.tagAddedEvent.emit(tag);
+        } 
+      ); 
+  this.searchedValue ="";
+  
   }
 }

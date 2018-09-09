@@ -13,26 +13,43 @@
           [(ngModel)]="searchedValue"
           required
           >
-        <button class="input-group-text btn btn-success bg-success" id="inputGroupPrepend">
+
+        <!-- <button 
+          class="input-group-text btn btn-success bg-success" 
+          id="inputGroupPrepend"
+          (click)="onSearch($event)">
           <i class="fa fa-search text-white"></i>
-        </button>
+        </button> -->
         <!-- <div class="invalid-feedback">
           Not valid name ...
         </div> -->
       </div>
     </div>
   </div>
-</form>
-<div class="card card-body py-5">
-    <div class="row">
-      <div *ngFor="let product of products" class="col-4">
-          <app-product
-              [product]="product"
-              [editMode]="false"
-          ></app-product>
+</form> 
+
+<div class="container search-box bg-light my-5">
+  <div *ngIf="isSearching" class="bg-light">
+    <!-- <div class="row"> -->
+      <h4 class="text-center">Search Results For: {{searchingFor}}</h4>
+    <!-- </div>   -->
+    <div  *ngIf="foundProducts.length > 0" class="card card-body py-5"> 
+      <div class="row">
+        <div *ngFor="let product of foundProducts" class="col-4">
+            <app-product
+                [product]="product"
+                [editMode]="false"
+            ></app-product>
+        </div>
       </div>
     </div>
+
+    <div  *ngIf="foundProducts.length == 0" class="card card-body py-5">
+      <h3>No results</h3>
+    </div> 
+
   </div>
+</div>
 
 <!-- MODAL -->
 
