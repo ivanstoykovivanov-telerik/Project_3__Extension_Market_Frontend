@@ -24,23 +24,32 @@ export class AuthService {
     this.userSource.next(user);
   }
 
-
-  login(username: string, password: string){
-    this.http.post(username, password)
-      .subscribe( (data: any) => {
-        if(data){
-          this.changeUser(data); 
-          this.loggedIn = true; 
-          return true; 
-        } 
-        return false ; 
-      });
-  }
+  // OLD //TODO: 
+  // login(username: string, password: string){
+  //   this.http.post(`${AppComponent.API_URL}/login`,  {
+  //       username: username, 
+  //       password: password
+  //     })
+  //     .subscribe( (data: any) => {
+  //       if(data){
+  //         this.changeUser(data); 
+  //         this.loggedIn = true; 
+  //         return true;  
+  //       } 
+  //       return false ; 
+  //     });
+  // }
   
+
+  login(user: User){
+    //let user = new User(username, password); 
+      
+    return this.http.post(`${AppComponent.API_URL}/login`, user ); 
+  }      
 
   public logOut(user: User) {
     // remove user from local storage to log user out
-    return this.http.post(AppComponent.API_URL+"/logout", user); 
+    // return this.http.post(AppComponent.API_URL+"/logout", user); 
   }
 
 

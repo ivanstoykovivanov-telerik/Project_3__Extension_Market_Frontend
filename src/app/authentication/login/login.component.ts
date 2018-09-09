@@ -12,10 +12,12 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  
   loginForm : FormGroup; 
   submitted = false; 
   errorMessage : string;  
   currentUser: User; 
+
 
   constructor( 
     private formBuilder: FormBuilder, 
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
     private router: Router, 
     private authenticationService: AuthenticationService,
   ) { }
+
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -34,8 +37,10 @@ export class LoginComponent implements OnInit {
       .subscribe(data => this.currentUser = data)
   }
 
+
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
+
 
   onSubmit(){
     this.submitted = true; 
@@ -48,44 +53,31 @@ export class LoginComponent implements OnInit {
     
     let username: string = this.f.username.value; 
     let password: string = this.f.password.value; 
-    
-    // LOGIN TO BACKEND
-    const user =  new User(username, password); 
+    let user = new User(username, password); 
     this.login(user); 
   }
 
 
+  //TODO: 
   login(user: User){
-     let statusLogIn = this.authService.login(user.username, user.password); 
+      this.authService.login(user)
+        .subscribe(data => console.log(data)); 
+
+
+      // let statusLogIn = this.authService.login(username, password); 
       
-      if(statusLogIn && this.currentUser.userStatus == "ENABLED"){
-        this.router.navigate(['/home']);
-      }
+      // if(statusLogIn && this.currentUser.userStatus == "ENABLED"){
+      //   this.router.navigate(['/home']);
+      // }
       
-      if(!statusLogIn){
-        this.errorMessage = "Incorrect username or password"; 
-      }
+      // if(!statusLogIn){
+      //   this.errorMessage = "Incorrect username or password"; 
+      // }
       
-      if(statusLogIn && this.currentUser.userStatus === "SUSPENDED")
-        this.errorMessage = "Your account has been suspended"; 
-      }
+      // if(statusLogIn && this.currentUser.userStatus === "SUSPENDED")
+      //   this.errorMessage = "Your account has been suspended"; 
+      // }
+  }
 }
 
-
-  // __login(user: User){
-    
-  //  // TODO: Check if user is not deactivated by admin
-    
-  //   this.authService.logIn(user)
-  //     .subscribe(
-  //       data => {
-  //         if (data) {
-  //           console.log("Successfully LOGGED IN ");
-  //           this.router.navigate(['/home']);
-  //         }
-  //     }, 
-  //       err => {
-  //         this.errorMesssage = "Incorrect username or password";
-  //       });
-  // }
 
