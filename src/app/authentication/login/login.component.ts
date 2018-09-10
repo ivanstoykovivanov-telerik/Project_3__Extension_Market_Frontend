@@ -21,16 +21,6 @@ export class LoginComponent implements OnInit {
   isAdmin : boolean = false; 
   isUser: boolean =  false; 
 
-  // emptyUser : User = new User("", "", "", "", "", "ENABLED", 0); 
-
-  // private userSource = new BehaviorSubject<User>(this.emptyUser);
-  // loggedInUser = this.userSource.asObservable();
-
-  // changeUser(user: User) {
-  //   this.userSource.next(user);
-  // }
-
-
 
   constructor( 
     private formBuilder: FormBuilder, 
@@ -76,7 +66,7 @@ export class LoginComponent implements OnInit {
   login(user: User){
     this.authService.login(user)
       .subscribe(
-        data => {
+        (data : any) => {
           console.log(data); 
           
           if(!data){
@@ -85,8 +75,16 @@ export class LoginComponent implements OnInit {
 
           if(data.userStatus === "ENABLED"){
             this.currentUser = data; 
-            this.authService.loggedIn = true; 
             this.authService.changeUser(data); 
+            this.authService.loggedIn = true;
+            console.log(data);
+            if(data.role === "USER"){
+              this.authService.isUser = true;
+            }else {
+              this.authService.isAdmin = true;
+            }
+
+            
             this.router.navigate(['/home']);
           }
 

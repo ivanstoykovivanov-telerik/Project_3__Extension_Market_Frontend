@@ -4,11 +4,15 @@ import {AppComponent} from "../app.component";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from '../models/user.model';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
   
   loggedIn: boolean = false; 
+  isAdmin: boolean = false; 
+  isUser : boolean = false; 
+  
   // dummy: User  = new User("ivanov", "bonbon800", "Ivan", "Ivanov", "ivanov@gmail.com", "ENABLED", 1); 
   emptyUser : User = new User("", "", "", "", "", "ENABLED", 0); 
 
@@ -17,7 +21,10 @@ export class AuthService {
   currentUser = this.userSource.asObservable();
 
 
-  constructor(public http: HttpClient) { }
+  constructor(
+    public http: HttpClient, 
+    public router: Router
+  ) { }
 
 
   changeUser(user: User) {
@@ -33,6 +40,9 @@ export class AuthService {
   //TODO: 
   public logOut(user: User) {
     // remove user from local storage to log user out
+    this.loggedIn = false; 
+    this.changeUser(this.emptyUser); 
+    this.router.navigate(['/login']);
      return this.http.post(AppComponent.API_URL+"/logout", user); 
   }
 
