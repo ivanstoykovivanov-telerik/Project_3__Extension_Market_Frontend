@@ -13,6 +13,9 @@ import { UploadProductComponent } from '../upload-product/upload-product.compone
 import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
 import { AdminProductsComponent } from '../admin-products/admin-products.component';
 import { AdminFeaturedComponent } from '../admin-featured/admin-featured.component';
+import { AuthGuardGuard } from '../guards/auth-guard.guard';
+import { AdminAuthGuardGuard } from '../guards/admin-auth-guard.guard';
+
 
 const routes: Routes = [
   {
@@ -34,20 +37,24 @@ const routes: Routes = [
   {
     path  : "profile", 
     component : ProfileComponent,
+     canActivate: [AuthGuardGuard],
     children: [
       {
         path  : "profileProducts", 
         component : ProductsOfUserComponent,
+        // canActivate: [AuthGuardGuard],
         outlet: "profileDetails"
       },
       {
         path  : "uploadlProduct", 
         component : UploadProductComponent,
+        // canActivate: [AuthGuardGuard],
         outlet: "profileDetails"
       },
       {
         path  : "profileData", 
         component : ProfileDataComponent,
+        // canActivate: [AuthGuardGuard],
         outlet: "profileDetails"
       }]
   }, 
@@ -60,20 +67,24 @@ const routes: Routes = [
   {
     path  : "admin", 
     component : AdminDashboardComponent,
+    // canActivate: [AuthGuardGuard, AdminAuthGuardGuard],
     children: [
       {
         path  : "adminUsers", 
         component : AdminComponent,
+        // canActivate: [AuthGuardGuard, AdminAuthGuardGuard],
         outlet: "adminSection"
       },
       {
         path  : "adminProducts", 
         component : AdminProductsComponent,
+        // canActivate: [AuthGuardGuard, AdminAuthGuardGuard],
         outlet: "adminSection"
       },
       {
         path  : "adminFeatured", 
         component : AdminFeaturedComponent,
+        // canActivate: [AuthGuardGuard, AdminAuthGuardGuard],
         outlet: "adminSection"
       },
 

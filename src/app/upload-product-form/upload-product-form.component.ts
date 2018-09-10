@@ -123,7 +123,7 @@ export class UploadProductFormComponent implements OnInit {
             .subscribe(
                 data => console.log(data)
             );
-       // this.redirectToProductsOfUser(); //TODO: 
+        this.redirectToProductsOfUser(); //TODO: 
     } 
   }
 

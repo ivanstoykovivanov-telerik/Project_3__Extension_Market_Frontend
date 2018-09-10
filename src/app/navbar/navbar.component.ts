@@ -11,6 +11,7 @@ import { User } from '../models/user.model';
 export class NavbarComponent implements OnInit {
   isCollapsed = true;
   currentUser : User;
+  loggedIn: boolean; 
 
   constructor( 
     private authService : AuthService,
@@ -20,8 +21,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     //get the current user reactively
     this.authService.currentUser.subscribe(data => this.currentUser = data);
-    // localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-    // console.log(this.currentUser);
+    this.authService.loggedIn = this.loggedIn; 
   }
 
 
@@ -37,7 +37,6 @@ export class NavbarComponent implements OnInit {
           this.router.navigate(['/login']);
           localStorage.removeItem('currentUser');
           console.log("successfully logged out");
-          // console.log(data);
         }
       );
   }
