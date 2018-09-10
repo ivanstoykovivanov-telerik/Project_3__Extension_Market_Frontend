@@ -74,30 +74,27 @@ export class LoginComponent implements OnInit {
           }
 
           if(data.userStatus === "ENABLED"){
-            this.currentUser = data; 
-            this.authService.changeUser(data); 
-            this.authService.loggedIn = true;
-            console.log(data);
-            if(data.role === "USER"){
-              this.authService.isUser = true;
-            }else {
-              this.authService.isAdmin = true;
-            }
-
-            
-            this.router.navigate(['/home']);
+              this.currentUser = data; 
+              this.authService.changeUser(data); 
+              this.authService.loggedIn = true;
+              console.log(data);
+              if(data.role === "USER"){
+                this.authService.isUser = true;
+                this.router.navigate(['/home']);
+              }
+              if(data.role === "ADMIN"){
+                this.authService.isAdmin = true;
+                this.authService.loggedIn = true;
+                this.router.navigate(['/admin']);
+              }
           }
 
-          if(data.userStatus === "SUSPENDED"){
-            this.router.navigate(['/login']);
-            this.errorMessage = "Your account has been suspended"; 
+          if(data.userStatus === "DISABLED"){
+              this.router.navigate(['/login']);
+              this.errorMessage = "Your account has been suspended"; 
           }
         })
-}
-
-
-  
-
+  }
 }
 
 

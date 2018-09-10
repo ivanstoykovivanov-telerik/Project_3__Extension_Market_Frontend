@@ -165,7 +165,7 @@ export class UploadProductFormComponent implements OnInit {
     }
 
   redirectToProductsOfUser(){
-        this.router.navigate(['../profile/(profileDetails:profileProducts)'], {relativeTo: this.activatedRoute}); 
+        this.router.navigate(['/home'], {relativeTo: this.activatedRoute}); 
   }
 
   onTagDeleted($event){
