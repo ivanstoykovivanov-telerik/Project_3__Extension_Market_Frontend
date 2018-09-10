@@ -11,7 +11,7 @@ export class SearchService {
 
 
   searchProducts(searched: string){
-    console.log("In");
+    console.log("In searchproducts");
     return this.http.post(`${AppComponent.API_URL}/search`, searched); 
   }
 

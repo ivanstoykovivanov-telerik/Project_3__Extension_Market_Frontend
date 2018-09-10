@@ -37,10 +37,8 @@ export class ProductSearchComponent implements OnInit {
 
   onSearch($event){
     let searched: string = $event.target.value; 
-    // this.searchingFor = searched; 
     console.log("Searching for : ");
     console.log(searched);
-    
     
     this.searchService.searchProducts(searched)
       .subscribe((data: any) => {
