@@ -2,12 +2,20 @@
 
 
 This is the frontend part of a two side project in a collaboration with my colleague Lucia Savova. 
-The project was assigned to us by the software company Tick 42 based in Sofia , Bulgaria. 
-The backend part coudl be found here  :  https://github.com/lusavova/ExtensionRepository 
+The project was assigned to us by the software company Tick 42 based in Sofia, Bulgaria. 
+
+The backend part could be found here: https://github.com/lusavova/ExtensionRepository 
 
 ## Project Description
 
 Our task was to design and develop a VSCode-like extension repository system. It had to allow extension developer to manage their extensions. The clients of the system had to be able to browse the extensions and download them. 
+
+## Running the Project
+
+1 . Download the repository 
+2.  Run 'npm install' in the root folder of the project to download all its packages and dependencies. 
+3.  Run 'npm start' or 'ng serve' to start the poject.   
+
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.2.
