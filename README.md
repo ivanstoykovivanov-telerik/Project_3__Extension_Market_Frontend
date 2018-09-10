@@ -13,8 +13,8 @@ Our task was to design and develop a VSCode-like extension repository system. It
 ## Running the Project
 
 1 . Download the repository 
-2.  Run 'npm install' in the root folder of the project to download all its packages and dependencies. 
-3.  Run 'npm start' or 'ng serve' to start the poject.   
+2.  Run `npm install` in the root folder of the project to download all its packages and dependencies. 
+3.  Run `npm start` or `ng serve` to start the poject.   
 
 
 
