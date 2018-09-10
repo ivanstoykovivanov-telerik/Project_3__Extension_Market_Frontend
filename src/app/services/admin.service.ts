@@ -40,4 +40,19 @@ export class AdminService {
     return this.http.post(`${AppComponent.API_URL}/admin/products/disable/${product.id}`, {}); 
   }
 
+  public activateProduct(product: Product){
+    console.log("In");
+    return this.http.post(`${AppComponent.API_URL}/admin/products/approve/${product.id}`, {}); 
+  }
+
+  public featureProduct(product: Product){
+    console.log("In");
+    return this.http.post(`${AppComponent.API_URL}/admin/products/feature/${product.id}`, {}); 
+  }
+
+  public unFeatureProduct(product: Product){
+    console.log("In");
+    return this.http.post(`${AppComponent.API_URL}/admin/products/unfeature/${product.id}`, {}); 
+  }
+
 }

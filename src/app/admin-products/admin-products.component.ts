@@ -31,43 +31,72 @@ export class AdminProductsComponent implements OnInit {
       })
   }
 
-  isApproved(product: Product): boolean{
-    if(product.productStatus === "ENABLED"){
-      return true ; 
-    }
-    
-    if(product.productStatus === "PENDING"){
-      return false; 
-    }
-  }
 
-  isActive(product: Product): boolean{
-    if(product.productStatus === "ENABLED"){
-      return true ; 
-    }
-    
-    if(product.productStatus === "DISABLED"){
-      return false ; 
+  getStatus(product){
+    switch (product.productStatus){
+      case 'PENDING':
+        return false;
+      case 'ENABLED':
+        return true;
+      case 'DISABLED':  
+        return false;
     }
   }
 
-
-  deActivateProduct($event, product){
-      console.log("In");
-      if(product.productStatus = "ENABLED"){
-        product.productStatus = "DISABLED";   
-        this.adminService.deactivateProduct(product)
-          .subscribe();
-      }
+  getColor(product) { 
+    switch (product.productStatus) {
+      case 'PENDING':
+        return '#e6e6e6';
+      case 'ENABLED':
+        return '#8AEF95';
+      case 'DISABLED':  
+        return '#FF9698';
+    }
   }
-
-  onApproveProduct($event, product){
-    console.log("In");
+  
+ //works
+  onDeActivateProduct(event, product: Product){
     if(product.productStatus === "PENDING"){
       product.productStatus = "ENABLED"; 
-      this.adminService.approveProduct(product)
+      this.adminService.activateProduct(product)
         .subscribe();
-    } 
+      return; 
+    }
+    
+    
+    if(product.productStatus === "DISABLED"){
+      product.productStatus = "ENABLED"; 
+      this.adminService.activateProduct(product)
+        .subscribe();
+      return; 
+    }
+    
+    if(product.productStatus === "ENABLED"){
+      product.productStatus = "DISABLED"; 
+      this.adminService.deactivateProduct(product)
+        .subscribe();
+      return; 
+    }
+  }
+
+
+
+  onFeatureProduct($event, product){
+    console.log("In");
+    if(product.featuredProduct === 0){
+      // product.featuredProduct = 1 ; 
+      this.adminService.featureProduct(product)
+        .subscribe();
+        return ; 
+    }
+    
+    if(product.featuredProduct === 1){
+      // product.featuredProduct = 0 ; 
+      this.adminService.unFeatureProduct(product)
+        .subscribe();
+        return ; 
+    }
+    
   }
 
 

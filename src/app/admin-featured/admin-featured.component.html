@@ -1,14 +1,15 @@
 <div class="container products">
     <h2 class="my-5">ADMIN PAGE</h2>
-    <h2 class="my-5">Disable/Enable Products</h2>
+    <h2 class="my-5">Featured Products</h2>
     <table class="table table-striped">
         <thead>
           <tr>
             <th class="hidden">Id</th>
+            <th class="text-success">Featured</th>
             <th>Product Name</th>
             <th>Version</th>
             <th>Status</th>
-            <th class="text-danger">Suspended</th>
+            
             <th>Extensions Page</th>
           </tr>
         </thead>
@@ -16,15 +17,16 @@
           <tr *ngFor="let product of products" 
             [ngStyle]="{'background-color': getColor(product) }"> 
             <td class="hidden">{{product.id}}</td>
+            <td>
+              <input 
+                type="checkbox" 
+                (change)="onFeatureProduct($event, product)" 
+                [checked]="getStatus(product)">
+            </td>
             <td>{{product.name}}</td>
             <td>{{product.version}}</td>
             <td>{{product.productStatus}}</td>
-            <td>
-                <input 
-                  type="checkbox" 
-                  (change)="onDeActivateProduct($event, product)" 
-                  [checked]="getStatus(product)">
-            </td>
+            
             <td>
               <button class="btn btn-secondary"  (click)="showProduct(product)">Product Page</button>
             </td>
@@ -32,4 +34,3 @@
         </tbody>
       </table>
 </div>
-

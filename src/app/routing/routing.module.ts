@@ -12,6 +12,7 @@ import { ProfileDataComponent } from '../profile-data/profile-data.component';
 import { UploadProductComponent } from '../upload-product/upload-product.component';
 import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
 import { AdminProductsComponent } from '../admin-products/admin-products.component';
+import { AdminFeaturedComponent } from '../admin-featured/admin-featured.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,11 @@ const routes: Routes = [
       {
         path  : "adminProducts", 
         component : AdminProductsComponent,
+        outlet: "adminSection"
+      },
+      {
+        path  : "adminFeatured", 
+        component : AdminFeaturedComponent,
         outlet: "adminSection"
       },
 

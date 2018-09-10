@@ -14,9 +14,15 @@
         <li class="nav-item active">
           <a  class="nav-link btn"  
             [routerLink]="['/admin', {outlets: {'adminSection': ['adminProducts']}}]">
-            <i class="fa fa-cubes"></i><span class="ml-2">Extensions</span>  
+            <i class="fa fa-cubes"></i><span class="ml-2"> Extensions</span>  
           </a>
         </li>
+        <li class="nav-item active">
+            <a  class="nav-link btn"  
+              [routerLink]="['/admin', {outlets: {'adminSection': ['adminFeatured']}}]">
+              <i class="fa fa-cube"></i><span class="ml-2">Featured</span>  
+            </a>
+          </li>
       </ul>
     </div>
   </nav>
