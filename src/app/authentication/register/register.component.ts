@@ -130,13 +130,14 @@ export class RegisterComponent implements OnInit {
 
             //UPDATE EXISTING USER 
             console.log(this.currentUser.id);
-            let user: User = new User(username, password, firstName, lastName, email, userStatus,  this.currentUser.id);  
+            let user: User = new User(
+                username, password, firstName, lastName, email, userStatus, this.currentUser.role,  this.currentUser.id);  
             this.update(user); 
      
         }else{
         
             //SAVE NEW USER 
-            let user: User = new User(username, password, firstName, lastName, email, userStatus);  
+            let user: User = new User(username, password, firstName, lastName, email, userStatus );  
             console.log(user);    
             this.register(user);   
       }
@@ -161,6 +162,7 @@ export class RegisterComponent implements OnInit {
             .subscribe(data => {
                console.log(data);
                //TODO: show Toast
+               //redirect to upper page 
             })
     }  
 

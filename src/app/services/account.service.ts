@@ -5,17 +5,20 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AccountService {
+  
   constructor(public http: HttpClient) { }
+
 
   createAccount(user: User){
     return this.http.post(`${AppComponent.API_URL}/register`, user); 
   }
 
+
   update(user : User){
-    //TODO:  Lucia 
-    // console.log("In ");
+    console.log("In ");
+    console.log(user.id);
     // console.log(user);
-    return this.http.post(`${AppComponent.API_URL}/users/update`, user); //TODO: check backend 
+    return this.http.post(`${AppComponent.API_URL}/users/update/${user.id}`, user); //TODO: check backend 
   }
 
 
