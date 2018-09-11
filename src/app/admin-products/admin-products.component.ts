@@ -4,6 +4,7 @@ import { UserService } from '../services/user.service';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-products',
@@ -19,6 +20,7 @@ export class AdminProductsComponent implements OnInit {
       private userService: UserService, 
       private productService: ProductService,
       private router: Router, 
+      private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -54,7 +56,6 @@ export class AdminProductsComponent implements OnInit {
     }
   }
   
- //works
   onDeActivateProduct(event, product: Product){
     if(product.productStatus === "PENDING"){
       product.productStatus = "ENABLED"; 
@@ -62,7 +63,6 @@ export class AdminProductsComponent implements OnInit {
         .subscribe();
       return; 
     }
-    
     
     if(product.productStatus === "DISABLED"){
       product.productStatus = "ENABLED"; 
@@ -80,9 +80,7 @@ export class AdminProductsComponent implements OnInit {
   }
 
 
-
   onFeatureProduct($event, product){
-    console.log("In");
     if(product.featuredProduct === 0){
       // product.featuredProduct = 1 ; 
       this.adminService.featureProduct(product)
@@ -91,17 +89,31 @@ export class AdminProductsComponent implements OnInit {
     }
     
     if(product.featuredProduct === 1){
-      // product.featuredProduct = 0 ; 
       this.adminService.unFeatureProduct(product)
         .subscribe();
         return ; 
     }
-    
   }
 
 
-  showProduct(product){
+  onShowProduct(product){
      this.router.navigate(['/productDetails', {id: product.id} ]);
   }
+
+
+  onDeleteProduct(product: Product){
+    this.productService.deleteProduct(product)
+      .subscribe(data => {
+        console.log("Deleting product");
+      });
+    this.products.filter(e => product.id !== e.id); 
+    this.showSuccess(product);  
+  }
+
+
+  /*  TOASTR  */ 
+  showSuccess(product) {
+    this.toastr.success('Successfully deleted', product.name);
+  } 
 
 }

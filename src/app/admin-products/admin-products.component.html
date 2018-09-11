@@ -1,6 +1,6 @@
 <div class="container products">
     <h2 class="my-5">ADMIN PAGE</h2>
-    <h2 class="my-5">Disable/Enable Products</h2>
+    <h2 class="my-5">Extensions</h2>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -8,8 +8,9 @@
             <th>Product Name</th>
             <th>Version</th>
             <th>Status</th>
-            <th class="text-danger">Suspended</th>
+            <th class="text-danger">Enable/Disable</th>
             <th>Extensions Page</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -26,8 +27,21 @@
                   [checked]="getStatus(product)">
             </td>
             <td>
-              <button class="btn btn-secondary"  (click)="showProduct(product)">Product Page</button>
+              <button class="btn btn-secondary"  (click)="onShowProduct(product)">Product Page</button>
             </td>
+            <td>
+                <!-- <button class="btn btn-danger"  (click)="onDeleteProduct(product)">Delete</button> -->
+                <span class="col-4 text-right">
+                    <span 
+                      class="btn text-danger" 
+                      (click)="onDeleteProduct(product)" 
+                      tooltip="Delete Extension" 
+                      placement="right" 
+                      [delay]="500">
+                      <i class="fa fa-trash fa"></i>
+                    </span>
+                </span>
+              </td>
           </tr>
         </tbody>
       </table>

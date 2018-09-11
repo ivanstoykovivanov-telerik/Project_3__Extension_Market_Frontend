@@ -12,64 +12,16 @@ import { AppComponent } from '../app.component';
 export class ProductService {
   private productsURL = "/api/product";
 
-//  // For test purposes:
-//   product: Product = new Product(
-//     "Slack chat",
-//     "Next generation chat for the modern office communication",
-//     "12.34",
-//     new User("prodan123"),
-//     "http://www.slack-bot.com/download",
-//     "http://github/slac-chat",
-//     [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ],
-//     1234,
-//     12,
-//     421,
-//     new Date(),
-//     "pending",
-//     123
-// );
-
-//   product2: Product = new Product(
-//     "Math app",
-//     "Next generation chat for the modern office communication",
-//     "12.34",
-//     new User("prodan123"),
-//     "http://www.slack-bot.com/download",
-//     "http://github/slac-chat",
-//     [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ],
-//     1234,
-//     12,
-//     421,
-//     new Date(),
-//     "pending",
-//     123
-//   );
-//   product3: Product = new Product("New bootstrap",
-//     "Next generation chat for the modern office communication",
-//     "12.34",
-//     new User("prodan123"),
-//     "http://www.slack-bot.com/download",
-//     "http://github/slac-chat",
-//     [new Tag("chat"), new Tag("chatbot"), new Tag("machine learning") ],
-//     1234,
-//     12,
-//     421,
-//     new Date(),
-//     "pending",
-//     123
-//   );
-
-  //For test purposes :
-
-  // products: Product[] = [
-  //   this.product,
-  //   this.product2,
-  //   this.product3
-  // ];
 
   constructor(
     private http: HttpClient
   ) { }
+
+
+  set productDetails(product : Product){
+    // this.productDetails = product;
+    localStorage.setItem("productDetails", JSON.stringify(product));
+  }
 
 
   public getProducts(sortedBy: string){
@@ -78,22 +30,24 @@ export class ProductService {
     return this.http.get<Product[]>(AppComponent.API_URL + "/products", { params: params });
   }
 
+
   public getAllProducts(){
     return this.http.get<Product[]>(AppComponent.API_URL+"/products")
   }
 
+
   public getProductById(id : number){
     return this.http.get<Product>(`${AppComponent.API_URL}/products/${id}`); 
   }  
+
 
   public getProductByName(){
     // return this.http.get<Product>(AppComponent.API_URL+"/products")  
   } 
 
 
-  set productDetails(product : Product){
-    // this.productDetails = product;
-    localStorage.setItem("productDetails", JSON.stringify(product));
+  public deleteProduct(product: Product){
+    return this.http.delete<Product>(`${AppComponent.API_URL}/admin/products/delete/${product.id}`); 
   }
 
 
@@ -103,6 +57,7 @@ export class ProductService {
     console.log(product);
     return this.http.post(AppComponent.API_URL + "/products/add",  product);
   }
+
 
   //TODO:
   public getProductsByUser(userID: number): Observable<Product[]>{
@@ -119,5 +74,4 @@ export class ProductService {
     console.log(id);
     return this.http.post<Product>(`${AppComponent.API_URL}/products/update/${id}`, product);
   }
-
 }

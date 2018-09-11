@@ -71,6 +71,7 @@ export class FileUploadComponent implements OnInit {
     )
   }
 
+  
   uploadBINARY(file, id){
     this.fileService.uploadBinary(this.currentFile, this.currentUser.id)
       .subscribe(

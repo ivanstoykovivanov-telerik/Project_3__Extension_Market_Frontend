@@ -32,7 +32,7 @@ export class UploadProductFormComponent implements OnInit {
     binaryFileId: number;
     productPictureId: number; 
     tagsToSendToDB: string[]; 
-    submitButtonDisabled: boolean = false;   // TODO: 
+    submitButtonDisabled: boolean = true;   // TODO: 
     githubPattern : string = "(?<remove>https:\\/\\/github\\.com\\/)(?<name>.*)";
 
 
@@ -49,11 +49,11 @@ export class UploadProductFormComponent implements OnInit {
         this.uploadProductForm = this.formBuilder.group({
           name: ['', Validators.required],          //TODO: Check if name is unique 
           description: ['', Validators.required],
-          version: ['', Validators.minLength(3)],
+          version: ['', Validators.minLength(1)],
           sourceRepositoryLink: ['',[ Validators.required, Validators.pattern(this.githubPattern)]], //TODO: github regex 
         });
         
-        //get product data if in  editting mode 
+        //get product data if in editting mode 
         if(this.filled){
             this.populateValues();
         }
@@ -74,6 +74,7 @@ export class UploadProductFormComponent implements OnInit {
 
 
   onSubmit() {
+   
     this.submitted = true; // ??used in the form
     console.log("Product Submitted");
     
@@ -82,7 +83,8 @@ export class UploadProductFormComponent implements OnInit {
       console.log("Invalid product form");
       return;
     }
-
+    
+    //create the product object
     let name = this.f.name.value;  
     let description = this.f.description.value;  
     let version = this.f.version.value; 
@@ -91,12 +93,20 @@ export class UploadProductFormComponent implements OnInit {
         ownerId = this.product.ownerId : 
         this.authService.currentUser.subscribe( user => ownerId = user.id) 
     let sourceRepositoryLink = this.f.sourceRepositoryLink.value;
-    let fileId = this.binaryFileId ; 
     
+    //handle files
+    let fileId = this.binaryFileId ;
+    
+    //enable form submission
+    if(fileId){
+        this.submitButtonDisabled = false; 
+    }
+
+    let productPictureId = this.productPictureId; 
+
     let newTags = this.tags;
     let tagsToSend: string[] = this.tags.map(tag => tag.tagName); 
     console.log(tagsToSend);
-    let productPictureId = this.productPictureId; 
     console.log("All Tags");
     console.log(newTags);
     
@@ -141,6 +151,9 @@ export class UploadProductFormComponent implements OnInit {
         console.log("FileID: ");
         console.log(event);
         this.binaryFileId = event; 
+        
+        // enable submission form 
+        this.submitButtonDisabled = false; 
     }  
 
 
@@ -164,16 +177,14 @@ export class UploadProductFormComponent implements OnInit {
         this.tags = this.tags.filter(e => tag.tagName !== e.tagName); 
     }
 
-  redirectToProductsOfUser(){
-        this.router.navigate(['/home'], {relativeTo: this.activatedRoute}); 
-  }
+    redirectToProductsOfUser(){
+            this.router.navigate(['/home'], {relativeTo: this.activatedRoute}); 
+    }
 
-  onTagDeleted($event){
-        let tag = $event; 
-        this.tags = this.tags.filter(el => tag.tagName !== el.tagName); 
-  }
-
-
+    onTagDeleted($event){
+            let tag = $event; 
+            this.tags = this.tags.filter(el => tag.tagName !== el.tagName); 
+    }
  
 
 }

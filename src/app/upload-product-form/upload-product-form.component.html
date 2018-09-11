@@ -76,7 +76,7 @@
           <!-- error message -->
           <div *ngIf="submitted && f.version.errors" class="invalid-feedback">
             <div *ngIf="f.version.errors.required">Version is required</div>
-            <div *ngIf="f.version.errors.minlength">Version must be at least 3 characters long</div>
+            <div *ngIf="f.version.errors.minlength">Version must be at least 1 character long</div>
           </div>  
           <!-- // error message -->
       </div>
@@ -88,7 +88,6 @@
       <!-- //  validation icon -->
     </div>
     <!--// version    --> 
-    
     <!-- fileId    -->
     <!--   code file -->
     
