@@ -6,7 +6,7 @@
   </div>
   <!-- Edit Button -->
   <div class="card-body text-success">
-    <h5 class="card-title text-center product_name">{{product.name | slice: 0 : 10}} </h5>
+    <h5 class="card-title text-center product_name">{{product.name | slice: 0 : 12}} </h5>
     <div class="product_icon text-center my-3"><i [ngClass]="icon"></i></div>
     <div class="card-text mt-4 product_desc">{{product.description | slice: 0 : 20 }}...</div>
     
@@ -24,7 +24,7 @@
   </div>
    <!-- Delete Button -->
    <div *ngIf="editMode" class="btn btn-danger" 
-    (click)="onDeleteClicked($event, product)">Delete
+    (click)="onDeleteClicked($event)">Delete
    </div>
  <!--// Delete Button -->
 </div>

@@ -85,12 +85,14 @@ export class ProductComponent implements OnInit {
     //this.router.navigate(['/home']); 
   }
 
-  onDeleteClicked(product :Product, $event){
-    event.stopPropagation();
+  onDeleteClicked( $event){
+    // $event.stopPropagation();
     this.deleteEvent.emit(this.product.id); 
     
+    console.log(this.product);
+    
     //TODO: Delete from the DB 
-    this.productService.deleteProduct(product)
+    this.productService.deleteUserProduct(this.product)
       .subscribe(data => {
         console.log("Deleting product");
       });

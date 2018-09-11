@@ -50,6 +50,11 @@ export class ProductService {
     return this.http.delete<Product>(`${AppComponent.API_URL}/admin/products/delete/${product.id}`); 
   }
 
+  
+  public deleteUserProduct(product: Product){
+    return this.http.delete<Product>(`${AppComponent.API_URL}/products/delete/${product.id}`); 
+  }
+
 
   //TODO:
   public save(product: Product){
