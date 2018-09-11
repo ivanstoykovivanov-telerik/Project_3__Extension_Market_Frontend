@@ -1,17 +1,16 @@
-<!-- <div id="resume" class="collapse"> -->
-    <div class="card card-body bg-success text-white py-5">
-      <h2>My Extensions</h2>
-      <p class="lead">Extensions I have designed</p>
-    </div>
+  <div class="card card-body bg-success text-white py-5">
+    <h2>My Extensions</h2>
+    <p class="lead">Extensions I have designed</p>
+  </div>
 
-    <div class="card card-body py-5">
-      <div class="row">
-        <div *ngFor="let product of products" class="col-4">
-            <app-product
-                [product]="product"
-                [editMode]="true"
-            ></app-product>
-        </div>
+  <div class="card card-body py-5">
+    <div class="row">
+      <div *ngFor="let product of products" class="col-4">
+          <app-product
+              [product]="product"
+              [editMode]="true"
+              (deleteEvent) = "deleteProduct($event)"
+          ></app-product>
       </div>
     </div>
-  <!-- </div> -->
+  </div>

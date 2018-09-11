@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
 import { Product } from '../models/product.model';
 import { Tag } from '../models/tag.model';
@@ -15,13 +15,14 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 export class ProductComponent implements OnInit {
   
   @Input() product: Product;
-  @Input() editMode;    //when true the edit button is visualized
+  @Input() editMode;    //when true the edit and delete buttons are visualized
   icons: string[] ; 
   icon: string; 
   productToEdit: Product; 
   filled : boolean ; 
   modalRef: BsModalRef;
- 
+  @Output() deleteEvent =  new EventEmitter<number>(); 
+
 
   constructor( 
     private router: Router, 
@@ -74,6 +75,7 @@ export class ProductComponent implements OnInit {
     return icon; 
   }
 
+
   onEditClicked(event){
     event.stopPropagation();
     this.productToEdit = this.product; 
@@ -82,6 +84,18 @@ export class ProductComponent implements OnInit {
     //open edit Product modal
     //this.router.navigate(['/home']); 
   }
+
+  onDeleteClicked(product :Product, $event){
+    event.stopPropagation();
+    this.deleteEvent.emit(this.product.id); 
+    
+    //TODO: Delete from the DB 
+    // this.productService.deleteProduct(product)
+    //   .subscribe(data => {
+    //     console.log("Deleting product");
+    //   });
+  }
+
 
   // closeMod($event){
   //   if($event == true ){

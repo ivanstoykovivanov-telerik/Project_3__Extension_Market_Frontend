@@ -34,21 +34,27 @@ const routes: Routes = [
     path  : "home", 
     component : HomeComponent,
   }, 
+
+  //************* */
+  //USER SECTION 
+  //************* */
+  
+
   {
     path  : "profile", 
     component : ProfileComponent,
-     canActivate: [AuthGuardGuard],
+    canActivate: [AuthGuardGuard],
     children: [
       {
         path  : "profileProducts", 
         component : ProductsOfUserComponent,
-        // canActivate: [AuthGuardGuard],
+        //canActivate: [AuthGuardGuard],
         outlet: "profileDetails"
       },
       {
         path  : "uploadlProduct", 
         component : UploadProductComponent,
-        // canActivate: [AuthGuardGuard],
+        //canActivate: [AuthGuardGuard],
         outlet: "profileDetails"
       },
       {
@@ -62,12 +68,16 @@ const routes: Routes = [
     path  : "productDetails", 
     component : ProductDetailsComponent,
   },
+
+  //************* */
+  //ADMIN SECTION 
+  //************* */
   
-  //ADMIN 
   {
     path  : "admin", 
     component : AdminDashboardComponent,
     // canActivate: [AuthGuardGuard, AdminAuthGuardGuard],
+    canActivate: [AdminAuthGuardGuard],
     children: [
       {
         path  : "adminUsers", 

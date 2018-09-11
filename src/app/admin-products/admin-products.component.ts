@@ -5,7 +5,6 @@ import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CssKeyframesDriver } from '@angular/animations/browser/src/render/css_keyframes/css_keyframes_driver';
 
 @Component({
   selector: 'app-admin-products',
@@ -103,15 +102,13 @@ export class AdminProductsComponent implements OnInit {
 
 
   onDeleteProduct(product: Product){
-    let arr = this.products ; 
     console.log("Before");
-    
     console.log(this.products);
     this.products = this.products.filter(e => e.id !== product.id); 
     console.log("After");
     console.log(this.products);
     
-    //TODO: ADD  uncomment 
+    //TODO: UNCOMMENT !!!!  
     // this.productService.deleteProduct(product)
     //   .subscribe(data => {
     //     console.log("Deleting product");

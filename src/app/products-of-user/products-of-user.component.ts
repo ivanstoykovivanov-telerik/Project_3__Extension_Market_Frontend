@@ -31,4 +31,20 @@ export class ProductsOfUserComponent implements OnInit {
       ) 
   }
 
+  deleteProduct($event){
+    
+    let id = $event ; 
+    console.log(this.products);
+    
+    console.log(id);
+    
+    console.log("Before");
+    console.log(this.products);
+    this.products = this.products.filter(e => e.id !== id);  // TODO works
+    console.log("After");
+    console.log(this.products);
+  }
+
+
+
 }
