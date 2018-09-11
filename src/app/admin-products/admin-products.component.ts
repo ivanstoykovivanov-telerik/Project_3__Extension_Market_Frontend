@@ -5,6 +5,7 @@ import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CssKeyframesDriver } from '@angular/animations/browser/src/render/css_keyframes/css_keyframes_driver';
 
 @Component({
   selector: 'app-admin-products',
@@ -13,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdminProductsComponent implements OnInit {
   
-  products : Product[] ; 
+  products : Product[] = [] ; 
   
   constructor(
       private adminService: AdminService, 
@@ -28,8 +29,8 @@ export class AdminProductsComponent implements OnInit {
     //get all products
     this.adminService.getAllProducts()
       .subscribe(data => {
-        console.log(data)
-        this.products = data
+        data.map(el => this.products.push(el))
+        console.log(this.products);
       })
   }
 
@@ -102,11 +103,20 @@ export class AdminProductsComponent implements OnInit {
 
 
   onDeleteProduct(product: Product){
-    this.productService.deleteProduct(product)
-      .subscribe(data => {
-        console.log("Deleting product");
-      });
-    this.products.filter(e => product.id !== e.id); 
+    let arr = this.products ; 
+    console.log("Before");
+    
+    console.log(this.products);
+    this.products = this.products.filter(e => e.id !== product.id); 
+    console.log("After");
+    console.log(this.products);
+    
+    //TODO: ADD  uncomment 
+    // this.productService.deleteProduct(product)
+    //   .subscribe(data => {
+    //     console.log("Deleting product");
+    //   });
+    
     this.showSuccess(product);  
   }
 
