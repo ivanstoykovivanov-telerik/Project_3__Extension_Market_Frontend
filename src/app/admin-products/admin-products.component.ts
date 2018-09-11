@@ -109,10 +109,10 @@ export class AdminProductsComponent implements OnInit {
     console.log(this.products);
     
     //TODO: UNCOMMENT !!!!  
-    // this.productService.deleteProduct(product)
-    //   .subscribe(data => {
-    //     console.log("Deleting product");
-    //   });
+    this.productService.deleteProduct(product)
+      .subscribe(data => {
+        console.log("Deleting product");
+      });
     
     this.showSuccess(product);  
   }

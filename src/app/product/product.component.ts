@@ -90,10 +90,10 @@ export class ProductComponent implements OnInit {
     this.deleteEvent.emit(this.product.id); 
     
     //TODO: Delete from the DB 
-    // this.productService.deleteProduct(product)
-    //   .subscribe(data => {
-    //     console.log("Deleting product");
-    //   });
+    this.productService.deleteProduct(product)
+      .subscribe(data => {
+        console.log("Deleting product");
+      });
   }
 
 

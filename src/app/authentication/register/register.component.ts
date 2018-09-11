@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { User } from '../../models/user.model';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from '../../services/account.service';
 import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 /*
@@ -19,14 +20,15 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent implements OnInit {
     
     readonly  PASSWORD_PATTERN = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$"; 
+    @Input() filled: boolean; 
+    @Input() action: string;
+    @Output() updateFormSubmittedEvent = new EventEmitter(); 
     currentUser: User; 
     registerForm: FormGroup;
     submitted = false;
     loading = false;  //making the submit button of the form active
     user: User ; 
     errorMessage: string; 
-    @Input() filled: boolean; 
-    @Input() action: string;
     usernameAlreadyExists: boolean ; 
     emailAlreadyExists: boolean ; 
     isUsernameUnique: boolean; 
@@ -38,7 +40,8 @@ export class RegisterComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private accountService: AccountService,
-        private authService: AuthService
+        private authService: AuthService, 
+        private toastr: ToastrService
     ) { }
     
 
@@ -133,6 +136,9 @@ export class RegisterComponent implements OnInit {
             let user: User = new User(
                 username, password, firstName, lastName, email, userStatus, this.currentUser.role,  this.currentUser.id);  
             this.update(user); 
+            this.authService.changeUser(user); 
+            //close the modal
+            this.updateFormSubmittedEvent.emit(true); 
      
         }else{
         
@@ -160,9 +166,10 @@ export class RegisterComponent implements OnInit {
     update(user: User){
         this.accountService.update(user)
             .subscribe(data => {
-               console.log(data);
+                //this.router.navigate(['/profile']);
+                this.showSuccess(); 
+                console.log(data);
                //TODO: show Toast
-               //redirect to upper page 
             })
     }  
 
@@ -192,5 +199,9 @@ export class RegisterComponent implements OnInit {
                 this.isEmailUnique = data; 
         })
     }
+
+    showSuccess() {
+        this.toastr.success('Profile data ', 'Updated');
+      }
 
 }

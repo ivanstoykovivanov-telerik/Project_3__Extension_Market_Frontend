@@ -49,7 +49,9 @@
           <app-register
             [filled]= "true"
             [action]="'Update'"
-            (onFormSubmitted) = "lgModal.hide()">
+            (updateFormSubmittedEvent) = "hideModal($event)"
+            >
+            <!-- (onFormSubmitted) = "lgModal.hide()"> -->
           </app-register>
           <!--// Profile edit form -->
     </div>

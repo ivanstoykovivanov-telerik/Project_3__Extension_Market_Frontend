@@ -14,7 +14,7 @@ export class AuthService {
   isUser : boolean = false; 
   
   // dummy: User  = new User("ivanov", "bonbon800", "Ivan", "Ivanov", "ivanov@gmail.com", "ENABLED", 1); 
-  emptyUser : User = new User("", "", "", "", "", "ENABLED", 0); 
+  emptyUser : User = new User("", "", "", "", "", "ENABLED", "USER", 0); 
 
 
   private userSource = new BehaviorSubject<User>(this.emptyUser);

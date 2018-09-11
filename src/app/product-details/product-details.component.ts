@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
+ 
   product: Product; 
   productPicture: string; 
   productPictureLocation : string ; 
@@ -22,7 +23,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor( 
     private productService: ProductService, 
     private fileService: FileService, 
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute
   ){
     this.id =  Number(route.snapshot.params.id); 
    }
@@ -48,7 +49,6 @@ export class ProductDetailsComponent implements OnInit {
     this.fileService.downloadFileT(this.product.id)
       .subscribe(data => saveAs(data, "Product")); 
   }
-
 
 
   getProductPicture(id: number){
