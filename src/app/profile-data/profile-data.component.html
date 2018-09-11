@@ -49,7 +49,7 @@
           <app-register
             [filled]= "true"
             [action]="'Update'"
-            (updateFormSubmittedEvent) = "hideModal($event)"
+            (updateDone)="hideModal()"
             >
             <!-- (onFormSubmitted) = "lgModal.hide()"> -->
           </app-register>

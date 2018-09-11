@@ -21,8 +21,8 @@ export class RegisterComponent implements OnInit {
     
     readonly  PASSWORD_PATTERN = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$"; 
     @Input() filled: boolean; 
-    @Input() action: string;
-    @Output() updateFormSubmittedEvent = new EventEmitter(); 
+    @Input() action: string;    
+    @Output() updateDone: EventEmitter<any> = new EventEmitter<any>();
     currentUser: User; 
     registerForm: FormGroup;
     submitted = false;
@@ -138,7 +138,9 @@ export class RegisterComponent implements OnInit {
             this.update(user); 
             this.authService.changeUser(user); 
             //close the modal
-            this.updateFormSubmittedEvent.emit(true); 
+            console.log("In");
+            
+            this.updateDone.emit(); 
      
         }else{
         

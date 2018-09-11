@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user.model';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   selector: 'app-profile-data',
@@ -11,12 +12,14 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 })
 export class ProfileDataComponent implements OnInit {
   
-  public lgModal: ModalDirective;  
-  currentUser: User; 
+  modalRef: BsModalRef;
+  currentUser: User;
+  @ViewChild('lgModal') public lgModal: ModalDirective; 
 
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService, 
+    private modalService: BsModalService
   ) { }
 
 
@@ -24,9 +27,15 @@ export class ProfileDataComponent implements OnInit {
     this.authService.currentUser.subscribe(data => this.currentUser = data)
   }
 
+
+  // hideModal($event){
+  //   console.log($event);
+  //   this.lgModal.hide(); 
+  // }
+
+  hideModal(){
+    console.log(this.lgModal);
+    this.lgModal.hide();
+ }
   
-  hideModal($event){
-    console.log($event);
-    this.lgModal.hide(); 
-  }
 }
